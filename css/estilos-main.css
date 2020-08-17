@@ -1,0 +1,78 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255 141 97);
+    color: white;
+}
+.nav-interno {
+    width: 58%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+    padding: 8px 0 0;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: blanchedalmond;
+}
+
+.header-interno {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 58%;
+}
+
+.header-interno-titulo {
+    margin: 15px 0 10px;
+}
+
+.header-interno-busqueda {
+    display: flex;
+    justify-content: center;
+}
+
+.header-interno-input {
+    
+    width: 90%;
+    padding: 2px 2px;
+    margin: 3px;
+    
+}
+
+.header-interno-botonbuscar {
+    
+    padding: 6px 25px;
+    margin: 0 3px;
+    border-radius: 5px;
+    color: white;
+    background-color: #f36838;
+    border-color: red;
+    box-shadow: 5px 5px 0px 0px #ff9775;
+    border-style: none;
+}
+
+.header-interno-checkbox {
+    margin-left:-5px;
+    padding: 10px 0 15px;
+}
