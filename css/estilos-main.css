@@ -2,6 +2,8 @@ body {
     font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
+    background-color: blanchedalmond;
+    
 }
 
 nav {
@@ -17,8 +19,11 @@ nav {
     justify-content: space-between;
 }
 
-.logo {
+.logo-superior,  .logo-inferior {
     font-family: 'Pacifico', cursive;
+}
+
+.logo-superior{
     font-size: 20px;
 }
 
@@ -33,7 +38,7 @@ nav {
 header {
     display: flex;
     justify-content: center;
-    background-color: blanchedalmond;
+    background-color: #ffd17c;
 }
 
 .header-interno {
@@ -75,4 +80,75 @@ header {
 .header-interno-checkbox {
     margin-left:-5px;
     padding: 10px 0 15px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.section-interno {
+    width: 58%;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.section-interno-resultado {
+    padding: 10px;  
+    display: flex;
+    justify-content: row;
+    flex-wrap: wrap;
+    
+}
+
+.section-interno-receta {
+    padding: 10px;  
+    background-color: white;
+    width: 190px;
+    height: 60px;
+    border: 2px solid #f36838;
+    border-radius: 8px;
+    margin: 10px;
+    display: flex;
+    
+}
+
+.section-interno-receta-info {
+    
+}
+
+.section-interno-agregar {
+    padding: 30px 0;
+    text-align: right;
+}
+
+.facebook{
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/facebook.svg);
+    display: block;
+    background-position:center;
+    background-size: cover;
+    fill: white;
+}
+
+footer{
+  background-color: rgba(0, 0, 0, .3);
+  color: white;
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.footer-interno{
+    display:flex;
+    width:58%;
+    margin: 0 auto;
+
 }
