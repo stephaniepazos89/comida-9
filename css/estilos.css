@@ -1,39 +1,41 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: blanchedalmond;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    background-color: blanchedalmond;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-main{
-    display:flex;
+main {
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.contenedor{
+.contenedor {
+    display: flex;
+    flex-direction: column;
     width: 25rem;
     padding-bottom: 2rem;
-	  background-color: white;
+    background-color: white;
     border: 1px solid #ECE8E8;
-	  border-radius:0.8rem;
+    border-radius: 0.8rem;
+    align-items: center;
 }
 
-.titulo{
-    text-align: center;
+.titulo {
     font-size: 2rem;
     color: red;
 }
 
-.fuentelogo{
+.fuentelogo {
     font-family: 'Pacifico', cursive;
 }
 
-.button{
+.button {
     padding: 10 px;
     margin: 10px auto 0;
     color: white;
@@ -41,58 +43,58 @@ main{
     display: block;
     border-width: 0.5px;
     padding: 10px 15px;
-    border-radius:5px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: orange;
 }
 
 input {
     font-family: 'Roboto', sans-serif;
     width: 100%;
     border: solid 1px blanchedalmond;
-  }
-  
-  .login{
-    display: block;
-    margin: 0 auto;
-    width: 70%;
-  }
+}
 
-  .login-form{
-    text-align:left;
-  }
-  
-  
-  .login-form input {
+.login {
+    display: flex;
+    width: 70%;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-form input {
     width: 100%;
     border-width: 3px;
     margin: 0 0 10px 0px;
     padding: 10px;
     box-sizing: border-box;
-  }
-  
-  .facebook{
-      margin-right: 10px;
-      margin-top: 10px;
-      width: 40px;
-      height: 40px;
-      background-image: url(../img/facebook.svg);
-      display: block;
-      background-position:center;
-      background-size: cover;
-      fill: white;
-  }
+}
 
-  footer{
+.facebook {
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/facebook.svg);
+    display: block;
+    background-position: center;
+    background-size: cover;
+    fill: white;
+}
+
+footer {
     background-color: rgba(0, 0, 0, .3);
     color: white;
     position: absolute;
-    bottom:0;
+    bottom: 0;
     width: 100%;
-    
-  }
+}
 
-  footer div{
-      display:flex;
-      width: 70%;
-      margin: 0 auto;
-
-  }
+footer div {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+}
