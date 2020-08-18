@@ -39,7 +39,7 @@ header a {
     height: 100%;
 }
 
-a:hover {
+.nav-links a:hover {
     background-color: orange;
 }
 
@@ -207,7 +207,6 @@ main {
 }
 
 .add {
-    margin-top: 4rem;
     width: 40px;
     height: 40px;
     background-image: url(../img/add.svg);
