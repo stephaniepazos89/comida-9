@@ -10,6 +10,7 @@ header {
     display: flex;
     background-color: rgb(255 141 97);
     color: white;
+    align-items: center;
 }
 
 .signout {
@@ -22,15 +23,11 @@ header {
     fill: white;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 .nav-links {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 header a {
@@ -39,6 +36,11 @@ header a {
     padding: 0 1.2rem;
     font-weight: 500;
     font-size: 1rem;
+    height: 100%;
+}
+
+a:hover {
+    background-color: orange;
 }
 
 .titulo {
