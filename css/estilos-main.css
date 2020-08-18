@@ -13,6 +13,19 @@ header {
     align-items: center;
 }
 
+h1 {
+    margin: 0.7rem;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
 .signout {
     width: 22px;
     height: 22px;
@@ -21,13 +34,6 @@ header {
     background-position: center;
     background-size: cover;
     fill: white;
-}
-
-.nav-links {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
 }
 
 header a {
@@ -50,12 +56,6 @@ header a {
 
 .fuentelogo {
     font-family: 'Pacifico', cursive;
-}
-
-h1 {
-    margin: 0.7rem;
-    width: 100%;
-    text-align: center;
 }
 
 h4 {
@@ -171,6 +171,7 @@ main {
 .receta-info {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 .imagenreceta {

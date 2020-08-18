@@ -61,17 +61,98 @@ h1 {
 .contenedor-receta {
     display: flex;
     justify-content: center;
+    margin: 2rem 0;
 }
 
 .receta {
     display: flex;
     width: 60%;
-    background-color: black
+    border-radius: 2rem;
+    flex-direction: column;
+}
+
+.top-receta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: linen;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.negrita {
+    font-weight: 600;
 }
 
 .imagenreceta {
-    width: 8rem;
-    height: 8rem;
+    display: flex;
+    width: 10rem;
+    height: 10rem;
+    border-top-left-radius: 2rem;
+}
+
+.perfil-receta {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+h2 {
+    margin: 0.5rem 0.5rem;
+    font-size: 2rem;
+}
+
+.bot-receta {
+    background: snow;
+    display: flex;
+    flex-direction: column;
+}
+
+.textbox {
+    font-family: 'Roboto', sans-serif;
+    border: solid 1px blanchedalmond;
+    border-width: 0.1rem;
+    padding: 0.4rem;
+    margin-left: 0.4rem;
+}
+
+.inforeceta {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.infoizquierda {
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-ingredientesypasos {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.ingrediente {
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo-bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    padding: 6px 25px;
+    margin: 0 3px;
+    border-radius: 5px;
+    color: white;
+    background-color: #f36838;
+    border-color: red;
+    border-style: none;
 }
 
 .facebook {
