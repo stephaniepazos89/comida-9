@@ -1,0 +1,22 @@
+.cantidad {
+    display: flex;
+    flex-flow: column;
+    padding: 2vh 0;
+    width: 100%;
+    
+}
+
+.inputcantidad {
+    width: 100%;
+    border: 2px solid rgb(248, 209, 161);
+    display: flex;
+    align-items: center;
+    margin: 1vh 0 0;
+    box-sizing: border-box;
+}
+
+.inputcantidad input {
+    width: 99%;
+    border: 0;
+    padding: 1vh;
+}
