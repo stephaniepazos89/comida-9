@@ -15,16 +15,6 @@ header {
     align-items: center;
 }
 
-.signout {
-    width: 22px;
-    height: 22px;
-    background-image: url(../img/signout.svg);
-    display: block;
-    background-position: center;
-    background-size: cover;
-    fill: white;
-}
-
 .nav-links {
     display: flex;
     justify-content: center;
@@ -60,16 +50,13 @@ h1 {
     text-align: center;
 }
 
-.facebook {
+#fb {
+    font-size: 40px;
     margin-right: 10px;
     margin-top: 10px;
-    width: 40px;
-    height: 40px;
-    background-image: url(../img/facebook.svg);
     display: block;
     background-position: center;
     background-size: cover;
-    fill: white;
 }
 
 footer {

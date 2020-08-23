@@ -5,6 +5,7 @@
     <title>FoodOverflow</title>
     <link href="css/recetas.css" rel="stylesheet">
     <link href="css/principal.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
@@ -15,7 +16,7 @@
         <nav class="nav-links">
             <a href="">Home</a>
             <a href="">Perfil</a>
-            <a href=""><i class="signout"></i></a>
+            <a href=""><i class="fa fa-sign-out" style="font-size:22px"></i></a>
         </nav>
     </header>
 
@@ -55,7 +56,45 @@
                             <div class="titulo-bot">
                                 <h3>Ingredientes</h3>
                                 <button class="button">Agregar</button>
-
+                            </div>
+                            <div>
+                                <table class="TablaIngredientes">
+                                    <tr>
+                                        <td>Lentejas</td>
+                                        <td class="Tabla_Valor">200gr.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cebolla</td>
+                                        <td class="Tabla_Valor">2 unidades</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ajo</td>
+                                        <td class="Tabla_Valor">1 diente</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Panceta</td>
+                                        <td class="Tabla_Valor">100gr.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Papas</td>
+                                        <td class="Tabla_Valor">3 unidades</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aceite</td>
+                                        <td class="Tabla_Valor">dos cditas.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carne</td>
+                                        <td class="Tabla_Valor">1/2 kilo</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
 
@@ -64,13 +103,48 @@
                                 <h3>Pasos</h3>
                                 <button class="button">Agregar</button>
                             </div>
+                            <div>
+                                <table class="TablaIngredientes">
+                                    <tr>
+                                        <td>1 Remojar las lentjas durante 24 horas.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 Cortar la cebolla en cubos.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 Picar el ajo.</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4 Rehogar todo en un sartén</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5 Agregar la panceta y la carne</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6 Luego de 10' agregar caldo</td>
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7 A la media hora agregar las lentejas</td>
+
+                                        <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
 
                     </div>
 
                     <div class="colaboradores">
                         <h3>Colaboradores</h3>
+                        <button class="button">Agregar</button>
                     </div>
+
 
                     <div class="botones">
                         <p>BOTON</p>
@@ -90,7 +164,7 @@
 
     <footer>
         <div>
-            <i class="facebook"></i>
+            <i id="fb" class="fa fa-facebook-official"></i>
             <p><span class="fuentelogo"> Food Overflow\</span> 2020. Grupo 9. All rights reserved</p>
         </div>
     </footer>

@@ -1,13 +1,3 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    background-color: blanchedalmond;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
 main {
     display: flex;
     justify-content: center;
@@ -71,29 +61,4 @@ input {
     margin: 0 0 10px 0px;
     padding: 10px;
     box-sizing: border-box;
-}
-
-.fa fa-facebook-square {
-    margin-right: 10px;
-    margin-top: 10px;
-    width: 40px;
-    height: 40px;
-    display: block;
-    background-position: center;
-    background-size: cover;
-    fill: white;
-}
-
-footer {
-    background-color: rgba(0, 0, 0, .3);
-    color: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-footer div {
-    display: flex;
-    width: 70%;
-    justify-content: center;
 }

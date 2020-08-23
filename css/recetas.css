@@ -30,7 +30,7 @@
 .perfil-receta {
     display: flex;
     flex-direction: column;
-    text-align: right;
+    text-align: center;
 }
 
 h2 {
@@ -42,6 +42,7 @@ h2 {
     background: snow;
     display: flex;
     flex-direction: column;
+    padding: 2rem;
 }
 
 .textbox {
@@ -66,12 +67,7 @@ h2 {
 
 .contenedor-ingredientesypasos {
     display: flex;
-    padding: 1rem;
-    justify-content: space-between;
-}
-
-.ingrediente {
-    display: flex;
+    /* padding: 1rem; */
     justify-content: space-between;
 }
 
@@ -79,4 +75,33 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.ingrediente {
+    /* display: flex;
+    justify-content: space-between; */
+    width: 35%;
+}
+
+.pasos {
+    width: 55%;
+}
+
+table {
+    width: 100%;
+}
+
+table .Tabla_Cruz {
+    text-align: right;
+}
+
+table .Tabla_Valor {
+    text-align: left;
+}
+
+.colaboradores {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

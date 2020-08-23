@@ -1,9 +1,8 @@
 .cantidad {
     display: flex;
     flex-flow: column;
-    padding: 2vh 0;
+    height: 100%;
     width: 100%;
-    
 }
 
 .inputcantidad {
@@ -11,12 +10,16 @@
     border: 2px solid rgb(248, 209, 161);
     display: flex;
     align-items: center;
-    margin: 1vh 0 0;
     box-sizing: border-box;
+    margin: 0.5rem 0;
 }
 
 .inputcantidad input {
     width: 99%;
     border: 0;
-    padding: 1vh;
+    padding: 0.5rem;
+}
+
+.textocantidad {
+    margin: 1rem 0 0 0;
 }
