@@ -13,7 +13,6 @@ main {
 }
 
 .contenedor h1 {
-    background-color: rgb(248, 209, 161);
     padding: 1rem;
     display: block;
     margin: 0;
@@ -24,7 +23,6 @@ main {
 }
 
 .contenedor-listadealimentos {
-    background-color: white;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -36,18 +34,16 @@ main {
 
 .lista {
     box-sizing: border-box;
-    border-width: 1rem;
     display: flex;
     flex-flow: column;
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 28.5vh;
+    height: 28vh;
 }
 
 .alimento {
     width: 100%;
-    border: 1px solid rgb(248, 209, 161);
     height: 4vh;
     display: flex;
     justify-content: center;
@@ -57,50 +53,18 @@ main {
     font-weight: 500;
 }
 
-.alimento:hover {
-    background-color: #ffdba2;
-    color: rgb(139, 63, 63);
-}
-
 .alimento.top {
     color: white;
-    background-color: #ff9069;
 }
 
 .contenedor-botones {
     padding: 1vh 0;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .botones-block {
     display: flex;
-    justify-content: space-between;
-    width: 25%;
-    float: right;
-}
-
-.boton {
-    border-radius: 0.5vh;
-    color: white;
-    border-color: red;
-    border-style: none;
-    padding: 0.7vh 2.6vh;
-    box-sizing: border-box;
-    font: 400 13.3333px Arial
-}
-
-.boton.aceptar {
-    background-color: #f36838;
-}
-
-.boton.cancelar {
-    background-color: #a12800;
-}
-
-.boton.aceptar:hover {
-    background-color: orange;
-}
-
-.boton.cancelar:hover {
-    background-color: rgb(230, 54, 38);
+    justify-content: flex-end;
+    margin: 1rem 0 0 0;
 }

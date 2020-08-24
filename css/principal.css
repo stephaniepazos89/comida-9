@@ -1,17 +1,25 @@
+:root {
+    --color-titulo: #207567;
+    --color-primario: #358873;
+    --color-secundario: #8dc3a7;
+    --color-fondo: #b4d6c1;
+    --color-letras: white;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     padding: 0;
     margin: 0;
-    background-color: blanchedalmond;
+    background-color: var(--color-fondo);
     box-sizing: border-box;
     height: 100%;
 }
 
 header {
     display: flex;
-    background-color: rgb(255 141 97);
-    color: white;
+    background-color: var(--color-primario);
+    color: var(--color-letras);
     align-items: center;
 }
 
@@ -23,7 +31,7 @@ header {
 }
 
 header a {
-    color: white;
+    color: var(--color-letras);
     text-decoration: none;
     padding: 0 1.2rem;
     font-weight: 500;
@@ -32,12 +40,17 @@ header a {
 }
 
 .nav-links a:hover {
-    background-color: orange;
+    background-color: var(--color-fondo);
+}
+
+.titulocolor {
+    font-size: 2rem;
+    color: var(--color-titulo);
 }
 
 .titulo {
     font-size: 1.2rem;
-    color: white;
+    color: var(--color-letras);
 }
 
 .fuentelogo {
@@ -61,7 +74,7 @@ h1 {
 
 footer {
     background-color: rgba(0, 0, 0, .3);
-    color: white;
+    color: var(--color-letras);
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -81,8 +94,64 @@ footer div {
     padding: 6px 25px;
     margin: 0 3px;
     border-radius: 5px;
-    color: white;
-    background-color: #f36838;
-    border-color: red;
+    color: var(--color-letras);
+    background-color: var(--color-primario);
     border-style: none;
+}
+
+.button2 {
+    background-color: var(--color-secundario);
+}
+
+.button:hover {
+    background-color: var(--color-fondo);
+}
+
+.button2:hover {
+    background-color: var(--color-fondo);
+}
+
+input {
+    border: solid 1px var(--color-fondo);
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-receta {
+    border: 0.2rem solid var(--color-titulo);
+}
+
+.contenedor-colorsecundario {
+    background-color: var(--color-secundario)
+}
+
+.fa-plus-circle {
+    color: var(--color-primario);
+}
+
+.fa-plus-circle:hover {
+    color: var(--color-secundario);
+}
+
+.contenedor-blanco {
+    background-color: white;
+}
+
+.fondotitulo {
+    background-color: var(--color-titulo);
+}
+
+.border {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector:hover {
+    background-color: var(--color-fondo);
+}
+
+.selector:focus {
+    background-color: var(--color-fondo);
 }

@@ -14,36 +14,26 @@ main {
     border: 1px solid #ECE8E8;
     border-radius: 0.8rem;
     align-items: center;
+    justify-content: center;
 }
 
-.titulo {
-    font-size: 2rem;
-    color: red;
-}
-
-.fuentelogo {
-    font-family: 'Pacifico', cursive;
-}
-
-.button {
+.login-form button {
     padding: 10 px;
     margin: 10px auto 0;
     color: white;
-    background-color: red;
     display: block;
     border-width: 0.5px;
     padding: 10px 15px;
     border-radius: 5px;
 }
 
-.button:hover {
-    background-color: orange;
+.contenedor .titulo {
+    font-size: 2rem;
 }
 
 input {
     font-family: 'Roboto', sans-serif;
     width: 100%;
-    border: solid 1px blanchedalmond;
 }
 
 .login {
