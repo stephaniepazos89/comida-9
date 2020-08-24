@@ -21,13 +21,171 @@
     </header>
 
     <main>
-
         <div class="contenedor">
+            <div class="top perfil-top contenedor-colorsecundario">
+                <div class="top-nombreimc">
+                    <div class="top-nombreimc-nombre">Juan Carlos de la Hoya</div>
+                    <div class="top-nombreimc-imc">IMC: 35</div>
+                </div>
+                <div class="top-salud">
+                    <div class="top-salud-img"><i class="fa fa-heartbeat" aria-hidden="true" style="font-size:20px"></i></div>
+                    <div class="top-salud-estado">Estado saludable</div>
+                </div>
+            </div>
+            <div class="bot">
+                <div class="bot-datos">
+                    <div class="bot-datos-izq">
+                        <div class="bot-datos-peso datos-bloque">
+                            <label class="bot-datos-pesotexto" for="peso">Peso (Kgs.)</label>
+                            <input type="text" name= "peso" class="bot-datos-pesoinput datos-input border-colorsecundario">
+                        </div>
+                        <div class="bot-datos-estatura datos-bloque" >
+                            <label for ="estatura" class="bot-datos-estaturatexto">Estatura</label>
+                            <input type="text" name="estatura" class="bot-datos-estaturainput datos-input border-colorsecundario">
+                        </div>
+                        
+                    </div>
+                    <div class="bot-datos-der">
+                        
+                        <div class="bot-datos-nacimiento datos-bloque">
+                            <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
+                            <input type="date" class="bot-datos-nacimientoinput datos-input border-colorsecundario" name="nacimiento">
+                        </div>
+                        <div class="bot-datos-rutina datos-bloque">
+                            <label class="bot-datos-rutinatexto" for="rutina">Rutina</label>
+                            <select class="bot-datos-rutinainput datos-input border-colorsecundario" name="rutina">
+                                <option value="intensivo">Intensivo</option>
+                                <option value="activo">Activo</option>
+                                <option value="mediano">Mediano</option>
+                                <option value="leve">Leve</option>
+                                <option value="nada">Nada</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="condiciones">
+                    <div class="condiciones-nombre">Condiciones</div>
+                    <div class="condiciones-tipos border-colorsecundario">
+                        <div class="condiciones-tipos-bloque">
+                            <label class="condiciones-tipos-diabetico tipos-bloque" for="diabetico">
+                                <input type="checkbox" name="diabetico">Diabético</label>
+                        </div>
+                        <div class="condiciones-tipos-bloque">
+                            <label class="condiciones-tipos-celiaco" for="celiaco">
+                                <input type="checkbox" name="celiaco">Celíaco</label>
+                        </div>
+                        <div class="condiciones-tipos-bloque">
+                            <label class="condiciones-tipos-vegano" for="vegano">
+                                <input type="checkbox" name="vegano">Vegano</label>
+                        </div>
+                        <div class="condiciones-tipos-bloque">
+                            <label class="condiciones-tipos-hipertenso" for="hipertenso">
+                                <input type="checkbox" name="hipertenso">Hipertenso</label>
+                        </div>
+                        <div class="condiciones-tipos-bloque">
+                            <label class="condiciones-tipos-vegetariano" for="vegetariano">
+                                <input type="checkbox" name="vegetariano">Vegetariano</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alimentos">
+                    <div class="alimentos-preferidos">
+                        <div class="alimentos-top">
+                            <div class="alimentos-nombre">Alimentos preferidos</div>
+                            <button class="alimentos-boton background-colorprimario">Agregar</button>
+                        </div>
+                        <table class="alimentos-lista border-colorsecundario">
+                            <tr>
+                                <td colspan="2" class="alimentos-bloquelista-top fondotitulo">Alimento</td>
+                            </tr>
+                            <tr>
+                                <td class="alimentos-bloquelista border-bottom-colorsecundario">Lentejas</td>
+                                <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="alimentos-bloquelista border-bottom-colorsecundario">Cebolla</td>
+                                <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle" aria-hidden="true"></i></td>
+                            </tr>
+                        </table>
+                    </div>                          
+                    <div class="alimentos-nopreferidos">
+                         <div class="alimentos-top">
+                            <div class="alimentos-nombre">Alimentos no preferidos</div>
+                            <button class="alimentos-boton background-colorprimario">Agregar</button>
+                        </div>
+                        <table class="alimentos-lista border-colorsecundario">
+                            <tr>
+                                <td colspan="2" class="alimentos-bloquelista-top fondotitulo border-bottom-colorsecundario">Alimento</td>
+                            </tr>
+                            <tr>
+                                <td class="alimentos-bloquelista border-bottom-colorsecundario">Coliflor</td>
+                                <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle " aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="alimentos-bloquelista border-bottom-colorsecundario">Chauchas</td>
+                                <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle" aria-hidden="true"></i></td>
+                            </tr>
+                        </table>
+                    </div>  
+                </div>
+
+                <div class="recetas">
+                    <div class="recetas-nombre">Mis recetas</div>
+                    <div class="listado-resultado">
+                        <div class="card-receta">
+                            <img src="../img/pollo.jpg" class="imagenreceta">
+                            <div class="receta-info">
+                                <h3>Pollo al Horno</h3>
+                                <p1>Calorías: 200</p1>
+                                <p1>Dificultad: Media</p1>
+                            </div>
+                            <div class="receta-botones">
+                                <i class="fa fa-edit" style="font-size:23px"></i>
+                                <i class="fa fa-trash-o" style="font-size:25px"></i>
+                            </div>
+                        </div>
+    
+                        <div class="card-receta">
+                            <img src="../img/asado.jpg" class="imagenreceta">
+                            <div class="receta-info">
+                                <h3>Asado al asador</h3>
+                                <p1>Calorías: 300</p1>
+                                <p1>Dificultad: Alta</p1>
+                            </div>
+                            <div class="receta-botones">
+                                <i class="fa fa-edit" style="font-size:23px"></i>
+                                <i class="fa fa-trash-o" style="font-size:25px"></i>
+                            </div>
+                        </div>
+                        <div class="card-receta">
+                            <img src="../img/fideos.jpg" class="imagenreceta">
+                            <div class="receta-info">
+                                <h3>Fideos con tuco</h3>
+                                <p1>Calorías: 180</p1>
+                                <p1>Dificultad: Baja</p1>
+                            </div>
+                            <div class="receta-botones">
+                                <i class="fa fa-edit" style="font-size:23px"></i>
+                                <i class="fa fa-trash-o" style="font-size:25px"></i>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    
+                </div>
+
+                <div class="botonesbot">
+                    <div class="botonesbot-bloque">
+                        <div class="botonesbot-boton aceptar background-colorprimario">Aceptar</div>
+                        <div class="botonesbot-boton cancelar">Cancelar</div>
+                    </div>
+                </div>
+            </div>
+           
         </div>
-
-
-
     </main>
 
     <footer>

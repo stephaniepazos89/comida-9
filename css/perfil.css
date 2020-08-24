@@ -1,0 +1,270 @@
+main {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    
+    width: 100%;
+    height: 100%;
+}
+
+
+.contenedor {
+    margin: 3vh 0 5vh;
+    width: 60%;
+    min-width: 750px;
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    padding: 1vh;
+}
+
+.top  {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vh;
+    border: 0 hidden white;
+    border-radius: 1vh 1vh 0 0;
+}
+
+.top-nombreimc {
+    display: flex;
+    flex-flow: column;
+}
+
+.top-nombreimc-nombre {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.top-nombreimc-imc {
+    font-size: 0.9em;
+}
+
+.top-salud {
+    display: flex;
+    padding: 0 2vh;
+}
+
+.top-salud-img {
+    padding: 0.3vh 0.7vh;
+    
+}
+
+.top-salud-estado {
+    padding: 0.4vh 0.7vh;
+    font-size: 0.9em;
+}
+
+.bot {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    padding: 0 2vh;
+    border: 0 hidden white;
+    border-radius: 0 0 1vh 1vh;
+}
+
+.bot-datos {
+    width: 75%;
+    min-width: 401px;
+    display: flex;
+    flex-flow: column;
+}
+
+.bot-datos-izq, .bot-datos-der{
+    display: flex;
+    justify-content: space-around;
+}
+
+.datos-bloque {
+    width: 40%;
+    min-width: 190px;
+    padding: 1vh 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datos-input {
+    border: 1.5px;
+    width: 55%;
+    min-width: 103px;
+    border-radius: 5px;
+    padding: 6px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+.bot-datos-pesotexto {
+    min-width: 83px;
+}
+
+.condiciones {
+    width: 100%;
+}
+
+.condiciones-nombre, .recetas-nombre {
+    padding: 1vh 0;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.condiciones-tipos {
+    padding: 1vh 0;
+    display: flex;
+    flex-flow: wrap;
+    border: 1.5px;
+    border-radius: 7px;
+    border-style: solid;
+}
+
+.condiciones-tipos-bloque {
+    width: 33%;
+    padding: 0.5vh;
+    box-sizing: border-box;
+}
+
+.alimentos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2vh 0;
+}
+
+.alimentos-preferidos, .alimentos-nopreferidos {
+    width: 45%;
+    display: flex;
+    flex-flow: column;
+}
+
+.alimentos-top {
+    display: flex;
+    justify-content: space-between;
+    height: 3vh;
+}
+
+.alimentos-nombre{
+    
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.alimentos-boton, .botonesbot-boton  {
+    border-radius: 0.5vh;
+    color: white;
+    border-style: none;
+    padding: 0.7vh 2.6vh;
+    box-sizing: border-box;
+    font: 400 13.3333px Arial;
+    
+    align-self: center;
+}
+
+.alimentos-lista {
+    padding: 1vh 0 0 1vh;
+}
+
+td {
+    text-align: center;
+    
+    padding: 0.7vh 0;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    border-collapse: collapse;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px;
+    margin: 1vh 0 0 1vh;
+    border-style: solid;
+}
+
+ .alimentos-bloquelista {
+    padding: 0 0 0 11%;  
+}
+
+.alimentos-bloquelista-top {
+    color: white;
+}
+
+
+
+.contenedor-resultado {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 0 0 1rem 0;
+}
+
+.resultados {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 60%;
+}
+
+.listado-resultado {
+    display: flex;
+    justify-content: row;
+    flex-wrap: wrap;
+}
+
+.card-receta {
+    padding: 5px;
+    background-color: white;
+    
+    border-radius: 0.6rem;
+    display: flex;
+    height: 4rem;
+    width: 14rem;
+    margin: 0.5rem 0.4rem 0 0;
+}
+
+
+.receta-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 59%;
+}
+
+.imagenreceta {
+    height: 3.7rem;
+    width: 3.7rem;
+    margin-right: 0.4rem;
+    border-radius: 1rem;
+}
+
+
+.receta-botones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 12%;
+}
+
+h3 {
+    margin: 2px;
+    font-size: 1.1rem;
+}
+
+.botonesbot {
+    width: 100%;
+    padding: 2vh;
+    padding-right: 2vh;
+}
+
+.botonesbot-bloque {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 200px;
+    float: right;    
+}
+
