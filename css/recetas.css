@@ -64,7 +64,6 @@ h2 {
 
 .contenedor-ingredientesypasos {
     display: flex;
-    /* padding: 1rem; */
     justify-content: space-between;
 }
 
@@ -76,8 +75,6 @@ h2 {
 }
 
 .ingrediente {
-    /* display: flex;
-    justify-content: space-between; */
     width: 35%;
 }
 
@@ -160,4 +157,64 @@ table .Tabla_Valor {
     display: flex;
     justify-content: flex-end;
     margin: 1rem 0 0 0;
+}
+
+.buttonoccult {
+    display: none;
+}
+
+@media screen and (max-width: 400px) {
+    .receta {
+        width: 95%
+    }
+    .perfil-receta p {
+        margin-top: 0;
+    }
+    .perfil-receta h2 {
+        font-size: 1.5rem;
+    }
+    .inforeceta {
+        flex-direction: column;
+        width: 100%;
+    }
+    .infoderecha {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .textbox {
+        width: 90%;
+    }
+    .occult {
+        display: none;
+    }
+    .contenedor-ingredientesypasos {
+        flex-direction: column;
+    }
+    .ingrediente {
+        width: 100%;
+    }
+    .pasos {
+        width: 100%;
+    }
+    .contenedor-lista-colaboradores {
+        width: 100%;
+        padding: 0;
+    }
+    .botones {
+        padding-top: 1rem;
+        justify-content: space-evenly;
+    }
+    .buttonoccult {
+        display: flex;
+    }
+    .mobile {
+        display: none;
+    }
+}
+
+@media screen and (min-width:401px) and (max-width: 768px) {
+    .receta {
+        width: 95%
+    }
 }

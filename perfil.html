@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>FoodOverflow</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="css/perfil.css" rel="stylesheet">
     <link href="css/principal.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,10 +14,12 @@
 
     <header>
         <h1 class="fuentelogo titulo">Food Overflow</h1>
+        <label class="navtoggle" for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle" />
         <nav class="nav-links">
-            <a href="">Home</a>
-            <a href="">Perfil</a>
-            <a href=""><i class="fa fa-sign-out" style="font-size:22px"></i></a>
+            <a href=""><span class="icononav"><i class="fa fa-home" style="font-size:22px"></i></span>Home</a>
+            <a href=""><span class="icononav"><i class="fa fa-user" style="font-size:22px"></i></span>Perfil</a>
+            <a href=""><i class="fa fa-sign-out" style="font-size:22px"></i><span class="icononav">Salir</span></a>
         </nav>
     </header>
 
@@ -28,7 +31,7 @@
                     <div class="top-nombreimc-imc">IMC: 35</div>
                 </div>
                 <div class="top-salud">
-                    <div class="top-salud-img"><i class="fa fa-heartbeat" aria-hidden="true" style="font-size:20px"></i></div>
+                    <div class="top-salud-img"><i class="fa fa-heartbeat" aria-hidden="true" style="font-size:20px;color:red"></i></div>
                     <div class="top-salud-estado">Estado saludable</div>
                 </div>
             </div>
@@ -37,16 +40,16 @@
                     <div class="bot-datos-izq">
                         <div class="bot-datos-peso datos-bloque">
                             <label class="bot-datos-pesotexto" for="peso">Peso (Kgs.)</label>
-                            <input type="text" name= "peso" class="bot-datos-pesoinput datos-input border-colorsecundario">
+                            <input type="text" name="peso" class="bot-datos-pesoinput datos-input border-colorsecundario">
                         </div>
-                        <div class="bot-datos-estatura datos-bloque" >
-                            <label for ="estatura" class="bot-datos-estaturatexto">Estatura</label>
+                        <div class="bot-datos-estatura datos-bloque">
+                            <label for="estatura" class="bot-datos-estaturatexto">Estatura</label>
                             <input type="text" name="estatura" class="bot-datos-estaturainput datos-input border-colorsecundario">
                         </div>
-                        
+
                     </div>
                     <div class="bot-datos-der">
-                        
+
                         <div class="bot-datos-nacimiento datos-bloque">
                             <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
                             <input type="date" class="bot-datos-nacimientoinput datos-input border-colorsecundario" name="nacimiento">
@@ -94,9 +97,9 @@
                     <div class="alimentos-preferidos">
                         <div class="alimentos-top">
                             <div class="alimentos-nombre">Alimentos preferidos</div>
-                            <button class="alimentos-boton background-colorprimario">Agregar</button>
+                            <button class="alimentos-boton button">Agregar</button>
                         </div>
-                        <table class="alimentos-lista border-colorsecundario">
+                        <table class="alimentos-lista border">
                             <tr>
                                 <td colspan="2" class="alimentos-bloquelista-top fondotitulo">Alimento</td>
                             </tr>
@@ -109,11 +112,11 @@
                                 <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle" aria-hidden="true"></i></td>
                             </tr>
                         </table>
-                    </div>                          
+                    </div>
                     <div class="alimentos-nopreferidos">
-                         <div class="alimentos-top alimentos-nopreferido-nombre">
+                        <div class="alimentos-top alimentos-nopreferido-nombre">
                             <div class="alimentos-nombre ">Alimentos no preferidos</div>
-                            <button class="alimentos-boton background-colorprimario">Agregar</button>
+                            <button class="alimentos-boton button">Agregar</button>
                         </div>
                         <table class="alimentos-lista border-colorsecundario">
                             <tr>
@@ -128,7 +131,7 @@
                                 <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle" aria-hidden="true"></i></td>
                             </tr>
                         </table>
-                    </div>  
+                    </div>
                 </div>
 
                 <div class="recetas">
@@ -146,7 +149,7 @@
                                 <i class="fa fa-trash-o" style="font-size:25px"></i>
                             </div>
                         </div>
-    
+
                         <div class="card-receta">
                             <img src="../img/asado.jpg" class="imagenreceta">
                             <div class="receta-info">
@@ -171,27 +174,27 @@
                                 <i class="fa fa-trash-o" style="font-size:25px"></i>
                             </div>
                         </div>
-    
+
                     </div>
-    
-                    
+
+
                 </div>
 
                 <div class="botonesbot">
                     <div class="botonesbot-bloque">
-                        <div class="botonesbot-boton aceptar background-colorprimario">Aceptar</div>
-                        <div class="botonesbot-boton cancelar">Cancelar</div>
+                        <div class="botonesbot-boton button">Aceptar</div>
+                        <div class="botonesbot-boton button2">Cancelar</div>
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </main>
 
     <footer>
         <div>
             <i id="fb" class="fa fa-facebook-official"></i>
-            <p><span class="fuentelogo"> Food Overflow\</span> 2020. Grupo 9. All rights reserved</p>
+            <p><span class="fuentelogo"> Food Overflow\ 2020</span><span class="grupo">. Grupo 9 - All rights reserved</span></p>
         </div>
     </footer>
 </body>

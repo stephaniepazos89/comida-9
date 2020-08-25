@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>FoodOverflow</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="css/recetas.css" rel="stylesheet">
     <link href="css/principal.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,10 +14,12 @@
 
     <header>
         <h1 class="fuentelogo titulo">Food Overflow</h1>
+        <label class="navtoggle" for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle" />
         <nav class="nav-links">
-            <a href="">Home</a>
-            <a href="">Perfil</a>
-            <a href=""><i class="fa fa-sign-out" style="font-size:22px"></i></a>
+            <a href=""><span class="icononav"><i class="fa fa-home" style="font-size:22px"></i></span>Home</a>
+            <a href=""><span class="icononav"><i class="fa fa-user" style="font-size:22px"></i></span>Perfil</a>
+            <a href=""><i class="fa fa-sign-out" style="font-size:22px"></i><span class="icononav">Salir</span></a>
         </nav>
     </header>
 
@@ -30,7 +33,7 @@
                     <div class="perfil-receta">
                         <h2>Guiso de lentejas</h2>
                         <p>por Juan Carlos de la Hoya</p>
-                        <p><span class="negrita">Inadecuado para </span>Veganos, vegetarianos, hipertensos</p>
+                        <p><span class="negrita occult">Inadecuado para </span>Veganos, vegetarianos, hipertensos</p>
                     </div>
                 </div>
                 <div class="bot-receta contenedor-blanco">
@@ -55,7 +58,8 @@
                         <div class="ingrediente">
                             <div class="titulo-bot">
                                 <h3>Ingredientes</h3>
-                                <button class="button">Agregar</button>
+                                <button class="button mobile">Agregar</button>
+                                <button class="button buttonoccult"><i class="fa fa-plus-circle" style="font-size:20px;color:white"></i></button>
                             </div>
                             <div>
                                 <table class="TablaIngredientes">
@@ -101,7 +105,8 @@
                         <div class="pasos">
                             <div class="titulo-bot">
                                 <h3>Pasos</h3>
-                                <button class="button">Agregar</button>
+                                <button class="button mobile">Agregar</button>
+                                <button class="button buttonoccult"><i class="fa fa-plus-circle" style="font-size:20px;color:white"></i></button>
                             </div>
                             <div>
                                 <table class="TablaIngredientes">
@@ -142,7 +147,8 @@
 
                     <div class="colaboradores">
                         <h3>Colaboradores</h3>
-                        <button class="button">Agregar</button>
+                        <button class="button mobile">Agregar</button>
+                        <button class="button buttonoccult"><i class="fa fa-plus-circle" style="font-size:20px;color:white"></i></button>
                     </div>
 
                     <div class="contenedor-lista-colaboradores">
@@ -151,7 +157,7 @@
 
                             <button class="colaborador selector"><p>Pablo</p><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></button>
                             <button class="colaborador selector"><p>Santiago</p><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></button>
-                            <button class="colaborador selector"><p>David Bisval</p><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></button>
+                            <button class="colaborador selector"><p>David</p><a href=""><i class="fa fa-times-circle" style="font-size:20px;color:red"></i></a></button>
                         </div>
 
 
@@ -175,7 +181,7 @@
     <footer>
         <div>
             <i id="fb" class="fa fa-facebook-official"></i>
-            <p><span class="fuentelogo"> Food Overflow\</span> 2020. Grupo 9. All rights reserved</p>
+            <p><span class="fuentelogo"> Food Overflow\ 2020</span><span class="grupo">. Grupo 9 - All rights reserved</span></p>
         </div>
     </footer>
 </body>

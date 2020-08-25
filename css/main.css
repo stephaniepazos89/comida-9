@@ -1,115 +1,153 @@
-h4 {
-    font-size: 1.2rem;
-    margin-top: 3rem;
-}
-
-h3 {
-    margin: 2px;
-    font-size: 1.1rem;
-}
-
-p .recetainfo {
-    margin: 0.1rem;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    width: 100%;
-}
-
-.contenedor-busqueda {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0 0 1rem 0;
-}
-
-.busqueda {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 60%;
-}
-
-.busqueda-boton input {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.busqueda-boton {
-    display: flex;
-}
-
-.busqueda-checkbox {
-    margin: 1rem 0 0 0;
-}
-
-.contenedor-resultado {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding: 0 0 1rem 0;
-}
-
-.resultados {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 60%;
-}
-
-.listado-resultado {
-    display: flex;
-    justify-content: row;
-    flex-wrap: wrap;
-}
-
-.card-receta {
-    padding: 10px;
-    background-color: white;
-    border-radius: 0.6rem;
-    display: flex;
-    height: 4rem;
-    width: 15rem;
-    min-width: 15rem;
-    margin: 0.5rem 1rem 1rem 0;
-}
-
-.sin-permiso {
-    border: 2px solid white;
-}
-
-.receta-info {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 70%;
-}
-
-.imagenreceta {
-    height: 4rem;
-    width: 4rem;
-    margin-right: 1rem;
-    border-radius: 1rem;
-}
-
-.boton-agregar {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.receta-botones {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    width: 15%;
-}
+    h4 {
+        font-size: 1.2rem;
+        margin-top: 3rem;
+        width: 60%;
+    }
+    
+    h3 {
+        margin: 2px;
+        font-size: 1.1rem;
+    }
+    
+    p .recetainfo {
+        margin: 0.1rem;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        width: 100%;
+    }
+    
+    .contenedor-busqueda {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 0 1rem 0;
+    }
+    
+    .busqueda {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        width: 60%;
+    }
+    
+    .busqueda-boton input {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .busqueda-boton {
+        display: flex;
+    }
+    
+    .busqueda-checkbox {
+        margin: 1rem 0 0 0;
+    }
+    
+    .contenedor-resultado {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 0 1rem 0;
+    }
+    
+    .resultados {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .listado-resultado {
+        display: flex;
+        flex-wrap: wrap;
+        width: 60%;
+    }
+    
+    .card-receta {
+        padding: 0.5rem;
+        background-color: white;
+        border-radius: 0.6rem;
+        display: flex;
+        height: 4rem;
+        width: 15rem;
+        min-width: 15rem;
+        margin: 0.5rem 1rem 1rem 0;
+    }
+    
+    .sin-permiso {
+        border: 2px solid white;
+    }
+    
+    .receta-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 70%;
+    }
+    
+    .imagenreceta {
+        height: 4rem;
+        width: 4rem;
+        margin-right: 1rem;
+        border-radius: 1rem;
+    }
+    
+    .boton-agregar {
+        display: flex;
+        justify-content: flex-end;
+        width: 60%;
+        position: fixed;
+        bottom: 8vh;
+    }
+    
+    .receta-botones {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        width: 15%;
+    }
+    
+    @media screen and (max-width: 400px) {
+        .listado-resultado {
+            width: 95%;
+        }
+        .busqueda {
+            width: 95%;
+        }
+        h4 {
+            width: 95%;
+        }
+        .boton-agregar {
+            width: 90%;
+        }
+        .card-receta {
+            width: 100%;
+            margin: 0 0 1rem 0;
+        }
+    }
+    
+    @media screen and (min-width:401px) and (max-width: 768px) {
+        .listado-resultado {
+            width: 75%;
+        }
+        .busqueda {
+            width: 90%;
+        }
+        h4 {
+            width: 90%;
+        }
+        .boton-agregar {
+            width: 75%;
+        }
+    }
