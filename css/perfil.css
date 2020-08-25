@@ -268,3 +268,112 @@ h3 {
     float: right;    
 }
 
+@media (max-width: 768px) {
+    .contenedor {
+        margin: 3vh 0 5vh;
+        width: 95%;
+        min-width: 385px;
+        padding: 1vh;
+    }
+
+    .alimentos-top {
+        display: flex;
+        flex-flow: wrap;
+        height: 5vh;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        align-self: center;
+    }
+
+    .alimentos-nopreferido-nombre {
+        width: 180px;
+    }
+
+    .condiciones-tipos-bloque {
+        font-size: 0.9rem;
+    }
+
+    .datos-bloque {
+        width: 40%;
+        min-width: 180px;
+        padding: 1vh 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .datos-input {  
+        width: 55%;
+        min-width: 95px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    
+    .contenedor {
+        margin: 3vh 0 5vh;
+        min-width: 0;
+    }
+
+    .top-salud {
+        padding: 1vh 0 0 8vh;
+    }
+    
+    .bot {
+        padding: 0 1vh;
+    }
+
+    .bot-datos {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        min-width: 0;
+    }
+    .bot-datos-izq, .bot-datos-der{
+        flex-flow: wrap;
+    }
+
+    .datos-input {  
+        width: 55%;
+        min-width: 95px;
+        padding: 6px;
+    }
+
+    .datos-bloque {
+        width: 100%;
+        min-width: 180px;
+        padding: 0.5vh 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .condiciones-tipos-bloque {
+        font-size: 1rem;
+        width: 50%;
+        min-width: 117px;
+        padding: 0;
+    }
+
+    .alimentos {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        padding: 2vh 0;
+    }
+
+    .alimentos-preferidos, .alimentos-nopreferidos {
+        width: 100%;
+        display: flex;
+    }
+
+    .alimentos-top {
+        justify-content: space-between;
+        height: 3vh;
+        width: 100%;
+        font-size: 0.9rem;
+        margin-top: 1vh;
+    }
+}
