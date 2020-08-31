@@ -223,6 +223,9 @@ table {
         min-width: 385px;
         padding: 1vh;
     }
+    .listado-resultado {
+        justify-content: center;
+    }
     .alimentos-top {
         display: flex;
         height: 6vh;
