@@ -1,7 +1,6 @@
 main {
     display: flex;
     justify-content: center;
-    justify-items: center;
     width: 100%;
     height: 100%;
 }
@@ -131,8 +130,7 @@ main {
     padding: 2vh 0;
 }
 
-.alimentos-preferidos,
-.alimentos-nopreferidos {
+.alimentos-display {
     width: 45%;
     display: flex;
     flex-flow: column;
@@ -140,24 +138,14 @@ main {
 
 .alimentos-top {
     display: flex;
-    justify-content: space-between;
     height: 3vh;
+    justify-content: center;
 }
 
 .alimentos-nombre {
     font-size: 1rem;
     font-weight: bolder;
-}
-
-.alimentos-boton,
-.botonesbot-boton {
-    border-radius: 0.5vh;
-    color: white;
-    border-style: none;
-    padding: 0.7vh 2.6vh;
-    box-sizing: border-box;
-    font: 400 13.3333px Arial;
-    align-self: center;
+    display: flex;
 }
 
 .alimentos-boton-400 {
@@ -166,6 +154,7 @@ main {
 
 .alimentos-lista {
     padding: 1vh 0 0 1vh;
+    width: 100%;
 }
 
 td {
@@ -214,43 +203,6 @@ table {
     flex-wrap: wrap;
 }
 
-.card-receta {
-    padding: 5px;
-    background-color: white;
-    border-radius: 0.6rem;
-    display: flex;
-    height: 4rem;
-    width: 14rem;
-    margin: 0.5rem 0.4rem 0 0;
-}
-
-.receta-info {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 59%;
-}
-
-.imagenreceta {
-    height: 3.7rem;
-    width: 3.7rem;
-    margin-right: 0.4rem;
-    border-radius: 1rem;
-}
-
-.receta-botones {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    width: 12%;
-}
-
-h3 {
-    margin: 2px;
-    font-size: 1.1rem;
-}
-
 .botonesbot {
     width: 100%;
     padding: 2vh;
@@ -261,7 +213,6 @@ h3 {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    width: 200px;
     float: right;
 }
 
@@ -274,16 +225,11 @@ h3 {
     }
     .alimentos-top {
         display: flex;
-        flex-flow: wrap;
         height: 6vh;
+        width: 100;
         justify-content: center;
-        align-items: center;
-        width: 150px;
+        width: 100%;
         align-self: center;
-        
-    }
-    .alimentos-nopreferido-nombre {
-        width: 180px;
     }
     .condiciones-tipos-bloque {
         font-size: 0.9rem;
@@ -301,10 +247,12 @@ h3 {
         min-width: 95px;
         padding: 6px;
     }
-
-    .alimentos-preferidos,
-    .alimentos-nopreferidos {
+    .alimentos-display {
         width: 48%;
+    }
+    .alimentos-boton.button {
+        height: 50%;
+        flex: 4 4 30%
     }
 }
 
@@ -354,8 +302,7 @@ h3 {
         width: 100%;
         padding: 2vh 0;
     }
-    .alimentos-preferidos,
-    .alimentos-nopreferidos {
+    .alimentos-display {
         width: 100%;
         display: flex;
     }
@@ -366,7 +313,6 @@ h3 {
         font-size: 0.9rem;
         margin-top: 1vh;
     }
-
     .alimentos-boton-400 {
         display: block;
         border: 1px;
@@ -375,12 +321,10 @@ h3 {
         border-radius: 3px;
         align-self: center;
     }
-
     .fa.fa-plus-circle {
         color: white;
     }
-
     .alimentos-boton.button {
-        display:none;
+        display: none;
     }
 }

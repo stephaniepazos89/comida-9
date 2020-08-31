@@ -71,38 +71,31 @@ main {
 }
 
 @media (max-width: 768px) {
-
     .contenedor {
         width: 90%;
         min-width: 385px;
     }
-
     main {
         height: 68vh;
     }
-
-    .contenedor-listadealimentos {        
+    .contenedor-listadealimentos {
         padding: 3vh 5vh;
     }
-
     .lista {
         height: 100%;
         overflow-y: hidden;
     }
-  }
+}
 
-  @media (max-width: 400px) {
-
+@media (max-width: 400px) {
     main {
         height: 58vh;
     }
-
     .contenedor {
         width: 90%;
         min-width: 330px;
     }
-
-    .contenedor-listadealimentos {        
+    .contenedor-listadealimentos {
         padding: 3vh 2vh;
     }
-  }
+}

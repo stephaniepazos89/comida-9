@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="css/perfil.css" rel="stylesheet">
     <link href="css/principal.css" rel="stylesheet">
+    <link href="css/cardreceta.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -39,12 +40,12 @@
                 <div class="bot-datos">
                     <div class="bot-datos-izq">
                         <div class="bot-datos-peso datos-bloque">
-                            <label class="bot-datos-pesotexto" for="peso">Peso (Kgs.)</label>
-                            <input type="text" name="peso" class="bot-datos-pesoinput datos-input border-colorsecundario">
+                            <label class="pesotexto" for="peso">Peso (Kgs.)</label>
+                            <input type="text" name="peso" id="peso" class="datos-input border-colorsecundario">
                         </div>
                         <div class="bot-datos-estatura datos-bloque">
                             <label for="estatura" class="bot-datos-estaturatexto">Estatura</label>
-                            <input type="text" name="estatura" class="bot-datos-estaturainput datos-input border-colorsecundario">
+                            <input type="text" name="estatura" id="estatura" class="datos-input border-colorsecundario">
                         </div>
 
                     </div>
@@ -52,11 +53,11 @@
 
                         <div class="bot-datos-nacimiento datos-bloque">
                             <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
-                            <input type="date" class="bot-datos-nacimientoinput datos-input border-colorsecundario" name="nacimiento">
+                            <input type="date" id="nacimiento" class="datos-input border-colorsecundario" name="nacimiento">
                         </div>
                         <div class="bot-datos-rutina datos-bloque">
                             <label class="bot-datos-rutinatexto" for="rutina">Rutina</label>
-                            <select class="bot-datos-rutinainput datos-input border-colorsecundario" name="rutina">
+                            <select class="datos-input border-colorsecundario" id="rutina" name="rutina">
                                 <option value="intensivo">Intensivo</option>
                                 <option value="activo">Activo</option>
                                 <option value="mediano">Mediano</option>
@@ -71,30 +72,30 @@
                     <div class="condiciones-nombre">Condiciones</div>
                     <div class="condiciones-tipos border-colorsecundario">
                         <div class="condiciones-tipos-bloque">
-                            <label class="condiciones-tipos-diabetico tipos-bloque" for="diabetico">
-                                <input type="checkbox" name="diabetico">Diabético</label>
+                            <label class="tipos-bloque" for="diabetico">
+                                <input type="checkbox" id="diabetico" name="diabetico">Diabético</label>
                         </div>
                         <div class="condiciones-tipos-bloque">
-                            <label class="condiciones-tipos-celiaco" for="celiaco">
-                                <input type="checkbox" name="celiaco">Celíaco</label>
+                            <label class="tipos-bloque" for="celiaco">
+                                <input type="checkbox" id="celiaco" name="celiaco">Celíaco</label>
                         </div>
                         <div class="condiciones-tipos-bloque">
-                            <label class="condiciones-tipos-vegano" for="vegano">
-                                <input type="checkbox" name="vegano">Vegano</label>
+                            <label class="tipos-bloque" for="vegano">
+                                <input type="checkbox" id="vegano" name="vegano">Vegano</label>
                         </div>
                         <div class="condiciones-tipos-bloque">
-                            <label class="condiciones-tipos-hipertenso" for="hipertenso">
-                                <input type="checkbox" name="hipertenso">Hipertenso</label>
+                            <label class="tipos-bloque" for="hipertenso">
+                                <input type="checkbox" id="hipertenso" name="hipertenso">Hipertenso</label>
                         </div>
                         <div class="condiciones-tipos-bloque">
-                            <label class="condiciones-tipos-vegetariano" for="vegetariano">
-                                <input type="checkbox" name="vegetariano">Vegetariano</label>
+                            <label class="tipos-bloque" for="vegetariano">
+                                <input type="checkbox" id="vegetariano" name="vegetariano">Vegetariano</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="alimentos">
-                    <div class="alimentos-preferidos">
+                    <div class="alimentos-display">
                         <div class="alimentos-top">
                             <div class="alimentos-nombre">Alimentos preferidos</div>
                             <button class="alimentos-boton button">Agregar</button>
@@ -114,8 +115,8 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="alimentos-nopreferidos">
-                        <div class="alimentos-top alimentos-nopreferido-nombre">
+                    <div class="alimentos-display">
+                        <div class="alimentos-top">
                             <div class="alimentos-nombre ">Alimentos no preferidos</div>
                             <button class="alimentos-boton button">Agregar</button>
                             <a href="" class="alimentos-boton-400 button2 selector"><i class="fa fa-plus-circle" aria-hidden="true" style="font-size:25px"></i></a>
@@ -140,7 +141,7 @@
                     <div class="recetas-nombre">Mis recetas</div>
                     <div class="listado-resultado">
                         <div class="card-receta">
-                            <img src="../img/pollo.jpg" class="imagenreceta">
+                            <img src="/img/pollo.jpg" class="imagenreceta">
                             <div class="receta-info">
                                 <h3>Pollo al Horno</h3>
                                 <p1>Calorías: 200</p1>
@@ -153,7 +154,7 @@
                         </div>
 
                         <div class="card-receta">
-                            <img src="../img/asado.jpg" class="imagenreceta">
+                            <img src="/img/asado.jpg" class="imagenreceta">
                             <div class="receta-info">
                                 <h3>Asado al asador</h3>
                                 <p1>Calorías: 300</p1>
@@ -165,7 +166,7 @@
                             </div>
                         </div>
                         <div class="card-receta">
-                            <img src="../img/fideos.jpg" class="imagenreceta">
+                            <img src="/img/fideos.jpg" class="imagenreceta">
                             <div class="receta-info">
                                 <h3>Fideos con tuco</h3>
                                 <p1>Calorías: 180</p1>
@@ -184,8 +185,8 @@
 
                 <div class="botonesbot">
                     <div class="botonesbot-bloque">
-                        <div class="botonesbot-boton button">Aceptar</div>
-                        <div class="botonesbot-boton button2">Cancelar</div>
+                        <div class="button">Aceptar</div>
+                        <div class="button button2">Cancelar</div>
                     </div>
                 </div>
             </div>
