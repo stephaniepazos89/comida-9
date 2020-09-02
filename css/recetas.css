@@ -127,7 +127,6 @@ table .Tabla_Valor {
     display: flex;
     align-items: center;
     padding: 1vh 0;
-    background-color: white;
     font-weight: 500;
     position: relative;
 }
@@ -135,6 +134,10 @@ table .Tabla_Valor {
 .colaborador p {
     text-align: center;
     width: 100%;
+}
+
+.colaborador.selector {
+    background-color: white;
 }
 
 .colaborador a {
@@ -149,7 +152,6 @@ table .Tabla_Valor {
 
 .top-lista {
     color: white;
-    background-color: #ff9069;
     justify-content: center;
 }
 
