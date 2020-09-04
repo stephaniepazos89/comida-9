@@ -1,12 +1,13 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
+import { Alimento } from './alimento'
 
 export class Usuario {
     
     public condicionesAlimenticias: CondicionAlimenticia[] = []
-    public rutina: Rutina
-    public alimentosPreferidos: Alimento[]:  []
+    public rutina: Rutina = NaN
+    public alimentosPreferidos: Alimento[] = []
 
     constructor(public nombre: string, public peso: number, public estatura: number){}
 
@@ -19,14 +20,16 @@ export class Usuario {
     }
 
     public imcSaludable(): boolean {
-        return this.calculoIMC() >= 18 && this.calculoIMC() <= 30
+        return this.calculoIMC() >= 18 && 
+        this.calculoIMC() <= 30 && 
+        this.condicionesAlimenticias.length == 0
     }
 
     public condicionAlimenticiaSaludable(): boolean {
-        return this.condicionesAlimenticias.length == 0 || this.condicionesAlimenticias.esSaludable()
+        return this.condicionesAlimenticias.every(alimento => alimento.esSaludable(this))
     }
 
     public esSaludable(): boolean {
-        return this.imcSaludable() && this.condicionAlimenticiaSaludable()
+        return this.imcSaludable() || this.condicionAlimenticiaSaludable()
     }
 }
