@@ -9,6 +9,7 @@ export class Usuario {
     public rutina: Rutina = NaN
     public alimentosPreferidos: Alimento[] = []
 
+
     constructor(public nombre: string, public peso: number, public estatura: number){}
 
     public agregarCondicion(condicion: CondicionAlimenticia): void {

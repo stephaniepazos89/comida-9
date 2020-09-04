@@ -1,19 +1,18 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
+import { Alimento } from './alimento'
 
-export class Alimento {
+export class Ingrediente {
 
-   private listaInadecuado: CondicionAlimenticia[] = []
-
-    constructor(public nombreDeAlimento: string, public grupoAlimenticio: GrupoAlimenticio){}
+    constructor(private alimento: Alimento, public cantidad: number ){}
 
     public inadecuadoPara(): CondicionAlimenticia[]{
-        return this.listaInadecuado
+        return this.alimento.inadecuadoPara()
     }
 
     public agregarInadecuado(condicion: CondicionAlimenticia){
-        this.listaInadecuado.push(condicion)
+        this.alimento.agregarInadecuado(condicion)
      }
 
 }
