@@ -1,7 +1,8 @@
-import { CondicionAlimenticia, Vegano } from './condicionAlimenticia'
+import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
 import { Usuario } from './usuario'
+import { Alimento } from './alimento'
 
 describe('Tests de Usuario', () => {
 
@@ -29,4 +30,44 @@ describe('Tests de Usuario', () => {
 
         expect(false).toBe(usuario2.esSaludable())
     })
+
+    test('Usuario es saludable por condicion de Diabetico',() => {
+        usuario1=new Usuario("Miguel Suarez", 71, 1.5)
+        usuario1.agregarCondicion(new Diabetico)
+        usuario1.rutina=Rutina.ACTIVO
+
+        expect(true).toBe(usuario1.esSaludable())
+    });
+
+    test('Usuario es saludable por condicion de Vegano', ()=>{
+        usuario1=new Usuario("Carlos Tevez", 71, 1.5)
+        usuario1.agregarCondicion(new Vegano)
+        usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
+        usuario1.agregarAlimentoPreferido(new Alimento("Menzana",GrupoAlimenticio.GRUPO1))
+
+        expect(true).toBe(usuario1.esSaludable())
+    })
+
+    test('Usuario no es saludable por condicion de Vegetariano',()=>{
+        usuario1=new Usuario("Tom", 71, 1.5)
+        usuario1.agregarCondicion(new Vegetariano)
+        usuario1.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa",GrupoAlimenticio.GRUPO5))
+        
+        expect(false).toBe(usuario1.esSaludable())
+    })
+
+    test('Usuario es saludable por condicion de Hipertenso', ()=>{
+        usuario1=new Usuario("Nicolas", 71, 1.5)
+        usuario1.rutina=Rutina.INTENSIVO
+
+        expect(true).toBe(usuario1.esSaludable())
+    })
+
+    test('Usuario es saludable por condicion de Celiaco',()=>{
+        usuario1=new Usuario("Ruperto", 71, 1.5)
+
+        expect(true).toBe(usuario1.esSaludable())
+    })
+
+
 })

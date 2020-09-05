@@ -16,6 +16,10 @@ export class Usuario {
         this.condicionesAlimenticias.push(condicion)
     }
 
+    public agregarAlimentoPreferido(alimento:Alimento): void{
+        this.alimentosPreferidos.push(alimento)
+    }
+
     public calculoIMC(): number {
         return this.peso/Math.pow(this.estatura,2)
     }
