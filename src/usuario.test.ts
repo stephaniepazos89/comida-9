@@ -1,4 +1,4 @@
-import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano, Hipertenso } from './condicionAlimenticia'
+import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano, Hipertenso, Celiaco } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
 import { Usuario } from './usuario'
@@ -32,7 +32,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es saludable por condicion de Diabetico',() => {
-        usuario1=new Usuario("Miguel Suarez", 71, 1.5)
+        
         usuario1.agregarCondicion(new Diabetico)
         usuario1.rutina=Rutina.ACTIVO
 
@@ -40,7 +40,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario no es saludable por condicion Diabetico',()=>{
-        usuario1=new Usuario("Miguel Suarez", 71, 1.5)
+    
         usuario1.agregarCondicion(new Diabetico)
         usuario1.rutina=Rutina.NADA
 
@@ -48,7 +48,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es saludable por condicion de Vegano', ()=>{
-        usuario1=new Usuario("Carlos Tevez", 71, 1.5)
+        
         usuario1.agregarCondicion(new Vegano)
         usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
         usuario1.agregarAlimentoPreferido(new Alimento("Menzana",GrupoAlimenticio.GRUPO1))
@@ -57,7 +57,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es no saludable por condicion de Vegano', ()=>{
-        usuario1=new Usuario("Carlos Tevez", 71, 1.5)
+        
         usuario1.agregarCondicion(new Vegano)
         usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
         
@@ -66,7 +66,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es saludable por condicion de Vegetariano',()=>{
-        usuario1=new Usuario("Tom", 71, 1.5)
+       
         usuario1.agregarCondicion(new Vegetariano)
         usuario1.agregarAlimentoPreferido(new Alimento("Manzana",GrupoAlimenticio.GRUPO1))
         
@@ -75,7 +75,7 @@ describe('Tests de Usuario', () => {
 
 
     test('Usuario no es saludable por condicion de Vegetariano',()=>{
-        usuario1=new Usuario("Tom", 71, 1.5)
+       
         usuario1.agregarCondicion(new Vegetariano)
         usuario1.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa",GrupoAlimenticio.GRUPO5))
         
@@ -83,7 +83,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es saludable por condicion de Hipertenso', ()=>{
-        usuario1=new Usuario("Nicolas", 71, 1.5)
+        
         usuario1.agregarCondicion(new Hipertenso)
         usuario1.rutina=Rutina.INTENSIVO
 
@@ -91,7 +91,7 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario no es saludable por condicion de Hipertenso', ()=>{
-        usuario1=new Usuario("Nicolas", 71, 1.5)
+        
         usuario1.agregarCondicion(new Hipertenso)
         usuario1.rutina=Rutina.MEDIANO
 
@@ -99,7 +99,8 @@ describe('Tests de Usuario', () => {
     })
 
     test('Usuario es saludable por condicion de Celiaco',()=>{
-        usuario1=new Usuario("Ruperto", 71, 1.5)
+       
+        usuario1.agregarCondicion(new Celiaco)
 
         expect(true).toBe(usuario1.esSaludable())
     })
