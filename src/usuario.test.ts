@@ -1,4 +1,4 @@
-import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano } from './condicionAlimenticia'
+import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano, Hipertenso } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
 import { Usuario } from './usuario'
@@ -37,7 +37,15 @@ describe('Tests de Usuario', () => {
         usuario1.rutina=Rutina.ACTIVO
 
         expect(true).toBe(usuario1.esSaludable())
-    });
+    })
+
+    test('Usuario no es saludable por condicion Diabetico',()=>{
+        usuario1=new Usuario("Miguel Suarez", 71, 1.5)
+        usuario1.agregarCondicion(new Diabetico)
+        usuario1.rutina=Rutina.NADA
+
+        expect(false).toBe(usuario1.esSaludable())
+    })
 
     test('Usuario es saludable por condicion de Vegano', ()=>{
         usuario1=new Usuario("Carlos Tevez", 71, 1.5)
@@ -47,6 +55,24 @@ describe('Tests de Usuario', () => {
 
         expect(true).toBe(usuario1.esSaludable())
     })
+
+    test('Usuario es no saludable por condicion de Vegano', ()=>{
+        usuario1=new Usuario("Carlos Tevez", 71, 1.5)
+        usuario1.agregarCondicion(new Vegano)
+        usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
+        
+
+        expect(false).toBe(usuario1.esSaludable())
+    })
+
+    test('Usuario es saludable por condicion de Vegetariano',()=>{
+        usuario1=new Usuario("Tom", 71, 1.5)
+        usuario1.agregarCondicion(new Vegetariano)
+        usuario1.agregarAlimentoPreferido(new Alimento("Manzana",GrupoAlimenticio.GRUPO1))
+        
+        expect(true).toBe(usuario1.esSaludable())
+    })
+
 
     test('Usuario no es saludable por condicion de Vegetariano',()=>{
         usuario1=new Usuario("Tom", 71, 1.5)
@@ -58,9 +84,18 @@ describe('Tests de Usuario', () => {
 
     test('Usuario es saludable por condicion de Hipertenso', ()=>{
         usuario1=new Usuario("Nicolas", 71, 1.5)
+        usuario1.agregarCondicion(new Hipertenso)
         usuario1.rutina=Rutina.INTENSIVO
 
         expect(true).toBe(usuario1.esSaludable())
+    })
+
+    test('Usuario no es saludable por condicion de Hipertenso', ()=>{
+        usuario1=new Usuario("Nicolas", 71, 1.5)
+        usuario1.agregarCondicion(new Hipertenso)
+        usuario1.rutina=Rutina.MEDIANO
+
+        expect(false).toBe(usuario1.esSaludable())
     })
 
     test('Usuario es saludable por condicion de Celiaco',()=>{
