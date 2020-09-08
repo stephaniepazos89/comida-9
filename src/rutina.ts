@@ -1,7 +1,8 @@
 export enum Rutina {
-	LEVE,
 	NADA,
+	LEVE,
 	MEDIANO,
-	INTENSIVO,
-	ACTIVO
+	ACTIVO,
+	INTENSIVO
+	
 }

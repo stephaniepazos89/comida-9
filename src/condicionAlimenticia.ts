@@ -1,7 +1,6 @@
 import { Usuario } from './usuario'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
-import { Alimento } from './alimento'
 
 export interface CondicionAlimenticia {
 
@@ -34,11 +33,10 @@ export class Hipertenso {
 
 export class Vegano {
 
-
     esSaludable(usuario: Usuario): boolean{
 
         return usuario.alimentosPreferidos.filter(
-            alimento => alimento.grupoAlimenticio == GrupoAlimenticio.GRUPO1
+            alimento => alimento.grupoAlimenticio == GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS
             ).length >= 2
     }
 }
@@ -47,13 +45,8 @@ export class Vegetariano {
     
     esSaludable(usuario: Usuario): boolean{
 
-        if (usuario.calculoIMC()<30){
-
-			return true
-		}else 
-		
-		return !usuario.alimentosPreferidos.some(
-            alimento => alimento.grupoAlimenticio == GrupoAlimenticio.GRUPO5
+        return usuario.calculoIMC() < 30 || !usuario.alimentosPreferidos.some(
+            alimento => alimento.grupoAlimenticio == GrupoAlimenticio.ACEITES_GRASAS_AZUCARES
             )
     }
 } 

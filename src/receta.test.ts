@@ -8,46 +8,50 @@ import { Ingrediente } from './ingrediente'
 
 describe('Conjunto de Tests', () => {
 
-    let usuario1: Usuario
-    let usuario2: Usuario
+    let usuarioAutor: Usuario
+    let usuarioColaborador: Usuario
+    let usuarioNoColaborador:Usuario
     let receta1: Receta
-    let alimento1: Alimento
-    let alimento2: Alimento
+    let milanesa: Alimento
+    let papa: Alimento
     let ingrediente1: Ingrediente
     let ingrediente2: Ingrediente
-    let condicion1: CondicionAlimenticia
-    let condicion2: CondicionAlimenticia
+    let condicionVegano: CondicionAlimenticia
+    let condicionCeliaco: CondicionAlimenticia
 
     beforeEach(() => {
-        usuario1 = new Usuario("Pedro", 80, 1.80)
-        usuario2 = new Usuario("Jose", 75, 1.70)
-        receta1 = new Receta(usuario1, "Milanesa con papas fritas")
-        alimento1 = new Alimento("Milanesa", GrupoAlimenticio.GRUPO1)
-        alimento2 = new Alimento("Papa", GrupoAlimenticio.GRUPO2)
-        ingrediente1 = new Ingrediente(alimento1, 500)
-        ingrediente2 = new Ingrediente(alimento2, 400)
-        condicion1 = new Vegano()
-        condicion2 = new Celiaco()
+        usuarioAutor = new Usuario("Pedro", 80, 1.80)
+        usuarioColaborador = new Usuario("Jose", 75, 1.70)
+        receta1 = new Receta(usuarioAutor, "Milanesa con papas fritas")
+        milanesa = new Alimento("Milanesa", GrupoAlimenticio.CARNES_PESCADO_HUEVO)
+        papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
+        ingrediente1 = new Ingrediente(milanesa, 500)
+        ingrediente2 = new Ingrediente(papa, 400)
+        condicionVegano = new Vegano()
+        condicionCeliaco = new Celiaco()
 
     })
 
-    test('Test de Es editable por.. (Autores)', () => {
-        expect(receta1.esEditablePor(usuario1)).toBe(true)
-        expect(receta1.esEditablePor(usuario2)).toBe(false)
+    test('Test que prueba que una receta es editable por usuarioAutor, autor de la receta ', () => {
+        usuarioNoColaborador = new Usuario("Miguel", 72, 1.78)
+
+        expect(receta1.esEditablePor(usuarioAutor)).toBeTruthy()
+        expect(receta1.esEditablePor(usuarioNoColaborador)).toBeFalsy()
     })
 
-    test('Test de Es editable por.. (Colaborador)', () => {
-        receta1.agregarColaborador(usuario2)
-        expect(receta1.esEditablePor(usuario2)).toBe(true)
+    test('Test que prueba que una receta es editable por usuarioColaborador, colaborador de la receta', () => {
+        receta1.agregarColaborador(usuarioColaborador)
+        expect(receta1.esEditablePor(usuarioColaborador)).toBeTruthy()
     })
 
-    test('Test de Es inadecuado para.. ', () => {
-        ingrediente1.agregarInadecuado(condicion1)
-        ingrediente2.agregarInadecuado(condicion2)
+    test('Test que prueba que una receta es inadecuada porque dos de sus ingredientes son inadecuados. ', () => {
+        ingrediente1.agregarInadecuado(condicionVegano)
+        ingrediente2.agregarInadecuado(condicionCeliaco)
         receta1.agregarIngrediente(ingrediente1)
         receta1.agregarIngrediente(ingrediente2)
-        expect(receta1.inadecuadoPara()).toContain(condicion1)
-        expect(receta1.inadecuadoPara()).toContain(condicion2)
+
+        expect(receta1.inadecuadoPara()).toContain(condicionVegano)
+        expect(receta1.inadecuadoPara()).toContain(condicionCeliaco)
     })
     
 

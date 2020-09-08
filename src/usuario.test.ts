@@ -1,4 +1,4 @@
-import { CondicionAlimenticia, Vegano, Diabetico, Vegetariano, Hipertenso, Celiaco } from './condicionAlimenticia'
+import { Vegano, Diabetico, Vegetariano, Hipertenso, Celiaco } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
 import { Usuario } from './usuario'
@@ -6,103 +6,90 @@ import { Alimento } from './alimento'
 
 describe('Tests de Usuario', () => {
 
-    let usuario1: Usuario
-    let usuario2: Usuario
+    let usuarioSinCondicion: Usuario
+    let usuarioConCondicion: Usuario
+    let usuarioAltoImc: Usuario
 
     beforeEach(() => {
-        usuario1 = new Usuario ('Pedro', 97.2, 1.8)
+        usuarioSinCondicion = new Usuario ('Pedro', 97.2, 1.8)
+        usuarioConCondicion = new Usuario('Juan', 97.2, 1.8)
+        usuarioAltoImc = new Usuario("Jorge Zarate", 110, 1.5)
     })
     
-    test('Medicion de IMC', () => {
+    test('Test que prueba la medicion de IMC de un Usuario sin condiciones', () => {
 
-        expect(30).toBe(usuario1.calculoIMC())
+        expect(usuarioSinCondicion.calculoIMC()).toBe(30)
     })
 
-    test('Usuario es saludable por condicion de IMC', () => {
+    test('Test que prueba que un usuario sin condiciones es saludable cumpliendo su IMC', () => {
 
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioSinCondicion.esSaludable()).toBeTruthy()
     })
 
-    test('Usuario no es saludable por ambas condiciones', () => {
-
-        usuario2 = new Usuario("Jorge Zarate", 110, 1.5)
-        usuario2.agregarCondicion(new Vegano)
-
-        expect(false).toBe(usuario2.esSaludable())
-    })
-
-    test('Usuario es saludable por condicion de Diabetico',() => {
+    test('Test que prueba que un usuario con condicion de Diabetico es saludable porque cumple su rutina de ACTIVO',() => {
         
-        usuario1.agregarCondicion(new Diabetico)
-        usuario1.rutina=Rutina.ACTIVO
+        usuarioConCondicion.agregarCondicion(new Diabetico)
+        usuarioConCondicion.rutina=Rutina.ACTIVO
 
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeTruthy()
     })
 
-    test('Usuario no es saludable por condicion Diabetico',()=>{
+    test('Test que prueba que un usuario con condicion de Diabetico no es saludable porque no cumple con el peso ni con la rutina',()=>{
     
-        usuario1.agregarCondicion(new Diabetico)
-        usuario1.rutina=Rutina.NADA
+        usuarioConCondicion.agregarCondicion(new Diabetico)
+        usuarioConCondicion.rutina=Rutina.NADA
 
-        expect(false).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeFalsy()
     })
 
-    test('Usuario es saludable por condicion de Vegano', ()=>{
+    test('Test que prueba que un usuario con condicion de Vegano es saludable porque tiene dos alimentos preferidos del grupo 5. ', ()=>{
         
-        usuario1.agregarCondicion(new Vegano)
-        usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
-        usuario1.agregarAlimentoPreferido(new Alimento("Menzana",GrupoAlimenticio.GRUPO1))
+        usuarioConCondicion.agregarCondicion(new Vegano)
+        usuarioConCondicion.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
+        usuarioConCondicion.agregarAlimentoPreferido(new Alimento("Menzana",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeTruthy()
     })
 
-    test('Usuario es no saludable por condicion de Vegano', ()=>{
+    test('Test que prueba que un usuario con condición de Vegano no es saludable porque no tiene al menos dos alimentos preferidos de grupo 5', ()=>{
         
-        usuario1.agregarCondicion(new Vegano)
-        usuario1.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.GRUPO1))
+        usuarioConCondicion.agregarCondicion(new Vegano)
+        usuarioConCondicion.agregarAlimentoPreferido(new Alimento("Pera",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
         
-
-        expect(false).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeFalsy()
     })
 
-    test('Usuario es saludable por condicion de Vegetariano',()=>{
+    test('Test que prueba que un usuario con condicion de Vegetariano es saludable porque no tiene Grasa entre favoritos y cumple IMC',()=>{
        
-        usuario1.agregarCondicion(new Vegetariano)
-        usuario1.agregarAlimentoPreferido(new Alimento("Manzana",GrupoAlimenticio.GRUPO1))
+        usuarioConCondicion.agregarCondicion(new Vegetariano)
+        usuarioConCondicion.agregarAlimentoPreferido(new Alimento("Manzana",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
         
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeTruthy()
     })
 
 
-    test('Usuario no es saludable por condicion de Vegetariano',()=>{
+    test('Test que prueba que un usuario con condicion de Vegetariano no es saludable porque tiene como alimento favorito Grasas',()=>{
        
-        usuario1.agregarCondicion(new Vegetariano)
-        usuario1.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa",GrupoAlimenticio.GRUPO5))
+        usuarioConCondicion.agregarCondicion(new Vegetariano)
+        usuarioConCondicion.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa",GrupoAlimenticio.ACEITES_GRASAS_AZUCARES))
         
-        expect(false).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeFalsy()
     })
 
-    test('Usuario es saludable por condicion de Hipertenso', ()=>{
+    test('Test que prueba que un usuario con condicion de Hipertenso es saludable porque tiene de Rutina INTENSIVO.', ()=>{
         
-        usuario1.agregarCondicion(new Hipertenso)
-        usuario1.rutina=Rutina.INTENSIVO
+        usuarioConCondicion.agregarCondicion(new Hipertenso)
+        usuarioConCondicion.rutina=Rutina.INTENSIVO
 
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeTruthy()
     })
 
-    test('Usuario no es saludable por condicion de Hipertenso', ()=>{
+    test('Test que prueba que un usuario con condicion de Hipertenso no es saludable porque no tiene de Rutina INTENSIVO.', ()=>{
         
-        usuario1.agregarCondicion(new Hipertenso)
-        usuario1.rutina=Rutina.MEDIANO
+        usuarioConCondicion.agregarCondicion(new Hipertenso)
+        usuarioConCondicion.rutina=Rutina.MEDIANO
 
-        expect(false).toBe(usuario1.esSaludable())
-    })
-
-    test('Usuario es saludable por condicion de Celiaco',()=>{
-       
-        usuario1.agregarCondicion(new Celiaco)
-
-        expect(true).toBe(usuario1.esSaludable())
+        expect(usuarioConCondicion.esSaludable()).toBeFalsy()
     })
 
 

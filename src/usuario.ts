@@ -1,6 +1,5 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
-import { GrupoAlimenticio } from './grupoAlimenticio'
 import { Alimento } from './alimento'
 
 export class Usuario {
@@ -31,7 +30,7 @@ export class Usuario {
     }
 
     public condicionAlimenticiaSaludable(): boolean {
-        return this.condicionesAlimenticias.every(alimento => alimento.esSaludable(this))
+        return this.condicionesAlimenticias.every(condicion => condicion.esSaludable(this))
     }
 
     public esSaludable(): boolean {

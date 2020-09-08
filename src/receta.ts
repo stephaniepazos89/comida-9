@@ -1,5 +1,4 @@
 import { Usuario } from './usuario'
-import { Alimento } from './alimento'
 import { Ingrediente } from './ingrediente'
 import { CondicionAlimenticia } from './condicionAlimenticia'
 export class Receta {
@@ -7,7 +6,7 @@ export class Receta {
      private listaColaboradores: Usuario[] = []
      private listaIngredientes: Ingrediente[] = []
 
-    constructor(private autor: Usuario, private nombreDelPlato: String ){   }
+    constructor(private autor: Usuario, private nombreDelPlato: string ){   }
 
     
     public esAutor(usuario: Usuario): boolean{
@@ -30,9 +29,10 @@ export class Receta {
         this.listaIngredientes.push(ingrediente)
      }
 
-    public inadecuadoPara(): CondicionAlimenticia[]{
-       return this.listaIngredientes.flatMap(ingrediente => ingrediente.inadecuadoPara())
-
+    public inadecuadoPara(): Set<CondicionAlimenticia>{
+        let listaCondicion = this.listaIngredientes.flatMap(ingrediente => ingrediente.inadecuadoPara())
+        let setCondicion = new Set(listaCondicion) 
+        return setCondicion
     }
 
 }

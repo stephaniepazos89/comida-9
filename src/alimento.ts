@@ -1,5 +1,4 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
-import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
 
 export class Alimento {
@@ -8,12 +7,8 @@ export class Alimento {
 
     constructor(public nombreDeAlimento: string, public grupoAlimenticio: GrupoAlimenticio){}
 
-    public inadecuadoPara(): CondicionAlimenticia[]{
-        return this.listaInadecuado
-    }
+    inadecuadoPara = (): CondicionAlimenticia[] => this.listaInadecuado
 
-    public agregarInadecuado(condicion: CondicionAlimenticia){
-        this.listaInadecuado.push(condicion)
-     }
+    agregarInadecuado = (condicion: CondicionAlimenticia) => this.listaInadecuado.push(condicion)
 
 }
