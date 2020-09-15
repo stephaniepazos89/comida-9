@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "foodoverflow-angular"
+    }
+  },
+  "defaultProject": "foodoverflow-angular",
+  "cli": {
+    "analytics": false
+  }
 }

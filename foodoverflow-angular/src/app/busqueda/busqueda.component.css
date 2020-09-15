@@ -1,0 +1,29 @@
+.contenedor-busqueda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 1rem 0;
+}
+
+.busqueda {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 60%;
+}
+
+.busqueda-boton input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.busqueda-boton {
+    display: flex;
+}
+
+.busqueda-checkbox {
+    margin: 1rem 0 0 0;
+}

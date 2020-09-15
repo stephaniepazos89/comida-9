@@ -1,1 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-titulo: #207567;
+    --color-primario: #358873;
+    --color-secundario: #8dc3a7;
+    --color-fondo: #b4d6c1;
+    --color-letras: white;
+    --color-boton-hover: #5cdaba;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+    background-color: var(--color-fondo);
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.titulocolor {
+    font-size: 2rem;
+    color: var(--color-titulo);
+}
+
+.titulo {
+    font-size: 1.2rem;
+    color: var(--color-letras);
+}
+
+.fuentelogo {
+    font-family: 'Pacifico', cursive;
+}
+
+h1 {
+    margin: 0.7rem;
+    width: 100%;
+    text-align: center;
+}
+
+.negrita {
+    font-weight: 600;
+}
+
+.button {
+    padding: 6px 25px;
+    margin: 0 3px;
+    border-radius: 5px;
+    color: var(--color-letras);
+    background-color: var(--color-primario);
+    border-style: none;
+    display: flex;
+}
+
+.button2 {
+    background-color: var(--color-secundario);
+}
+
+.button:hover {
+    background-color: var(--color-fondo);
+}
+
+.button2:hover {
+    background-color: var(--color-fondo);
+}
+
+input {
+    border: solid 1px var(--color-fondo);
+    font-family: 'Roboto', sans-serif;
+}
