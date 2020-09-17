@@ -1,10 +1,14 @@
 import { Usuario } from './usuario'
 import { Ingrediente } from './ingrediente'
 import { CondicionAlimenticia } from './condicionAlimenticia'
+import { Dificultad } from './dificultad'
 export class Receta {
 
      private listaColaboradores: Usuario[] = []
      private listaIngredientes: Ingrediente[] = []
+
+     public calorias: number
+     public dificultad: Dificultad
 
     constructor(private autor: Usuario, private nombreDelPlato: string ){   }
 
@@ -29,10 +33,11 @@ export class Receta {
         this.listaIngredientes.push(ingrediente)
      }
 
-    public inadecuadoPara(): Set<CondicionAlimenticia>{
-        let listaCondicion = this.listaIngredientes.flatMap(ingrediente => ingrediente.inadecuadoPara())
+    public inadecuadoPara(): Set<CondicionAlimenticia[]>{
+        let listaCondicion = this.listaIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
         let setCondicion = new Set(listaCondicion) 
-        return setCondicion
+        return setCondicion           // FLATMAP NO APARECE
+        
     }
 
 }

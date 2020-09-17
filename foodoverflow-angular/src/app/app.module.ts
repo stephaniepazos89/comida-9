@@ -6,13 +6,17 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { ResultadosComponent } from './resultados/resultados.component';
+import { CardrecetaComponent } from './cardreceta/cardreceta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    ResultadosComponent,
+    CardrecetaComponent
   ],
   imports: [
     BrowserModule,
