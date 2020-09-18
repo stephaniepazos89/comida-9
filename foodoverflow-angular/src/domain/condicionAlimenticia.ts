@@ -4,10 +4,14 @@ import { GrupoAlimenticio } from './grupoAlimenticio'
 
 export interface CondicionAlimenticia {
 
+    nombre: string
+
     esSaludable(usuario: Usuario): boolean
 }
 
 export class Diabetico {
+
+    nombre: string = 'Diabetico'
 
     esSaludable(usuario: Usuario): boolean{
 
@@ -17,6 +21,8 @@ export class Diabetico {
 
 export class Celiaco {
 
+    nombre: string = 'Celiaco'
+
     esSaludable(usuario: Usuario): boolean{
        
         return true
@@ -24,6 +30,8 @@ export class Celiaco {
 }
 
 export class Hipertenso {
+
+    nombre: string = 'Hipertenso'
     
     esSaludable(usuario: Usuario): boolean{
 
@@ -32,6 +40,8 @@ export class Hipertenso {
 }
 
 export class Vegano {
+
+    nombre: string = 'Vegano'
 
     esSaludable(usuario: Usuario): boolean{
 
@@ -42,6 +52,8 @@ export class Vegano {
 }
 
 export class Vegetariano {
+
+    nombre: string = 'Vegetariano'
     
     esSaludable(usuario: Usuario): boolean{
 

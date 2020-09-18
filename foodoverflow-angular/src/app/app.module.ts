@@ -2,12 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './Componentes/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from './footer/footer.component';
-import { BusquedaComponent } from './busqueda/busqueda.component';
-import { ResultadosComponent } from './resultados/resultados.component';
-import { CardrecetaComponent } from './cardreceta/cardreceta.component';
+import { FooterComponent } from './Componentes/footer/footer.component';
+import { BusquedaComponent } from './Componentes/busqueda/busqueda.component';
+import { ResultadosComponent } from './Componentes/resultados/resultados.component';
+import { CardrecetaComponent } from './Componentes/cardreceta/cardreceta.component';
+import { PerfilComponent } from './Componentes/perfil/perfil.component';
+import { CondicionesComponent } from './Componentes/condiciones/condiciones.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { CardrecetaComponent } from './cardreceta/cardreceta.component';
     FooterComponent,
     BusquedaComponent,
     ResultadosComponent,
-    CardrecetaComponent
+    CardrecetaComponent,
+    PerfilComponent,
+    CondicionesComponent
+
   ],
   imports: [
     BrowserModule,

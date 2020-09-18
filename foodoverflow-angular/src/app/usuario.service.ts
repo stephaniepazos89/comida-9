@@ -15,5 +15,5 @@ export class UsuarioService {
       new Usuario("Fernando", 65, 1.60),
       new Usuario("Nahuel", 60, 1.72)
     ]
-   }
+  }
 }

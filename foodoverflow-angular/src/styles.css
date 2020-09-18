@@ -67,3 +67,39 @@ input {
     border: solid 1px var(--color-fondo);
     font-family: 'Roboto', sans-serif;
 }
+
+.contenedor-colorsecundario {
+    background-color: var(--color-secundario)
+}
+
+
+.fa.fa-heartbeat {
+    color: red;
+    font-size: 20px;
+}
+
+.fa-times-circle {
+    color: red;
+    font-size: 20px;
+}
+
+.border-bottom-colorsecundario {
+    border-bottom: 1px solid var(--color-secundario);
+}
+
+th {
+    background-color: var(--color-titulo);
+}
+
+.fa-sign-out {
+    font-size: 22px;
+}
+
+.fa-plus-circle {
+    font-size: 25px;
+    color: var(--color-letras)
+}
+
+.fa.fa-plus-circle.main {
+    font-size: 40px;
+}
