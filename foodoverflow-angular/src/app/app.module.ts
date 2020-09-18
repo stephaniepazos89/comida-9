@@ -10,6 +10,7 @@ import { ResultadosComponent } from './Componentes/resultados/resultados.compone
 import { CardrecetaComponent } from './Componentes/cardreceta/cardreceta.component';
 import { PerfilComponent } from './Componentes/perfil/perfil.component';
 import { CondicionesComponent } from './Componentes/condiciones/condiciones.component';
+import { AlimentosComponent } from './Componentes/alimentos/alimentos.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CondicionesComponent } from './Componentes/condiciones/condiciones.comp
     ResultadosComponent,
     CardrecetaComponent,
     PerfilComponent,
-    CondicionesComponent
+    CondicionesComponent,
+    AlimentosComponent
 
   ],
   imports: [
