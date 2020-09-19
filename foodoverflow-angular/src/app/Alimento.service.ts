@@ -5,7 +5,7 @@ import {GrupoAlimenticio} from '../domain/GrupoAlimenticio'
 @Injectable({
   providedIn: 'root'
 })
-export class TablaServicioService {
+export class AlimentoService {
 
   public tabla:Alimento[] = []
 

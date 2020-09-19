@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AlimentoService} from 'src/app/Alimento.service'
+import {Alimento} from 'src/domain/Alimento'
 
 @Component({
   selector: 'app-Alimentos',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlimentosComponent implements OnInit {
 
-  constructor() { }
+  alimentos: Alimento[]=[]
+
+  constructor(public AlimentoService: AlimentoService) { }
 
   ngOnInit() {
+    this.alimentos=this.AlimentoService.getAlimento()
   }
 
 }

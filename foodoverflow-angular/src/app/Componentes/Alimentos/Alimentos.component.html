@@ -2,7 +2,7 @@
   <div class="contenedor">
       <h1 class="tituloalimentos contenedor-colorsecundario ">Alimentos</h1>
       <div class="contenedor-listadealimentos contenedor-blanco">
-          <div class="lista">
+          <div class="lista" *ngFor="let alimento of alimento">
               <div class="fondotitulo alimento top">Alimento</div>
               <button class="alimento selector contenedor-blanco">Lentejas</button>
               <button class="alimento selector contenedor-blanco">Cebolla</button>
