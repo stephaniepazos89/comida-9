@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './Componentes/header/header.component';
+import { HeaderComponent } from './componentes/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from './Componentes/footer/footer.component';
-import { BusquedaComponent } from './Componentes/busqueda/busqueda.component';
-import { ResultadosComponent } from './Componentes/resultados/resultados.component';
-import { CardrecetaComponent } from './Componentes/cardreceta/cardreceta.component';
-import { PerfilComponent } from './Componentes/perfil/perfil.component';
-import { CondicionesComponent } from './Componentes/condiciones/condiciones.component';
-import { AlimentosComponent } from './Componentes/alimentos/alimentos.component';
+import { FooterComponent } from './componentes/footer/footer.component';
+import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
+import { ResultadosComponent } from './componentes/resultados/resultados.component';
+import { CardrecetaComponent } from './componentes/cardreceta/cardreceta.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { CondicionesComponent } from './componentes/condiciones/condiciones.component';
+import { AlimentosComponent } from './componentes/alimentos/alimentos.component';
+import { RecetaPipe } from './pipes/receta.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AlimentosComponent } from './Componentes/alimentos/alimentos.component'
     CardrecetaComponent,
     PerfilComponent,
     CondicionesComponent,
-    AlimentosComponent
+    AlimentosComponent,
+    RecetaPipe
 
   ],
   imports: [

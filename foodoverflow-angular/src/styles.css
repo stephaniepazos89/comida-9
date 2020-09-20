@@ -72,13 +72,7 @@ input {
     background-color: var(--color-secundario)
 }
 
-
 .fa.fa-heartbeat {
-    color: red;
-    font-size: 20px;
-}
-
-.fa-times-circle {
     color: red;
     font-size: 20px;
 }
@@ -102,4 +96,83 @@ th {
 
 .fa.fa-plus-circle.main {
     font-size: 40px;
+}
+
+.contenedor-colorsecundario {
+    background-color: var(--color-secundario)
+}
+
+.contenedor-blanco {
+    background-color: white;
+}
+
+.fondotitulo {
+    background-color: var(--color-titulo);
+}
+
+.border {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector:hover {
+    background-color: var(--color-fondo);
+}
+
+.selector:focus {
+    background-color: var(--color-fondo);
+}
+
+.border-colorsecundario {
+    border-color: var(--color-secundario);
+}
+
+.border-bottom-colorsecundario {
+    border-bottom: 1px solid var(--color-secundario);
+}
+
+.fa-plus-circle:hover {
+    color: var(--color-secundario);
+}
+
+.fa-times-circle {
+    color: red;
+    font-size: 20px;
+}
+
+.fa.fa-heartbeat {
+    color: red;
+    font-size: 20px;
+}
+
+.fa-sign-out {
+    font-size: 22px;
+}
+
+.fa-edit {
+    font-size: 23px;
+}
+
+.fa-trash-o {
+    font-size: 25px
+}
+
+.fa-facebook-official {
+    font-size: 40px;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: block;
+    background-position: center;
+    background-size: cover;
+}
+
+.fa-home {
+    font-size: 22px;
+}
+
+.fa-user {
+    font-size: 22px;
 }

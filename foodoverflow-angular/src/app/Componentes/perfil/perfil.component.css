@@ -91,7 +91,7 @@ main {
     padding: 6px;
     border-style: solid;
     box-sizing: border-box;
-    text-align:center;
+    text-align: center;
 }
 
 .bot-datos-pesotexto {
@@ -143,7 +143,8 @@ main {
     width: 100%;
 }
 
-td, th {
+td,
+th {
     padding: 0.7vh 0;
     /*background-color: white;*/
     font-family: 'Roboto', sans-serif;
@@ -205,7 +206,6 @@ table {
     justify-content: space-between;
     float: right;
 }
-
 
 @media (max-width: 768px) {
     .contenedor {
@@ -322,7 +322,6 @@ table {
     .alimentos-boton.button {
         display: none;
     }
-
     table {
         margin: 1vh 0;
     }

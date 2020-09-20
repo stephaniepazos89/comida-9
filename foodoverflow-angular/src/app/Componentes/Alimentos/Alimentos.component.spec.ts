@@ -2,8 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
-import { AlimentosComponent } from './Alimentos.component';
+import { AlimentosComponent } from './alimentos.component';
 
 describe('AlimentosComponent', () => {
   let component: AlimentosComponent;

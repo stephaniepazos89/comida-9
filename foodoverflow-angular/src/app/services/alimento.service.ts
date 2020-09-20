@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import {Alimento} from '../domain/alimento';
-import {GrupoAlimenticio} from '../domain/GrupoAlimenticio'
+import { Alimento } from 'src/domain/alimento';
+import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlimentoService {
 
-  public tabla:Alimento[] = []
+  public alimentos:Alimento[] = []
 
   constructor() {
-    this.tabla=[
+    this.alimentos=[
       new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS),
       new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS),
       new Alimento('Sal',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS),
@@ -21,6 +21,6 @@ export class AlimentoService {
    }
 
    getAlimento():Alimento[] {
-     return this.tabla
+     return this.alimentos
    }
 }

@@ -1,6 +1,6 @@
  import { Injectable } from '@angular/core';
-import { Receta } from '../domain/receta';
-import { Usuario } from '../domain/usuario';
+import { Receta } from 'src/domain/receta';
+import { Usuario } from 'src/domain/usuario';
 
 @Injectable({
   providedIn: 'root'

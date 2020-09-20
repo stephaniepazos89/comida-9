@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Receta } from '../../../domain/receta';
-import { RecetaService } from '../../receta.service';
+import { Receta } from 'src/domain/receta';
+import { RecetaService } from 'src/app/services/receta.service';
 
 @Component({
   selector: 'app-cardreceta',
@@ -8,6 +8,7 @@ import { RecetaService } from '../../receta.service';
   styleUrls: ['./cardreceta.component.css']
 })
 export class CardrecetaComponent implements OnInit {
+  recetaBusacada = ''
   recetas: Receta[] = []
 
 

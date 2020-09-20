@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CondicionService } from 'src/app/condicion.service';
+import { CondicionService } from 'src/app/services/condicion.service';
 import { CondicionAlimenticia } from 'src/domain/condicionAlimenticia';
 
 @Component({
