@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
+  recetaBuscada = ''
 
   constructor() { }
 
