@@ -1,0 +1,6 @@
+<div class="condiciones-tipos border-colorsecundario" >
+  <div class="condiciones-tipos-bloque" *ngFor="let condicion of condiciones">
+      <label class="tipos-bloque" for={{condicion.nombre}}>
+          <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}}>{{condicion.nombre}}</label>
+  </div>
+</div>
