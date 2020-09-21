@@ -5,7 +5,7 @@
         <h2>Búsqueda de Recetas</h2>
         <div class="busqueda-boton">
             <input type="text" id="busqueda-boton" [(ngModel)]="recetaBuscada" placeholder="Buscar..">
-            <button class="button">Buscar</button>
+            <button (click)="realizarBusqueda" class="button">Buscar</button>
         </div>
 
         <label class="busqueda-checkbox"> <input type="checkbox" id="busqueda-checkbox">Sólo mis recetas</label>
@@ -18,7 +18,7 @@
     <div class="resultados">
         <app-resultados></app-resultados>
         <div class="boton-agregar">
-            <a href=""><i class="fa fa-plus-circle main"></i></a>
+            <a><i class="fa fa-plus-circle main"></i></a>
         </div>
     </div>
 </div>

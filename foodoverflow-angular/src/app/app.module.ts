@@ -12,6 +12,8 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { CondicionesComponent } from './componentes/condiciones/condiciones.component';
 import { AlimentosComponent } from './componentes/alimentos/alimentos.component';
 import { RecetaPipe } from './pipes/receta.pipe';
+import { RecetaComponent } from './componentes/receta/receta.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { RecetaPipe } from './pipes/receta.pipe';
     PerfilComponent,
     CondicionesComponent,
     AlimentosComponent,
-    RecetaPipe
+    RecetaPipe,
+    RecetaComponent,
+    LoginComponent
 
   ],
   imports: [

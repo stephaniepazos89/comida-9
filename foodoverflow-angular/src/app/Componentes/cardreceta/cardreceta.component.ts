@@ -8,9 +8,8 @@ import { RecetaService } from 'src/app/services/receta.service';
   styleUrls: ['./cardreceta.component.css']
 })
 export class CardrecetaComponent implements OnInit {
-  recetaBusacada = ''
   recetas: Receta[] = []
-
+  public recetaBuscada = ''
 
   constructor(public recetaService : RecetaService) { }
 

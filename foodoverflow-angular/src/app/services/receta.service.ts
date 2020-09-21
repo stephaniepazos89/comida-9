@@ -1,4 +1,4 @@
- import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 

@@ -1,4 +1,4 @@
-<div *ngFor="let receta of recetas" class="card-receta">
+<div *ngFor="let receta of recetas | recetaFilter: recetaBuscada" class="card-receta">
     <img src="img/pollo.jpg" class="imagenreceta">
     <div class="receta-info">
         <h3>{{receta.nombreDelPlato}}</h3>
