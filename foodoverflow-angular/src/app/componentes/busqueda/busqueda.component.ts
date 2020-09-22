@@ -9,7 +9,7 @@ import { Receta } from 'src/domain/receta';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  recetaBuscada = 'German'
+  recetaBuscada = 'Milanesa'
   recetas: Receta[] = []
 
   constructor(public recetaService : RecetaService) { }

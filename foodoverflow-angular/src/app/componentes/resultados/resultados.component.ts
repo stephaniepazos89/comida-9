@@ -7,8 +7,6 @@ import { Receta } from 'src/domain/receta';
   styleUrls: ['./resultados.component.css']
 })
 export class ResultadosComponent implements OnInit {
-
-  @Input() recetaBuscada: string
   @Input() recetas: Receta[]
 
   constructor() { }

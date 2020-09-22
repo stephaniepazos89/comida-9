@@ -16,7 +16,7 @@
 <div class="contenedor-resultado">
     <h4>Resultados de la busqueda</h4>
     <div class="resultados">
-        <app-resultados [recetas]="recetas" [recetaBuscada]="recetaBuscada"></app-resultados>
+        <app-resultados [recetas]="recetas | recetaFilter: recetaBuscada"></app-resultados>
         <div class="boton-agregar">
             <a><i class="fa fa-plus-circle main"></i></a>
         </div>
