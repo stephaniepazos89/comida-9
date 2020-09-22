@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Receta } from 'src/domain/receta';
 
 @Component({
   selector: 'app-resultados',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultadosComponent implements OnInit {
 
+  @Input() recetaBuscada: string
+  @Input() recetas: Receta[]
+
   constructor() { }
 
   ngOnInit(): void {
   }
+  
 
 }

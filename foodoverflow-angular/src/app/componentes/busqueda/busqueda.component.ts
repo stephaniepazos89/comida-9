@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CardrecetaComponent } from '../cardreceta/cardreceta.component';
+import { RecetaService } from 'src/app/services/receta.service';
+import { Receta } from 'src/domain/receta';
+
 
 @Component({
   selector: 'app-busqueda',
@@ -7,11 +9,13 @@ import { CardrecetaComponent } from '../cardreceta/cardreceta.component';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  recetaBuscada = ''
+  recetaBuscada = 'German'
+  recetas: Receta[] = []
 
-  constructor() { }
-//public cardReceta: CardrecetaComponent
+  constructor(public recetaService : RecetaService) { }
+  
   ngOnInit(): void {
+    this.recetas = this.recetaService.getRecetas();
   }
 
   realizarBusqueda(){
