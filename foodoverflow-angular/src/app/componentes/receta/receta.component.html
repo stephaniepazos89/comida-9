@@ -4,8 +4,8 @@
             <img src="img/guiso.jpg" class="imagenreceta" />
 
             <div class="perfil-receta">
-                <h2>Guiso de lentejas</h2>
-                <p>por Juan Carlos de la Hoya</p>
+                <h2>{{receta.nombreDelPlato}}</h2>
+                <p>por {{receta.autor.nombre}}</p>
                 <p><span class="negrita occult">Inadecuado para </span>Veganos, vegetarianos, hipertensos</p>
             </div>
         </div>
@@ -14,7 +14,7 @@
             <form action="" class="inforeceta">
                 <div class="infoizquierda">
                     <label for="" class="negrita">Total de calorias</label>
-                    <input type="text" class="textbox" id="calorias" />
+                    <input type="text" class="textbox" id="calorias" name="calorias" [(ngModel)]="calorias" />
                 </div>
                 <div class="infoderecha">
                     <label for="" class="negrita">Dificultad</label>
@@ -36,41 +36,12 @@
                     </div>
                     <div>
                         <table class="TablaIngredientes">
-                            <tr>
-                                <td>Lentejas</td>
-                                <td class="Tabla_Valor">200gr.</td>
+                            <tr *ngFor="let ingrediente of receta.listaIngredientes">
+                                <td>{{ingrediente.nombre}}</td>
+                                <td class="Tabla_Valor">{{ingrediente.cantidad}}</td>
                                 <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
                             </tr>
-                            <tr>
-                                <td>Cebolla</td>
-                                <td class="Tabla_Valor">2 unidades</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Ajo</td>
-                                <td class="Tabla_Valor">1 diente</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Panceta</td>
-                                <td class="Tabla_Valor">100gr.</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Papas</td>
-                                <td class="Tabla_Valor">3 unidades</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Aceite</td>
-                                <td class="Tabla_Valor">dos cditas.</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Carne</td>
-                                <td class="Tabla_Valor">1/2 kilo</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
+
                         </table>
                     </div>
                 </div>
@@ -83,33 +54,8 @@
                     </div>
                     <div>
                         <table class="TablaIngredientes">
-                            <tr>
-                                <td>1 Remojar las lentjas durante 24 horas.</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2 Cortar la cebolla en cubos.</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3 Picar el ajo.</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4 Rehogar todo en un sartén</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5 Agregar la panceta y la carne</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>6 Luego de 10' agregar caldo</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>7 A la media hora agregar las lentejas</td>
-
+                            <tr *ngFor="let paso of receta.listaPasos">
+                                <td>{{paso}}</td>
                                 <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
                             </tr>
                         </table>
@@ -127,16 +73,13 @@
             <div class="contenedor-lista-colaboradores">
                 <div class="lista">
                     <div class="top-lista colaborador fondotitulo">Nombre</div>
-
-                    <button class="colaborador selector"><p>Pablo</p><a href=""><i class="fa fa-times-circle"></i></a></button>
-                    <button class="colaborador selector"><p>Santiago</p><a href=""><i class="fa fa-times-circle"></i></a></button>
-                    <button class="colaborador selector"><p>David</p><a href=""><i class="fa fa-times-circle"></i></a></button>
+                    <button *ngFor="let colaborador of receta.listaColaboradores" class="colaborador selector"><p>{{colaborador.nombre}}</p><a href=""><i class="fa fa-times-circle"></i></a></button>
                 </div>
 
 
                 <div class="botones">
-                    <button class="button">Aceptar</button>
-                    <button class="button button2">Cancelar</button>
+                    <button (click)="aceptar()" class="button">Aceptar</button>
+                    <button (click)="cancelar()" class="button button2">Cancelar</button>
                 </div>
 
 

@@ -17,8 +17,25 @@ export class RecetaService {
       new Receta(new Usuario("Rodrigo", 100, 1.75), "Hamburguesa"),
     ];
   }
-
+  
   public getRecetas(){
     return this.recetas
   }
+
+  agregarReceta(receta: Receta){
+    this.recetas.push(receta)
+  }
+
+  crearReceta(autor:Usuario, nombreDelPlato: string){
+    const receta = new Receta(autor, nombreDelPlato)
+    return receta
+  }
+
+  getTareaByName(nombre:string){
+    return this.recetas.find((receta) => {
+      return receta.nombreDelPlato == nombre
+    })
+  }
+
+
 }

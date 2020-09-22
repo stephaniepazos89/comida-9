@@ -4,8 +4,9 @@ import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Dificultad } from './dificultad'
 export class Receta {
 
-     private listaColaboradores: Usuario[] = []
-     private listaIngredientes: Ingrediente[] = []
+     public listaColaboradores: Usuario[] = []
+     public listaIngredientes: Ingrediente[] = []
+     public listaPasos: string[] = []
 
      public calorias: number
      public dificultad: Dificultad
@@ -31,6 +32,10 @@ export class Receta {
 
     public agregarIngrediente(ingrediente: Ingrediente): void{
         this.listaIngredientes.push(ingrediente)
+     }
+
+     public agregarPaso(paso: string): void{
+        this.listaPasos.push(paso)
      }
 
     public inadecuadoPara(): Set<CondicionAlimenticia[]>{

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'busqueda', component: BusquedaComponent},
   { path: 'perfil', component: PerfilComponent },
-  { path: 'receta', component: RecetaComponent },
+  { path: 'receta/:nombreDelPlato', component: RecetaComponent },
   { path: 'alimento', component: AlimentosComponent },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ]
