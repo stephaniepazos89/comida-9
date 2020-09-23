@@ -11,36 +11,8 @@
         </div>
     </div>
     <div class="bot">
-        <div class="bot-datos">
-            <div class="bot-datos-izq">
-                <div class="bot-datos-peso datos-bloque">
-                    <label class="pesotexto" for="peso">Peso (Kgs.)</label>
-                    <input type="number" name="peso" id="peso" class="datos-input border-colorsecundario">
-                </div>
-                <div class="bot-datos-estatura datos-bloque">
-                    <label for="estatura" class="bot-datos-estaturatexto">Estatura</label>
-                    <input type="number" name="estatura" id="estatura" class="datos-input border-colorsecundario">
-                </div>
 
-            </div>
-            <div class="bot-datos-der">
-
-                <div class="bot-datos-nacimiento datos-bloque">
-                    <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
-                    <input type="date" id="nacimiento" class="datos-input border-colorsecundario" name="nacimiento">
-                </div>
-                <div class="bot-datos-rutina datos-bloque">
-                    <label class="bot-datos-rutinatexto" for="rutina">Rutina</label>
-                    <select class="datos-input border-colorsecundario" id="rutina" name="rutina">
-                        <option value="intensivo">Intensivo</option>
-                        <option value="activo">Activo</option>
-                        <option value="mediano">Mediano</option>
-                        <option value="leve">Leve</option>
-                        <option value="nada">Nada</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+        <app-datosperfil></app-datosperfil>
 
         <div class="condiciones">
             <div class="condiciones-nombre">Condiciones</div>
@@ -48,46 +20,8 @@
         </div>
 
         <div class="alimentos">
-            <div class="alimentos-display">
-                <div class="alimentos-top">
-                    <div class="alimentos-nombre">Alimentos preferidos</div>
-                    <button class="alimentos-boton button">Agregar</button>
-                    <a href="" class="alimentos-boton-400 button2 selector"><i class="fa fa-plus-circle"></i></a>
-                </div>
-                <table class="alimentos-lista border">
-                    <tr>
-                        <th colspan="2" class="alimentos-bloquelista-top fondotitulo border-bottom-colorsecundario">Alimento</th>
-                    </tr>
-                    <tr>
-                        <td class="alimentos-bloquelista border-bottom-colorsecundario">Lentejas</td>
-                        <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="alimentos-bloquelista border-bottom-colorsecundario">Cebolla</td>
-                        <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle"></i></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="alimentos-display">
-                <div class="alimentos-top">
-                    <div class="alimentos-nombre ">Alimentos no preferidos</div>
-                    <button class="alimentos-boton button">Agregar</button>
-                    <a href="" class="alimentos-boton-400 button2 selector"><i class="fa fa-plus-circle"></i></a>
-                </div>
-                <table class="alimentos-lista border-colorsecundario">
-                    <tr>
-                        <th colspan="2" class="alimentos-bloquelista-top fondotitulo border-bottom-colorsecundario">Alimento</th>
-                    </tr>
-                    <tr>
-                        <td class="alimentos-bloquelista border-bottom-colorsecundario">Coliflor</td>
-                        <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="alimentos-bloquelista border-bottom-colorsecundario">Chauchas</td>
-                        <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle"></i></td>
-                    </tr>
-                </table>
-            </div>
+            <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [listaDeAlimentos]="alimentosPreferidos"></app-alimentosperfil>
+            <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [listaDeAlimentos]="alimentosDisgustados"></app-alimentosperfil>
         </div>
 
         <div class="recetas">

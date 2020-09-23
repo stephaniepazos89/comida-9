@@ -61,7 +61,7 @@ main {
     border-radius: 0 0 1vh 1vh;
 }
 
-.bot-datos {
+app-datosperfil {
     width: 75%;
     min-width: 401px;
     display: flex;
@@ -116,13 +116,13 @@ main {
     padding: 2vh 0;
 }
 
-.alimentos-display {
+app-alimentosperfil {
     width: 45%;
     display: flex;
     flex-flow: column;
 }
 
-.alimentos-top {
+/* .alimentos-top {
     display: flex;
     height: 3vh;
     justify-content: center;
@@ -146,7 +146,7 @@ main {
 td,
 th {
     padding: 0.7vh 0;
-    /*background-color: white;*/
+    
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     border-collapse: collapse;
@@ -170,7 +170,7 @@ table {
 
 .alimentos-bloquelista-top {
     color: white;
-}
+} */
 
 .contenedor-resultado {
     display: flex;
