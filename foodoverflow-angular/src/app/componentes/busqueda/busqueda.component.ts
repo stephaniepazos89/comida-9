@@ -20,10 +20,8 @@ export class BusquedaComponent implements OnInit {
 
   realizarBusqueda(recetaBuscada): void{
    this.mostrarBusqueda = true
-   this.recetas =  this.recetaService.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombre, recetaBuscada) )
-  }
+   this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
+   }
 
-  coincidencia(valor1: string, valor2: string) {
-    return valor1.toLowerCase().match(valor2.toLowerCase())
-  }
+
 }

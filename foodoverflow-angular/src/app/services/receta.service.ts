@@ -34,36 +34,23 @@ export class RecetaService {
     return receta
   }
 
-  getRecetaByName(nombre:string){
-    return this.recetas.find((receta) => {
-      return receta.nombreDelPlato == nombre
-    })
-  }
-
   getRecetaByID(id:number){
     return this.recetas.find((receta) => {
       return receta.id == id
     })
   }
 
-  getRecetaByAutor(nombre:string){
-    return this.recetas.find((receta) => {
-      return receta.autor.nombre == nombre
-    })
+  busquedaCompleta(recetaBuscada): Receta[]{
+  return this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombre, recetaBuscada) )
   }
 
-  recetasPorUsuario(usuario:Usuario){  // Método de prueba
-    return this.recetas.filter(receta => receta.autor.toString().toLowerCase().match( usuario.nombre.toLowerCase()))
-  }
-
-  realizarBusqueda(recetaBuscada): Receta[]{ // Método de prueba
-  
-    return  this.getRecetas().filter(receta => this.coincidencia(receta.autor.nombre, recetaBuscada) )
+  busquedaPorUsuario(recetaBuscada): Receta[]{
+    return  this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.autor.nombre, recetaBuscada) )
    }
  
-   coincidencia(valor1: string, valor2: string) { // Método de prueba
-     return valor1.toLowerCase().match(valor2.toLowerCase())
-   }
+   coincidencia(valor1: string, valor2: string) {
+    return valor1.toLowerCase().match(valor2.toLowerCase())
+  }
 
 
 }

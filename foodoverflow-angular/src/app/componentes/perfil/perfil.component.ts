@@ -27,8 +27,8 @@ export class PerfilComponent implements OnInit {
     
     this.usuarioPerfil = this.usuarioService.getUsuario(0)
     this.todasLasRecetas = this.recetaService.getRecetas() 
-    this.recetaService.realizarBusqueda(this.usuarioPerfil.nombre)
-    
+    this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
+
     this.usuarioPerfil.agregarAlimentoDisgustado(new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
     this.usuarioPerfil.agregarAlimentoPreferido(new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 
