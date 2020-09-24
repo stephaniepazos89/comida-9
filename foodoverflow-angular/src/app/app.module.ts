@@ -14,6 +14,8 @@ import { AlimentosComponent } from './componentes/alimentos/alimentos.component'
 import { RecetaPipe } from './pipes/receta.pipe';
 import { RecetaComponent } from './componentes/receta/receta.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
+import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-alimentos.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { LoginComponent } from './componentes/login/login.component';
     PerfilComponent,
     CondicionesComponent,
     AlimentosComponent,
+    IngredientesComponent,
+    TablaAlimentosComponent,
     RecetaPipe,
     RecetaComponent,
     LoginComponent

@@ -56,6 +56,17 @@ main {
 .alimento.top {
     color: white;
 }
+.selector {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector:hover {
+    background-color: var(--color-fondo);
+}
+
+.selector:focus {
+    background-color: var(--color-fondo);
+}
 
 .contenedor-botones {
     padding: 1vh 0;
