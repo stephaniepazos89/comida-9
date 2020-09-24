@@ -27,43 +27,7 @@
         <div class="recetas">
             <div class="recetas-nombre">Mis recetas</div>
             <div class="listado-resultado">
-                <!--<div class="card-receta">
-                    <img src="img/pollo.jpg" class="imagenreceta">
-                    <div class="receta-info">
-                        <h3>Pollo al Horno</h3>
-                        <p1>Calorías: 200</p1>
-                        <p1>Dificultad: Media</p1>
-                    </div>
-                    <div class="receta-botones">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </div>
-
-                <div class="card-receta">
-                    <img src="img/asado.jpg" class="imagenreceta">
-                    <div class="receta-info">
-                        <h3>Asado al asador</h3>
-                        <p1>Calorías: 300</p1>
-                        <p1>Dificultad: Alta</p1>
-                    </div>
-                    <div class="receta-botones">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </div>
-                <div class="card-receta">
-                    <img src="img/fideos.jpg" class="imagenreceta">
-                    <div class="receta-info">
-                        <h3>Fideos con tuco</h3>
-                        <p1>Calorías: 180</p1>
-                        <p1>Dificultad: Baja</p1>
-                    </div>
-                    <div class="receta-botones">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </div> -->
+                <app-cardreceta *ngFor="let receta of ultimasRecetas" [receta]="receta"></app-cardreceta>
 
             </div>
 
