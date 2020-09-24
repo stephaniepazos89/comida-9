@@ -7,6 +7,7 @@ export class Usuario {
     public condicionesAlimenticias: CondicionAlimenticia[] = []
     public rutina: Rutina = NaN
     public alimentosPreferidos: Alimento[] = []
+    public alimentosDisgustados: Alimento[] = []
 
 
     constructor(public nombre: string, public peso: number, public estatura: number){}
@@ -17,6 +18,10 @@ export class Usuario {
 
     public agregarAlimentoPreferido(alimento:Alimento): void{
         this.alimentosPreferidos.push(alimento)
+    }
+
+    public agregarAlimentoDisgustado(alimento:Alimento): void{
+        this.alimentosDisgustados.push(alimento)
     }
 
     public calculoIMC(): number {

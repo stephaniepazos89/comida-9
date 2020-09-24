@@ -9,16 +9,19 @@ import { Receta } from 'src/domain/receta';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  recetaBuscada = 'Milanesa'
+  recetaBuscada = ''
   recetas: Receta[] = []
+  mostrarBusqueda: Boolean
 
   constructor(public recetaService : RecetaService) { }
   
   ngOnInit(): void {
-    this.recetas = this.recetaService.getRecetas();
   }
 
-  realizarBusqueda(){
-   // this.cardReceta.recetaBuscada = this.recetaBuscada
-  }
+  realizarBusqueda(recetaBuscada): void{
+   this.mostrarBusqueda = true
+   this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
+   }
+
+
 }

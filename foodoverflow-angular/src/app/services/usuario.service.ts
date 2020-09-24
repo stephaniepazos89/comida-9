@@ -10,10 +10,14 @@ export class UsuarioService {
 
   constructor() {
     this.usuarios = [
-      new Usuario("Jorge", 94, 1.60),
+      new Usuario("German", 94, 1.60),
       new Usuario("Pedro", 80, 1.56),
       new Usuario("Fernando", 65, 1.60),
       new Usuario("Nahuel", 60, 1.72)
     ]
+  }
+
+  getUsuario(posicion: number){
+    return this.usuarios[posicion]
   }
 }

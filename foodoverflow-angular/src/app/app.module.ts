@@ -16,6 +16,9 @@ import { RecetaComponent } from './componentes/receta/receta.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
 import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-alimentos.component';
+import { DatosperfilComponent } from './componentes/datosperfil/datosperfil.component';
+import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimentosperfil.component';
+
 
 
 @NgModule({
@@ -33,8 +36,9 @@ import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-ali
     TablaAlimentosComponent,
     RecetaPipe,
     RecetaComponent,
-    LoginComponent
-
+    LoginComponent,
+    DatosperfilComponent,
+    AlimentosperfilComponent
   ],
   imports: [
     BrowserModule,

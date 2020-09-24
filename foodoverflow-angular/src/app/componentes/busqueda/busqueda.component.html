@@ -4,8 +4,8 @@
     <form class="busqueda">
         <h2>Búsqueda de Recetas</h2>
         <div class="busqueda-boton">
-            <input type="text" id="busqueda-boton" [(ngModel)]="recetaBuscada" placeholder="Buscar..">
-            <button (click)="realizarBusqueda" class="button">Buscar</button>
+            <input type="text" id="busqueda-boton" name="recetaBuscada" [(ngModel)]="recetaBuscada" placeholder="Buscar..">
+            <button (click)="realizarBusqueda(recetaBuscada)" class="button">Buscar</button>
         </div>
 
         <label class="busqueda-checkbox"> <input type="checkbox" id="busqueda-checkbox">Sólo mis recetas</label>
@@ -13,10 +13,10 @@
     </form>
 </div>
 
-<div class="contenedor-resultado">
+<div class="contenedor-resultado" *ngIf="mostrarBusqueda">
     <h4>Resultados de la busqueda</h4>
     <div class="resultados">
-        <app-resultados [recetas]="recetas | recetaFilter: recetaBuscada"></app-resultados>
+        <app-resultados [recetas]="recetas"></app-resultados>
         <div class="boton-agregar">
             <a><i class="fa fa-plus-circle main"></i></a>
         </div>

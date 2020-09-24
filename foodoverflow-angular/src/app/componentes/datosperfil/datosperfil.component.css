@@ -1,0 +1,29 @@
+.bot-datos-izq,
+.bot-datos-der {
+    display: flex;
+    justify-content: space-around;
+}
+
+.datos-bloque {
+    width: 40%;
+    min-width: 190px;
+    padding: 1vh 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datos-input {
+    border: 1.5px;
+    width: 55%;
+    min-width: 103px;
+    border-radius: 5px;
+    padding: 6px;
+    border-style: solid;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+.bot-datos-pesotexto {
+    min-width: 83px;
+}
