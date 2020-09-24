@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlimentoService } from 'src/app/services/alimento.service';
 import { Alimento } from 'src/domain/alimento';
 
@@ -9,12 +9,14 @@ import { Alimento } from 'src/domain/alimento';
 })
 export class TablaAlimentosComponent implements OnInit {
 
+  @Input() nombreTabla:string
+  
   alimentos: Alimento[]=[]
 
   constructor(public alimentoService: AlimentoService) { }
 
   ngOnInit() {
-    this.alimentos=this.alimentoService.getAlimento()
+    this.alimentos = this.alimentoService.getAlimento()
     console.log(this.alimentos)
   }
 

@@ -2,10 +2,7 @@
     <div class="contenedor">
         <h1 class="tituloalimentos contenedor-colorsecundario">Ingredientes</h1>
         <div class="contenedor-listadealimentos contenedor-blanco">
-            <div class="lista">
-                <div class="alimento top fondotitulo">Ingrediente</div>
-                <app-tabla-alimentos></app-tabla-alimentos>
-            </div>
+            <app-tabla-alimentos [nombreTabla]='nombreTabla'></app-tabla-alimentos>
             <div class="cantidad">
                 <div class="textocantidad">Cantidad</div>
                 <div class="inputcantidad border">

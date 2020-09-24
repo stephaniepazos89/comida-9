@@ -8,7 +8,7 @@
             <button (click)="realizarBusqueda(recetaBuscada)" class="button">Buscar</button>
         </div>
 
-        <label class="busqueda-checkbox"> <input type="checkbox" id="busqueda-checkbox">Sólo mis recetas</label>
+        <label class="busqueda-checkbox"> <input type="checkbox" name="isChecked" [(ngModel)]="isChecked" ng-checked="isChecked" id="busqueda-checkbox">Sólo mis recetas</label>
 
     </form>
 </div>

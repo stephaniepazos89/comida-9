@@ -8,4 +8,28 @@
     font-weight: 500;
 }
 
+.lista {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 28vh;
+}
 
+.alimento.top {
+    color: white;
+}
+
+.selector {
+    border: solid 1px var(--color-fondo);
+}
+
+.selector:hover {
+    background-color: var(--color-fondo);
+}
+
+.selector:focus {
+    background-color: var(--color-fondo);
+}

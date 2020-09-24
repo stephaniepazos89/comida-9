@@ -44,11 +44,15 @@ export class RecetaService {
   return this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombre, recetaBuscada) )
   }
 
-  busquedaPorUsuario(recetaBuscada): Receta[]{
-    return  this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.autor.nombre, recetaBuscada) )
+  busquedaPorUsuario(usuarioBuscado): Receta[]{
+    return  this.getRecetas().filter(receta => !usuarioBuscado || this.coincidencia(receta.autor.nombre, usuarioBuscado) )
    }
  
-   coincidencia(valor1: string, valor2: string) {
+  busquedaRecetaDeUnAutor(recetaBuscada, autor): Receta[]{
+    return  this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, recetaBuscada) && receta.autor.nombre == autor) // SACAR .NOMBRE DESPUES
+  }
+
+  coincidencia(valor1: string, valor2: string) {
     return valor1.toLowerCase().match(valor2.toLowerCase())
   }
 

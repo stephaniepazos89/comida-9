@@ -12,7 +12,7 @@ export class BusquedaComponent implements OnInit {
   recetaBuscada = ''
   recetas: Receta[] = []
   mostrarBusqueda: Boolean
-
+  isChecked: Boolean = false
   constructor(public recetaService : RecetaService) { }
   
   ngOnInit(): void {
@@ -20,7 +20,13 @@ export class BusquedaComponent implements OnInit {
 
   realizarBusqueda(recetaBuscada): void{
    this.mostrarBusqueda = true
-   this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
+   
+   if(!this.isChecked){
+    this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
+   }else {
+     this.recetas = this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, "German")
+   }
+   
    }
 
 

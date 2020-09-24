@@ -8,7 +8,7 @@ import { Alimento } from 'src/domain/alimento'
   styleUrls: ['./alimentos.component.css']
 })
 export class AlimentosComponent implements OnInit {
-
+  nombreTabla: String = 'Alimento'
   alimentos: Alimento[]=[]
 
   constructor(public AlimentoService: AlimentoService) { }
