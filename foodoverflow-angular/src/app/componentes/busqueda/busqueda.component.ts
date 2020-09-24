@@ -9,16 +9,21 @@ import { Receta } from 'src/domain/receta';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  recetaBuscada = 'Milanesa'
+  recetaBuscada = ''
   recetas: Receta[] = []
+  mostrarBusqueda: Boolean
 
   constructor(public recetaService : RecetaService) { }
   
   ngOnInit(): void {
-    this.recetas = this.recetaService.getRecetas();
   }
 
-  realizarBusqueda(){
-   // this.cardReceta.recetaBuscada = this.recetaBuscada
+  realizarBusqueda(recetaBuscada): void{
+   this.mostrarBusqueda = true
+   this.recetas =  this.recetaService.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombre, recetaBuscada) )
+  }
+
+  coincidencia(valor1: string, valor2: string) {
+    return valor1.toLowerCase().match(valor2.toLowerCase())
   }
 }

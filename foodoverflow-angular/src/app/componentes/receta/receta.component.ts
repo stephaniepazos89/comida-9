@@ -6,6 +6,7 @@ import { Usuario } from 'src/domain/usuario';
 import { Ingrediente } from 'src/domain/ingrediente';
 import { Alimento } from 'src/domain/alimento';
 import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
+import { Vegano } from 'src/domain/condicionAlimenticia';
 
 @Component({
   selector: 'app-receta',
@@ -19,7 +20,7 @@ export class RecetaComponent implements OnInit {
 
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute) { 
     this.route.params.subscribe(params =>{
-      this.receta = this.recetaService.getTareaByName(params['nombreDelPlato'])
+      this.receta = this.recetaService.getRecetaByID(params['id'])
       if (!this.receta){
         this.irAHome()
       }
@@ -27,12 +28,16 @@ export class RecetaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let papa
     this.calorias = this.receta.calorias
     this.receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
     this.receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
     this.receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
     this.receta.listaIngredientes.push(new Ingrediente(new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
-    this.receta.listaIngredientes.push(new Ingrediente(new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
+    this.receta.listaIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
+    papa.agregarInadecuado(new Vegano())
+    papa.agregarInadecuado(new Vegano())
+    papa.agregarInadecuado(new Vegano())
   }
 
   irAHome(){

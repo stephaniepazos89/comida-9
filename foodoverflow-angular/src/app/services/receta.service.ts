@@ -31,11 +31,24 @@ export class RecetaService {
     return receta
   }
 
-  getTareaByName(nombre:string){
+  getRecetaByName(nombre:string){
     return this.recetas.find((receta) => {
       return receta.nombreDelPlato == nombre
     })
   }
+
+  getRecetaByID(id:number){
+    return this.recetas.find((receta) => {
+      return receta.id == id
+    })
+  }
+
+  getRecetaByAutor(nombre:string){
+    return this.recetas.find((receta) => {
+      return receta.autor.nombre == nombre
+    })
+  }
+
 
 
 }

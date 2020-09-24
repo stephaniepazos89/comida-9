@@ -7,7 +7,7 @@ export class Receta {
      public listaColaboradores: Usuario[] = []
      public listaIngredientes: Ingrediente[] = []
      public listaPasos: string[] = []
-
+     public id: number
      public calorias: number
      public dificultad: Dificultad
 
@@ -38,11 +38,10 @@ export class Receta {
         this.listaPasos.push(paso)
      }
 
-    public inadecuadoPara(): Set<CondicionAlimenticia[]>{
+    public inadecuadoPara(): CondicionAlimenticia[]{
         let listaCondicion = this.listaIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
-        let setCondicion = new Set(listaCondicion) 
-        return setCondicion           // FLATMAP NO APARECE
-        
+        let reduce = [].concat.apply([], listaCondicion)
+        return reduce   
     }
 
 }
