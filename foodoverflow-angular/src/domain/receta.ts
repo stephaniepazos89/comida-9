@@ -7,11 +7,10 @@ export class Receta {
      public listaColaboradores: Usuario[] = []
      public listaIngredientes: Ingrediente[] = []
      public listaPasos: string[] = []
-     public id: number
      public calorias: number
      public dificultad: Dificultad
 
-    constructor(public autor: Usuario, public nombreDelPlato: string ){   }
+    constructor(public id: number, public autor: Usuario, public nombreDelPlato: string ){   }
 
     
     public esAutor(usuario: Usuario): boolean{
