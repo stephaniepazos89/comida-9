@@ -49,6 +49,7 @@ h1 {
     background-color: var(--color-primario);
     border-style: none;
     display: flex;
+    align-self: center;
 }
 
 .button2 {

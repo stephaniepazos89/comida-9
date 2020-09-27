@@ -10,7 +10,7 @@ export class Usuario {
     public alimentosDisgustados: Alimento[] = []
 
 
-    constructor(public nombre: string, public peso: number, public estatura: number){}
+    constructor(public id: number, public nombre: string, public peso: number, public estatura: number){}
 
     public agregarCondicion(condicion: CondicionAlimenticia): void {
         this.condicionesAlimenticias.push(condicion)

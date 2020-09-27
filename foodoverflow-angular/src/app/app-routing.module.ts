@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'busqueda', component: BusquedaComponent},
   { path: 'perfil', component: PerfilComponent },
   { path: 'receta/:id', component: RecetaComponent },
+  { path: 'alimento/:id', component: AlimentosComponent },
   { path: 'alimento', component: AlimentosComponent },
   { path: 'ingrediente', component:IngredientesComponent},
   { path: '**', redirectTo: '/login', pathMatch: 'full' }

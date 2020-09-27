@@ -18,13 +18,12 @@ export class RecetaService {
 
   constructor() { 
     this.recetas = [
-
-      this.receta1 = this.crearReceta(new Usuario ("German", 65, 1.85), "Milanesa de pollo"),
-      this.crearReceta(new Usuario("German", 65, 1.85), "Guiso de lentejas"),
-      this.crearReceta(new Usuario("Tomas", 78, 1.62), "Tarta de espinaca"),
-      this.crearReceta(new Usuario("Rodrigo", 100, 1.75), "Hamburguesa"),
+      this.receta1 = this.crearReceta(new Usuario (1,"German", 65, 1.85), "Milanesa de pollo"),
+      this.crearReceta(new Usuario(1,"German", 65, 1.85), "Guiso de lentejas"),
+      this.crearReceta(new Usuario(2,"Tomas", 78, 1.62), "Tarta de espinaca"),
+      this.crearReceta(new Usuario(3,"Rodrigo", 100, 1.75), "Hamburguesa"),
     ]
-    this.receta1.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
+    this.receta1.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
 
   }
   
@@ -40,9 +39,9 @@ export class RecetaService {
     const receta = new Receta(this.asignadorID, autor, nombreDelPlato, 4000)
     this.asignadorID++
     let papa
-    receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
-    receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
-    receta.listaColaboradores.push(new Usuario ("Jorgito", 180, 1.80))
+    receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
+    receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
+    receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaIngredientes.push(new Ingrediente(new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
     receta.listaIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
     papa.agregarInadecuado(new Vegano())
