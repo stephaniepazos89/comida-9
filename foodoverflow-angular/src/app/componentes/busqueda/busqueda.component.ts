@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecetaService } from 'src/app/services/receta.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Receta } from 'src/domain/receta';
+import { Usuario } from 'src/domain/usuario';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class BusquedaComponent implements OnInit {
   recetas: Receta[] = []
   mostrarBusqueda: Boolean
   isChecked: Boolean = false
-  constructor(public recetaService : RecetaService) { }
+  constructor(public recetaService : RecetaService, public usuarioService : UsuarioService) { }
   
   ngOnInit(): void {
   }
@@ -24,9 +26,12 @@ export class BusquedaComponent implements OnInit {
    if(!this.isChecked){
     this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
    }else {
-     this.recetas = this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, "German")
+     this.recetas = this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, this.usuarioLogueado())
    }
-   
+   }
+
+   usuarioLogueado(): Usuario{
+     return this.usuarioService.usuarioLogueado()
    }
 
 
