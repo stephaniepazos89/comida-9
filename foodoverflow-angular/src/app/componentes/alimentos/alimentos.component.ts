@@ -14,19 +14,22 @@ export class AlimentosComponent implements OnInit {
   nombreTabla: String = 'Alimento'
   alimentos: Alimento[]=[]
   usuario: Usuario
+  alimentosDeUsuario: Alimento[]
+  destinoNavigate:string = 'perfil'
 
 
   constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params =>{
       this.usuario = this.usuarioService.getUsuarioByID(params.id)
+      this.alimentosDeUsuario = params.listaDeAlimentos
       if (!this.usuario){
-        this.irAHome()
+        this.irAOrigen()
       }
     })
    }
 
-   irAHome(){
-    this.router.navigate(['/busqueda'])
+   irAOrigen() {
+    this.router.navigate(['/' + this.destinoNavigate])
   }
 
   ngOnInit() {

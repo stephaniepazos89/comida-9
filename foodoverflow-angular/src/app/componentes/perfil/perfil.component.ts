@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { RecetaService } from 'src/app/services/receta.service'
 import { UsuarioService } from 'src/app/services/usuario.service'
 import { Alimento } from 'src/domain/alimento'
@@ -18,9 +19,10 @@ export class PerfilComponent implements OnInit {
   alimentosPreferidos: Alimento[]
   alimentosDisgustados: Alimento[]
   ultimasRecetas: Receta[]
-  todasLasRecetas: Receta[] // Lo agregué sólo como prueba 
+  todasLasRecetas: Receta[] // Lo agregué sólo como prueba
+  
 
-  constructor(public usuarioService: UsuarioService, public recetaService: RecetaService) {  }
+  constructor(public usuarioService: UsuarioService, public recetaService: RecetaService, private router: Router) {  }
 
 
   ngOnInit() { 
@@ -36,5 +38,18 @@ export class PerfilComponent implements OnInit {
     this.alimentosPreferidos = this.copiaUsuario.alimentosPreferidos
     this.alimentosDisgustados = this.copiaUsuario.alimentosDisgustados
     
+  }
+
+  irAHome(){
+    this.router.navigate(['/busqueda'])
+  }
+
+  aceptar(){
+    this.irAHome()
+  }
+
+  esSaludableTexto(){   //SE TIENE QUE ARREGLAR
+    if (this.usuarioPerfil.esSaludable()) return "Estado Saludable"
+    else return "Estado No Saludable"
   }
 }

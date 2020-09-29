@@ -181,3 +181,10 @@ th {
 .border-colorsecundario {
     border-color: var(--color-secundario);
 }
+
+.boton-eliminar {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: white;
+}

@@ -21,6 +21,10 @@ export class AlimentosperfilComponent implements OnInit {
   }
 
   goToAlimento(){
-    this.router.navigate(['/alimento', this.usuario.id])
+    this.router.navigate(['/alimento', this.usuario.id, this.listaDeAlimentos])
+  }
+
+  eliminarAlimento(alimento: Alimento){
+    this.listaDeAlimentos.splice(this.listaDeAlimentos.indexOf(alimento),1) 
   }
 }

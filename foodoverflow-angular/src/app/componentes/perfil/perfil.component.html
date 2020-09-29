@@ -2,12 +2,12 @@
   <div class="contenedor">
     <div class="top perfil-top contenedor-colorsecundario">
         <div class="top-nombreimc">
-            <div class="top-nombreimc-nombre">Juan Carlos de la Hoya</div>
-            <div class="top-nombreimc-imc">IMC: 35</div>
+            <div class="top-nombreimc-nombre">{{usuarioPerfil.nombre}}</div>
+            <div class="top-nombreimc-imc">IMC: {{usuarioPerfil.calculoIMC() | number:'1.2-2':'en'}}</div>
         </div>
         <div class="top-salud">
             <div class="top-salud-img"><i class="fa fa-heartbeat"></i></div>
-            <div class="top-salud-estado">Estado saludable</div>
+            <div class="top-salud-estado">{{esSaludableTexto()}}</div>
         </div>
     </div>
     <div class="bot">
@@ -36,8 +36,8 @@
 
         <div class="botonesbot">
             <div class="botonesbot-bloque">
-                <div class="button">Aceptar</div>
-                <div class="button button2">Cancelar</div>
+                <div class="button" (click)=aceptar()>Aceptar</div>
+                <div class="button button2" (click)=irAHome()>Cancelar</div>
             </div>
         </div>
     </div>

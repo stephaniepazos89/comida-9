@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlimentoService } from 'src/app/services/alimento.service';
 import { Alimento } from 'src/domain/alimento';
 
@@ -20,4 +21,5 @@ export class TablaAlimentosComponent implements OnInit {
     console.log(this.alimentos)
   }
 
+  
 }

@@ -9,6 +9,6 @@
     </tr>
     <tr *ngFor="let alimento of listaDeAlimentos">
         <td class="alimentos-bloquelista border-bottom-colorsecundario">{{alimento.nombreDeAlimento}}</td>
-        <td class="border-bottom-colorsecundario"><i class="fa fa-times-circle"></i></td>
+        <td class="border-bottom-colorsecundario"><button class="boton-eliminar" (click)=eliminarAlimento(alimento)><i class="fa fa-times-circle"></i></button></td>
     </tr>
 </table>
