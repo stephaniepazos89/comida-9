@@ -4,7 +4,7 @@
             <img src="img/guiso.jpg" class="imagenreceta" />
 
             <div class="perfil-receta">
-                <h2>{{receta.nombreDelPlato}}</h2>
+                <h2><input class="inputtitulo contenedor-colorsecundario" type="text" [(ngModel)]="receta.nombreDelPlato"></h2>
                 <p>por {{receta.autor.nombre}}</p>
                 <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara()">{{inadecuado.nombre}}{{" "}}</span></p>
             </div>
@@ -18,10 +18,8 @@
                 </div>
                 <div class="infoderecha">
                     <label for="" class="negrita">Dificultad</label>
-                    <select class="textbox border">
-                    <option value="1">Baja</option> 
-                    <option value="2">Media</option> 
-                    <option value="3">Alta</option>
+                    <select class="form-control" name="receta.dificultad" [(ngModel)]="receta.dificultad" class="textbox border">
+                        <option *ngFor="let dificultad of enumDificultades" [value]="dificultad">{{dificultades[dificultad]}}</option>
                 </select>
                 </div>
             </form>
@@ -31,7 +29,7 @@
                 <div class="ingrediente">
                     <div class="titulo-bot">
                         <h3>Ingredientes</h3>
-                        <button class="button mobile">Agregar</button>
+                        <button (click)="agregarIngrediente()" class="button mobile">Agregar</button>
                         <button class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div>
@@ -39,7 +37,7 @@
                             <tr *ngFor="let ingrediente of receta.listaIngredientes">
                                 <td>{{ingrediente.nombre}}</td>
                                 <td class="Tabla_Valor">{{ingrediente.cantidad}}</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
+                                <td class="Tabla_Cruz"><a><i (click)="eliminarIngrediente(ingrediente)" class="fa fa-times-circle"></i></a></td>
                             </tr>
 
                         </table>
@@ -56,7 +54,7 @@
                         <table class="TablaIngredientes">
                             <tr *ngFor="let paso of receta.listaPasos">
                                 <td>{{paso}}</td>
-                                <td class="Tabla_Cruz"><a href=""><i class="fa fa-times-circle"></i></a></td>
+                                <td class="Tabla_Cruz"><a><i (click)="eliminarPaso(paso)" class="fa fa-times-circle"></i></a></td>
                             </tr>
                         </table>
                     </div>
@@ -66,14 +64,14 @@
 
             <div class="colaboradores">
                 <h3>Colaboradores</h3>
-                <button class="button mobile">Agregar</button>
+                <button [routerLink]="['/colaborador']" class="button mobile">Agregar</button>
                 <button class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
             </div>
 
             <div class="contenedor-lista-colaboradores">
                 <div class="lista">
                     <div class="top-lista colaborador fondotitulo">Nombre</div>
-                    <button *ngFor="let colaborador of receta.listaColaboradores" class="colaborador selector"><p>{{colaborador.nombre}}</p><a href=""><i class="fa fa-times-circle"></i></a></button>
+                    <button *ngFor="let colaborador of receta.listaColaboradores" class="colaborador selector"><p>{{colaborador.nombre}}</p><a (click)="eliminarColaborador(colaborador)"><i class="fa fa-times-circle"></i></a></button>
                 </div>
 
 

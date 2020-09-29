@@ -34,6 +34,10 @@ export class UsuarioService {
     return this.usuarios[posicion]
   }
 
+  public getUsuarios(){
+    return this.usuarios
+  }
+
   getUsuarioByID(id:number){
     return this.usuarios.find((receta) => {
       return receta.id == id

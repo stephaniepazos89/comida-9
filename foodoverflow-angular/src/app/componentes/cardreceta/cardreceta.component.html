@@ -7,6 +7,6 @@
     </div>
     <div class="receta-botones">
         <a [routerLink]="['/receta', receta.id]"><i class="fa fa-edit"></i></a>
-        <i class="fa fa-trash-o"></i>
+        <a (click)="eliminar()"><i class="fa fa-trash-o"></i></a>
     </div>
 </div>

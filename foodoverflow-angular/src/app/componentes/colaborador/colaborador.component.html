@@ -1,0 +1,17 @@
+<main>
+    <div class="contenedor">
+        <h1 class="tituloalimentos contenedor-colorsecundario ">Colaboradores</h1>
+        <div class="contenedor-lista-colaboradores contenedor-blanco">
+            <div class="lista">
+                <div class="top-lista colaborador fondotitulo">Nombre</div>
+                <button *ngFor="let colaborador of colaboradores" class="colaborador selector"><p>{{colaborador.nombre}}</p></button>
+            </div>
+        </div>
+        <div class="contenedor-botones">
+            <div class="botones-block">
+                <button class="button">Aceptar</button>
+                <button class="button button2">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</main>

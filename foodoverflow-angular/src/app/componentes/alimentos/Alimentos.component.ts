@@ -14,23 +14,36 @@ export class AlimentosComponent implements OnInit {
   nombreTabla: String = 'Alimento'
   alimentos: Alimento[]=[]
   usuario: Usuario
-
+  alimentosDeUsuario: Alimento[]
+  destinoNavigate:string = 'perfil'
+  alimentoParaAgregar: Alimento
 
   constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params =>{
       this.usuario = this.usuarioService.getUsuarioByID(params.id)
+      this.alimentosDeUsuario = params.listaDeAlimentos
       if (!this.usuario){
-        this.irAHome()
+        this.irAOrigen()
       }
     })
    }
-
-   irAHome(){
-    this.router.navigate(['/busqueda'])
-  }
 
   ngOnInit() {
     this.alimentos=this.alimentoService.getAlimento()
   }
 
+  alimentoRecibido($event: Alimento) {
+    
+    this.alimentoParaAgregar = $event 
+    console.log("Se recibe  " + this.alimentoParaAgregar.nombreDeAlimento)
+  }
+  
+  irAOrigen() {
+    this.router.navigate(['/' + this.destinoNavigate])
+  }
+
+  aceptar() {
+    
+    this.router.navigate(['/' + this.destinoNavigate, this.alimentoParaAgregar])
+  }
 }

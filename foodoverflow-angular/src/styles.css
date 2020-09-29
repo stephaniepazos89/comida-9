@@ -50,6 +50,7 @@ h1 {
     border-style: none;
     display: flex;
     align-self: center;
+    cursor: pointer;
 }
 
 .button2 {
@@ -84,19 +85,6 @@ input {
 
 th {
     background-color: var(--color-titulo);
-}
-
-.fa-sign-out {
-    font-size: 22px;
-}
-
-.fa-plus-circle {
-    font-size: 25px;
-    color: var(--color-letras)
-}
-
-.fa.fa-plus-circle.main {
-    font-size: 40px;
 }
 
 .contenedor-colorsecundario {
@@ -135,6 +123,17 @@ th {
     border-bottom: 1px solid var(--color-secundario);
 }
 
+.fa-plus-circle {
+    font-size: 25px;
+    color: var(--color-letras);
+    cursor: pointer;
+}
+
+.fa.fa-plus-circle.main {
+    font-size: 40px;
+    cursor: pointer;
+}
+
 .fa-plus-circle:hover {
     color: var(--color-secundario);
 }
@@ -142,6 +141,7 @@ th {
 .fa-times-circle {
     color: red;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .fa.fa-heartbeat {
@@ -151,14 +151,17 @@ th {
 
 .fa-sign-out {
     font-size: 22px;
+    cursor: pointer;
 }
 
 .fa-edit {
     font-size: 23px;
+    cursor: pointer;
 }
 
 .fa-trash-o {
-    font-size: 25px
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .fa-facebook-official {
@@ -168,14 +171,17 @@ th {
     display: block;
     background-position: center;
     background-size: cover;
+    cursor: pointer;
 }
 
 .fa-home {
     font-size: 22px;
+    cursor: pointer;
 }
 
 .fa-user {
     font-size: 22px;
+    cursor: pointer;
 }
 
 .border-colorsecundario {

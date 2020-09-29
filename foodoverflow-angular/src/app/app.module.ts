@@ -18,6 +18,7 @@ import { IngredientesComponent } from './componentes/ingredientes/ingredientes.c
 import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-alimentos.component';
 import { DatosperfilComponent } from './componentes/datosperfil/datosperfil.component';
 import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimentosperfil.component';
+import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
 
 
 
@@ -38,7 +39,8 @@ import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimento
     RecetaComponent,
     LoginComponent,
     DatosperfilComponent,
-    AlimentosperfilComponent
+    AlimentosperfilComponent,
+    ColaboradorComponent
   ],
   imports: [
     BrowserModule,

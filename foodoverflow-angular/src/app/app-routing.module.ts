@@ -6,6 +6,7 @@ import { RecetaComponent } from './componentes/receta/receta.component';
 import { AlimentosComponent } from './componentes/alimentos/alimentos.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
+import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'alimento/:id', component: AlimentosComponent },
   { path: 'alimento', component: AlimentosComponent },
   { path: 'ingrediente', component:IngredientesComponent},
+  { path: 'colaborador', component: ColaboradorComponent},
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ]
 

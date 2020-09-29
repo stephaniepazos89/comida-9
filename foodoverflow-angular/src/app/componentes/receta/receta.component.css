@@ -164,3 +164,9 @@ table .Tabla_Valor {
 .buttonoccult {
     display: none;
 }
+
+.inputtitulo {
+    margin: 0.5rem 0.5rem;
+    font-size: 2rem;
+    text-align: center;
+}

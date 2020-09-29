@@ -7,6 +7,7 @@ import { Receta } from 'src/domain/receta';
   styleUrls: ['./resultados.component.css']
 })
 export class ResultadosComponent implements OnInit {
+
   @Input() recetas: Receta[]
 
   constructor() { }
@@ -14,5 +15,7 @@ export class ResultadosComponent implements OnInit {
   ngOnInit(): void {
   }
   
-
+  eliminarReceta(receta: Receta) {
+    this.recetas.splice(this.recetas.indexOf(receta), 1)
+  }
 }

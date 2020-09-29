@@ -15,6 +15,8 @@ export class BusquedaComponent implements OnInit {
   recetas: Receta[] = []
   mostrarBusqueda: Boolean
   isChecked: Boolean = false
+  receta: Receta
+  
   constructor(public recetaService : RecetaService, public usuarioService : UsuarioService) { }
   
   ngOnInit(): void {
@@ -34,5 +36,8 @@ export class BusquedaComponent implements OnInit {
      return this.usuarioService.usuarioLogueado()
    }
 
+   nuevaReceta(){
+     this.receta = this.recetaService.crearRecetaVacia(this.usuarioLogueado())
+   }
 
 }

@@ -10,7 +10,7 @@ export class Receta {
      //public calorias: number
      public dificultad: Dificultad
 
-    constructor(public id: number, public autor: Usuario, public nombreDelPlato: string, public calorias? :number){   }
+    constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
 
     
     public esAutor(usuario: Usuario): boolean{
