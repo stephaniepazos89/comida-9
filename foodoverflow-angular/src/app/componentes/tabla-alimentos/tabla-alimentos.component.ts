@@ -13,6 +13,7 @@ export class TablaAlimentosComponent implements OnInit {
   @Output() alimentoEvent = new EventEmitter<Alimento>()
   
   alimentos: Alimento[]=[]
+  alimento:Alimento;
   alimentoSeleccionado: Alimento
 
   constructor(public alimentoService: AlimentoService) { }
@@ -24,5 +25,10 @@ export class TablaAlimentosComponent implements OnInit {
 
   enviarAlimento(nombreDeAlimento: Alimento) {
     this.alimentoEvent.emit(nombreDeAlimento)
+  }
+
+  seleccionarAlimento(alimentoSeleccionado:Alimento){
+    this.alimento=alimentoSeleccionado;
+    console.log(this.alimento)
   }
 }
