@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, Output, EventEmitter  } from '@angular/core';
 import { AlimentoService } from 'src/app/services/alimento.service';
 import { Alimento } from 'src/domain/alimento';
 
@@ -10,9 +9,11 @@ import { Alimento } from 'src/domain/alimento';
 })
 export class TablaAlimentosComponent implements OnInit {
 
-  @Input() nombreTabla:string
+  @Input() nombreTabla: string
+  @Output() alimentoEvent = new EventEmitter<Alimento>()
   
   alimentos: Alimento[]=[]
+  alimentoSeleccionado: Alimento
 
   constructor(public alimentoService: AlimentoService) { }
 
@@ -21,5 +22,7 @@ export class TablaAlimentosComponent implements OnInit {
     console.log(this.alimentos)
   }
 
-  
+  enviarAlimento(nombreDeAlimento: Alimento) {
+    this.alimentoEvent.emit(nombreDeAlimento)
+  }
 }

@@ -16,7 +16,7 @@ export class AlimentosComponent implements OnInit {
   usuario: Usuario
   alimentosDeUsuario: Alimento[]
   destinoNavigate:string = 'perfil'
-
+  alimentoParaAgregar: Alimento
 
   constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params =>{
@@ -28,12 +28,22 @@ export class AlimentosComponent implements OnInit {
     })
    }
 
-   irAOrigen() {
-    this.router.navigate(['/' + this.destinoNavigate])
-  }
-
   ngOnInit() {
     this.alimentos=this.alimentoService.getAlimento()
   }
 
+  alimentoRecibido($event: Alimento) {
+    
+    this.alimentoParaAgregar = $event 
+    console.log("Se recibe  " + this.alimentoParaAgregar.nombreDeAlimento)
+  }
+  
+  irAOrigen() {
+    this.router.navigate(['/' + this.destinoNavigate])
+  }
+
+  aceptar() {
+    
+    this.router.navigate(['/' + this.destinoNavigate, this.alimentoParaAgregar])
+  }
 }
