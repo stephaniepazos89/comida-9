@@ -9,14 +9,12 @@ import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
 import { ResultadosComponent } from './componentes/resultados/resultados.component';
 import { CardrecetaComponent } from './componentes/cardreceta/cardreceta.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
-import { CondicionesComponent } from './componentes/condiciones/condiciones.component';
 import { AlimentosComponent } from './componentes/alimentos/alimentos.component';
 import { RecetaPipe } from './pipes/receta.pipe';
 import { RecetaComponent } from './componentes/receta/receta.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
 import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-alimentos.component';
-import { DatosperfilComponent } from './componentes/datosperfil/datosperfil.component';
 import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimentosperfil.component';
 import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
 
@@ -31,16 +29,15 @@ import { ColaboradorComponent } from './componentes/colaborador/colaborador.comp
     ResultadosComponent,
     CardrecetaComponent,
     PerfilComponent,
-    CondicionesComponent,
     AlimentosComponent,
     IngredientesComponent,
     TablaAlimentosComponent,
     RecetaPipe,
     RecetaComponent,
     LoginComponent,
-    DatosperfilComponent,
     AlimentosperfilComponent,
-    ColaboradorComponent
+    ColaboradorComponent,
+    AlimentosperfilComponent
   ],
   imports: [
     BrowserModule,

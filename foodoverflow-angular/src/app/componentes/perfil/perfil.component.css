@@ -61,7 +61,7 @@ main {
     border-radius: 0 0 1vh 1vh;
 }
 
-app-datosperfil {
+.datosperfil {
     width: 75%;
     min-width: 401px;
     display: flex;
@@ -109,6 +109,21 @@ app-datosperfil {
     font-weight: bolder;
 }
 
+.condiciones-tipos {
+    padding: 1vh 0;
+    display: flex;
+    flex-flow: wrap;
+    border: 1.5px;
+    border-radius: 7px;
+    border-style: solid;
+}
+
+.condiciones-tipos-bloque {
+    width: 33%;
+    padding: 0.5vh;
+    box-sizing: border-box;
+}
+
 .alimentos {
     display: flex;
     justify-content: space-between;
@@ -121,56 +136,6 @@ app-alimentosperfil {
     display: flex;
     flex-flow: column;
 }
-
-/* .alimentos-top {
-    display: flex;
-    height: 3vh;
-    justify-content: center;
-}
-
-.alimentos-nombre {
-    font-size: 1rem;
-    font-weight: bolder;
-    display: flex;
-}
-
-.alimentos-boton-400 {
-    display: none;
-}
-
-.alimentos-lista {
-    padding: 1vh 0 0 1vh;
-    width: 100%;
-}
-
-td,
-th {
-    padding: 0.7vh 0;
-    
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-table {
-    border-collapse: collapse;
-    border: 1px;
-    margin: 1vh 0;
-    border-style: solid;
-}
-
-.alimentos-bloquelista {
-    padding: 0 0 0 13.6%;
-}
-
-.alimentos-bloquelista-espacio {
-    padding: 0 1vh;
-}
-
-.alimentos-bloquelista-top {
-    color: white;
-} */
 
 .contenedor-resultado {
     display: flex;

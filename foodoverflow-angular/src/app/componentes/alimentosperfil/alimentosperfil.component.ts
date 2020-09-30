@@ -23,7 +23,8 @@ export class AlimentosperfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.listaDeAlimentos.push(this.alimentoRecibido)
+    //this.cargarAlimento()
+    console.log("Se inicia")
   }
 
   goToAlimento(){
@@ -32,5 +33,10 @@ export class AlimentosperfilComponent implements OnInit {
 
   eliminarAlimento(alimento: Alimento){
     this.listaDeAlimentos.splice(this.listaDeAlimentos.indexOf(alimento),1) 
+  }
+
+  cargarAlimento(){
+    if(!(JSON.stringify(this.alimentoRecibido) === '{}')) this.listaDeAlimentos.push(this.alimentoRecibido)
+
   }
 }

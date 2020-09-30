@@ -2,12 +2,14 @@ import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { Alimento } from './alimento'
 
+
 export class Usuario {
     
     public condicionesAlimenticias: CondicionAlimenticia[] = []
     public rutina: Rutina = NaN
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
+    public fechaDeNacimiento = new Date
 
 
     constructor(public id: number, public nombre: string, public peso: number, public estatura: number){}
