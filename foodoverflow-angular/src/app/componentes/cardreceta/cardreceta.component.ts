@@ -19,8 +19,8 @@ export class CardrecetaComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  eliminar(){
-    this.recetaService.eliminarReceta(this.receta)
-    this.resultado.eliminarReceta(this.receta)
+  eliminar(receta){
+    this.recetaService.eliminarReceta(receta)
+    this.resultado.eliminarReceta(receta)
     }
 }

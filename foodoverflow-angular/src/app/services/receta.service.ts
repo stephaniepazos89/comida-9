@@ -6,16 +6,18 @@ import { Alimento } from 'src/domain/alimento';
 import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
 import { Vegano } from 'src/domain/condicionAlimenticia';
 import { Dificultad } from 'src/domain/dificultad';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecetaService {
 
+  public recetaEditada
   private recetas: Receta[]
   asignadorID: number = 0
 
-  constructor() { 
+  constructor(private usuarioService:UsuarioService) { 
     this.recetas = [
 
       this.crearReceta(new Usuario (1,"German", 65, 1.85), "Milanesa de pollo"),
@@ -45,19 +47,24 @@ export class RecetaService {
     receta.listaIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
     papa.agregarInadecuado(new Vegano())
     receta.dificultad = Dificultad.Media
+    receta.img = "guiso.jpg"
     return receta
   }
 
-  crearRecetaVacia(autor:Usuario){
-    const receta = new Receta(this.asignadorID, autor)
-    this.asignadorID++
-    return receta
+  crearRecetaVacia(){
+    const receta = new Receta(-1, this.usuarioLogueado())
+    this.recetaEditada = receta
+    this.recetaEditada.nombreDelPlato="Nueva Receta"
   }
 
   getRecetaByID(id:number){
     return this.recetas.find((receta) => {
       return receta.id == id
     })
+  }
+
+  usuarioLogueado(): Usuario{
+   return this.usuarioService.usuarioLogueado()
   }
 
   busquedaCompleta(recetaBuscada): Receta[]{

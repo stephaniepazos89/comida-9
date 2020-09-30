@@ -14,33 +14,55 @@ import { Dificultad } from 'src/domain/dificultad'
 })
 export class RecetaComponent implements OnInit {
 
-  receta: Receta
+  receta: Receta 
   dificultades = Dificultad
   enumDificultades = []
+  esNueva: boolean
 
   
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params =>{
-      this.receta = Object.assign(new Receta(),this.recetaService.getRecetaByID(params.id))
+      if (params.id >= 0){
+        this.recetaService.recetaEditada = Object.assign(new Receta(),this.recetaService.getRecetaByID(params.id))
+        this.ruteoRecetaExistente()
+      }else{
+        this.ruteoNuevaReceta()
+      }
+
       if (!this.receta){
         this.irAHome()
       }
     })
+   // this.ruteoRecetaExistente()
 
     this.enumDificultades = Object.keys(this.dificultades)
   }
 
+
+  ruteoNuevaReceta(){
+    this.receta = this.recetaService.recetaEditada
+    this.esNueva = true
+  }
+
+  ruteoRecetaExistente(){
+    this.receta = this.recetaService.recetaEditada
+    this.esNueva = false
+
+  }
 
   irAHome(){
     this.router.navigate(['/busqueda'])
   }
 
   aceptar(){
-    
-    this.recetaService.modificarReceta(this.receta)
-    this.irAHome()
+    if(!this.esNueva){
+      this.recetaService.modificarReceta(this.receta)
+    } else { 
+      this.recetaService.agregarReceta(this.receta)
+    }
+      this.irAHome()
   }
 
   cancelar(){

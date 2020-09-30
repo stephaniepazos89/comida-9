@@ -1,46 +1,46 @@
 <main>
-  <div class="contenedor">
-    <div class="top perfil-top contenedor-colorsecundario">
-        <div class="top-nombreimc">
-            <div class="top-nombreimc-nombre">{{usuarioPerfil.nombre}}</div>
-            <div class="top-nombreimc-imc">IMC: {{usuarioPerfil.calculoIMC() | number:'1.2-2':'en'}}</div>
+    <div class="contenedor">
+        <div class="top perfil-top contenedor-colorsecundario">
+            <div class="top-nombreimc">
+                <div class="top-nombreimc-nombre">{{usuarioPerfil.nombre}}</div>
+                <div class="top-nombreimc-imc">IMC: {{usuarioPerfil.calculoIMC() | number:'1.2-2':'en'}}</div>
+            </div>
+            <div class="top-salud">
+                <div class="top-salud-img"><i class="fa fa-heartbeat"></i></div>
+                <div class="top-salud-estado">{{esSaludableTexto()}}</div>
+            </div>
         </div>
-        <div class="top-salud">
-            <div class="top-salud-img"><i class="fa fa-heartbeat"></i></div>
-            <div class="top-salud-estado">{{esSaludableTexto()}}</div>
-        </div>
-    </div>
-    <div class="bot">
+        <div class="bot">
 
-        <app-datosperfil></app-datosperfil>
+            <app-datosperfil></app-datosperfil>
 
-        <div class="condiciones">
-            <div class="condiciones-nombre">Condiciones</div>
-            <app-condiciones></app-condiciones>
-        </div>
+            <div class="condiciones">
+                <div class="condiciones-nombre">Condiciones</div>
+                <app-condiciones></app-condiciones>
+            </div>
 
-        <div class="alimentos">
-            <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [listaDeAlimentos]="alimentosPreferidos" [usuario]="usuarioPerfil"></app-alimentosperfil>
-            <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [listaDeAlimentos]="alimentosDisgustados" [usuario]="usuarioPerfil"></app-alimentosperfil>
-        </div>
+            <div class="alimentos">
+                <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [listaDeAlimentos]="alimentosPreferidos" [usuario]="usuarioPerfil"></app-alimentosperfil>
+                <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [listaDeAlimentos]="alimentosDisgustados" [usuario]="usuarioPerfil"></app-alimentosperfil>
+            </div>
 
-        <div class="recetas">
-            <div class="recetas-nombre">Mis recetas</div>
-            <div class="listado-resultado">
-                <app-cardreceta *ngFor="let receta of ultimasRecetas" [receta]="receta"></app-cardreceta>
+            <div class="recetas">
+                <div class="recetas-nombre">Mis recetas</div>
+                <div class="listado-resultado">
+                    <app-cardreceta *ngFor="let receta of ultimasRecetas" [receta]="receta" [resultado]="this"></app-cardreceta>
+
+                </div>
+
 
             </div>
 
-
-        </div>
-
-        <div class="botonesbot">
-            <div class="botonesbot-bloque">
-                <div class="button" (click)=aceptar()>Aceptar</div>
-                <div class="button button2" (click)=irAHome()>Cancelar</div>
+            <div class="botonesbot">
+                <div class="botonesbot-bloque">
+                    <div class="button" (click)=aceptar()>Aceptar</div>
+                    <div class="button button2" (click)=irAHome()>Cancelar</div>
+                </div>
             </div>
         </div>
-    </div>
 
-  </div>
+    </div>
 </main>

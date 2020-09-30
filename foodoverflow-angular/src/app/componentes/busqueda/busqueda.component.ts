@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RecetaService } from 'src/app/services/receta.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Receta } from 'src/domain/receta';
@@ -17,7 +18,7 @@ export class BusquedaComponent implements OnInit {
   isChecked: Boolean = false
   receta: Receta
   
-  constructor(public recetaService : RecetaService, public usuarioService : UsuarioService) { }
+  constructor(public recetaService : RecetaService, public usuarioService : UsuarioService, private router: Router) { }
   
   ngOnInit(): void {
   }
@@ -37,7 +38,9 @@ export class BusquedaComponent implements OnInit {
    }
 
    nuevaReceta(){
-     this.receta = this.recetaService.crearRecetaVacia(this.usuarioLogueado())
+     this.recetaService.crearRecetaVacia()
+     this.receta = this.recetaService.recetaEditada
+     this.router.navigate(['/receta', this.receta.id]);
    }
 
 }

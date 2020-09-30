@@ -1,5 +1,5 @@
 <div class="card-receta">
-    <img src="img/pollo.jpg" class="imagenreceta">
+    <img src="assets/img/{{receta.img}}" class="imagenreceta">
     <div class="receta-info">
         <h3>{{receta.nombreDelPlato}}</h3>
         <p>Calorías: {{receta.calorias}}</p>
@@ -7,6 +7,6 @@
     </div>
     <div class="receta-botones">
         <a [routerLink]="['/receta', receta.id]"><i class="fa fa-edit"></i></a>
-        <a (click)="eliminar()"><i class="fa fa-trash-o"></i></a>
+        <a (click)="eliminar(receta)"><i class="fa fa-trash-o"></i></a>
     </div>
 </div>

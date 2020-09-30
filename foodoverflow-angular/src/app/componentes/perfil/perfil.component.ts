@@ -52,4 +52,8 @@ export class PerfilComponent implements OnInit {
     if (this.usuarioPerfil.esSaludable()) return "Estado Saludable"
     else return "Estado No Saludable"
   }
+
+  eliminarReceta(receta: Receta) {
+    this.ultimasRecetas.splice(this.ultimasRecetas.indexOf(receta), 1)
+  }
 }

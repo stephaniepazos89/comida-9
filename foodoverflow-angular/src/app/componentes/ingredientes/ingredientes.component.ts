@@ -6,11 +6,11 @@ import { TablaAlimentosComponent } from '../tabla-alimentos/tabla-alimentos.comp
 
 
 @Component({
-  selector: 'app-alimentos',
-  templateUrl: './alimentos.component.html',
-  styleUrls: ['./alimentos.component.css']
+  selector: 'app-ingredientes',
+  templateUrl: './ingredientes.component.html',
+  styleUrls: ['./ingredientes.component.css']
 })
-export class AlimentosComponent implements OnInit {
+export class IngredientesComponent implements OnInit {
 
   @ViewChild(TablaAlimentosComponent) alimento;
 

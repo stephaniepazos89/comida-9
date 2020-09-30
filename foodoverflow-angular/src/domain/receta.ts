@@ -7,8 +7,8 @@ export class Receta {
      public listaColaboradores: Usuario[] = []
      public listaIngredientes: Ingrediente[] = []
      public listaPasos: string[] = []
-     //public calorias: number
      public dificultad: Dificultad
+     public img: string
 
     constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
 
