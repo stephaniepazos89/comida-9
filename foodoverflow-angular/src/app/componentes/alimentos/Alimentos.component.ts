@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlimentoService } from 'src/app/services/alimento.service'
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Alimento } from 'src/domain/alimento'
 import { Usuario } from 'src/domain/usuario';
+import { TablaAlimentosComponent } from '../tabla-alimentos/tabla-alimentos.component';
 
 @Component({
   selector: 'app-alimentos',
@@ -11,39 +12,33 @@ import { Usuario } from 'src/domain/usuario';
   styleUrls: ['./alimentos.component.css']
 })
 export class AlimentosComponent implements OnInit {
+  usuario: Usuario = this.usuarioService.usuarioCopia
   nombreTabla: String = 'Alimento'
-  alimentos: Alimento[]=[]
-  usuario: Usuario
-  alimentosDeUsuario: Alimento[]
-  destinoNavigate:string = 'perfil'
-  alimentoParaAgregar: Alimento
+  alimentos: Alimento[] = []
 
-  constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {
-    this.route.params.subscribe(params =>{
-      this.usuario = this.usuarioService.getUsuarioByID(params.id)
-      this.alimentosDeUsuario = params.listaDeAlimentos
-      if (!this.usuario){
-        this.irAOrigen()
-      }
-    })
-   }
+  @ViewChild(TablaAlimentosComponent) childAlimento;
+
+  constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {   }
 
   ngOnInit() {
-    this.alimentos=this.alimentoService.getAlimento()
+    this.alimentos = this.alimentoService.getAlimento()
   }
 
-  alimentoRecibido($event: Alimento) {
-    
-    this.alimentoParaAgregar = $event 
-    console.log("Se recibe  " + this.alimentoParaAgregar.nombreDeAlimento)
-  }
-  
-  irAOrigen() {
-    this.router.navigate(['/' + this.destinoNavigate])
+  irAHome(){
+    this.router.navigate(['/perfil'])
   }
 
-  aceptar() {
-    
-    this.router.navigate(['/' + this.destinoNavigate, this.alimentoParaAgregar])
+  aceptar(){
+    if(this.usuarioService.tipoAlimento == 1){
+      this.usuario.agregarAlimentoPreferido(this.childAlimento.alimentoSeleccionado)
+      
+    }else{
+      this.usuario.agregarAlimentoDisgustado(this.childAlimento.alimentoSeleccionado)
+    }
+    this.irAHome()
+  }
+
+  cancelar(){
+    this.irAHome()
   }
 }

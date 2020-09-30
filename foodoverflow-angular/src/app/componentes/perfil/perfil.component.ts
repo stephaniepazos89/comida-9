@@ -5,7 +5,6 @@ import { RecetaService } from 'src/app/services/receta.service'
 import { UsuarioService } from 'src/app/services/usuario.service'
 import { Alimento } from 'src/domain/alimento'
 import { CondicionAlimenticia } from 'src/domain/condicionAlimenticia'
-import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio'
 import { Receta } from 'src/domain/receta'
 import { Usuario } from 'src/domain/usuario'
 
@@ -16,37 +15,29 @@ import { Usuario } from 'src/domain/usuario'
 })
 export class PerfilComponent implements OnInit {
 
-  usuarioPerfil: Usuario
-  copiaUsuario: Usuario
+  usuarioPerfil: Usuario 
   alimentosPreferidos: Alimento[]
   alimentosDisgustados: Alimento[]
   ultimasRecetas: Receta[]
-  todasLasRecetas: Receta[] // Lo agregué sólo como prueba
   condiciones: CondicionAlimenticia[] = []
+  preferido: number = 1
+  disgustado: number = 0
   
 
-  constructor(
-    public usuarioService: UsuarioService, 
-    public condicionesService: CondicionService, 
-    public recetaService: RecetaService, 
-    private router: Router
-    ) {  }
+  constructor(public usuarioService: UsuarioService, public condicionesService: CondicionService, public recetaService: RecetaService, private router: Router ) {}
 
 
   ngOnInit() { 
-    
-    this.usuarioPerfil = this.usuarioService.getUsuario(0)
-    this.todasLasRecetas = this.recetaService.getRecetas() 
+    this.inicializacionDeUsuario()
+  }
+
+  inicializacionDeUsuario(){
+    this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
+    this.usuarioPerfil = this.usuarioService.usuarioCopia
     this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
     this.condiciones = this.condicionesService.getCondiciones()
-
-    this.usuarioPerfil.agregarAlimentoDisgustado(new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
-    this.usuarioPerfil.agregarAlimentoPreferido(new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
-
-    this.copiaUsuario = Object.assign({},this.usuarioPerfil)
-    this.alimentosPreferidos = this.copiaUsuario.alimentosPreferidos
-    this.alimentosDisgustados = this.copiaUsuario.alimentosDisgustados
-    
+    this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
+    this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
   }
 
   irAHome(){
@@ -54,6 +45,7 @@ export class PerfilComponent implements OnInit {
   }
 
   aceptar(){
+    this.usuarioService.modificarUsuario(this.usuarioPerfil)
     this.irAHome()
   }
 

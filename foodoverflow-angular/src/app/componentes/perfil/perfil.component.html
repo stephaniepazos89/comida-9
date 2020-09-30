@@ -11,7 +11,7 @@
             </div>
         </div>
 
-    
+
         <div class="bot">
             <div class="datosperfil">
                 <div class="bot-datos-izq">
@@ -23,10 +23,10 @@
                         <label for="estatura" class="bot-datos-estaturatexto">Estatura</label>
                         <input type="number" name="estatura" id="estatura" class="datos-input border-colorsecundario" [(ngModel)]="usuarioPerfil.estatura">
                     </div>
-                
+
                 </div>
                 <div class="bot-datos-der">
-                
+
                     <div class="bot-datos-nacimiento datos-bloque">
                         <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
                         <input type="date" id="nacimiento" class="datos-input border-colorsecundario" name="nacimiento" [(ngModel)]="usuarioPerfil.fechaDeNacimiento">
@@ -46,17 +46,17 @@
 
             <div class="condiciones">
                 <div class="condiciones-nombre">Condiciones</div>
-                <div class="condiciones-tipos border-colorsecundario" >
+                <div class="condiciones-tipos border-colorsecundario">
                     <div class="condiciones-tipos-bloque" *ngFor="let condicion of condiciones">
-                            <label class="tipos-bloque" for={{condicion.nombre}}>
+                        <label class="tipos-bloque" for={{condicion.nombre}}>
                             <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}}>{{condicion.nombre}}</label>
                     </div>
                 </div>
             </div>
 
             <div class="alimentos">
-                <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [listaDeAlimentos]="alimentosPreferidos" [usuario]="usuarioPerfil"></app-alimentosperfil>
-                <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [listaDeAlimentos]="alimentosDisgustados" [usuario]="usuarioPerfil"></app-alimentosperfil>
+                <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [listaDeAlimentos]="alimentosPreferidos" [tipoAlimento]='preferido'></app-alimentosperfil>
+                <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [listaDeAlimentos]="alimentosDisgustados" [tipoAlimento]='disgustado'></app-alimentosperfil>
             </div>
 
             <div class="recetas">

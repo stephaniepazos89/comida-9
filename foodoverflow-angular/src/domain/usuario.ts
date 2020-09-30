@@ -12,7 +12,7 @@ export class Usuario {
     public fechaDeNacimiento = new Date
 
 
-    constructor(public id: number, public nombre: string, public peso: number, public estatura: number){}
+    constructor(public id?: number, public nombre?: string, public peso?: number, public estatura?: number){}
 
     public agregarCondicion(condicion: CondicionAlimenticia): void {
         this.condicionesAlimenticias.push(condicion)

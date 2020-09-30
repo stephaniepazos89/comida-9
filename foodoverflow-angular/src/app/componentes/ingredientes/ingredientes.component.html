@@ -6,13 +6,13 @@
             <div class="cantidad">
                 <div class="textocantidad">Cantidad</div>
                 <div class="inputcantidad border">
-                    <input type="text" placeholder="" id="cantidad">
+                    <input type="text" placeholder="" id="cantidad" [(ngModel)]="cantidad">
                 </div>
 
             </div>
             <div class="contenedor-botones">
                 <div class="botones-block">
-                    <button class="button">Aceptar</button>
+                    <button class="button" (click)="aceptar()">Aceptar</button>
                     <button class="button button2">Cancelar</button>
                 </div>
             </div>

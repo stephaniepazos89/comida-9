@@ -9,26 +9,20 @@ import { Alimento } from 'src/domain/alimento';
 })
 export class TablaAlimentosComponent implements OnInit {
 
-  @Input() nombreTabla: string
-  @Output() alimentoEvent = new EventEmitter<Alimento>()
-  
-  alimentos: Alimento[]=[]
-  alimento:Alimento;
   alimentoSeleccionado: Alimento
+  @Input() nombreTabla: string
+  
+  alimentos: Alimento[] = []
 
   constructor(public alimentoService: AlimentoService) { }
 
   ngOnInit() {
     this.alimentos = this.alimentoService.getAlimento()
-    console.log(this.alimentos)
   }
 
-  enviarAlimento(nombreDeAlimento: Alimento) {
-    this.alimentoEvent.emit(nombreDeAlimento)
+  seleccionarAlimento(alimento: Alimento) {
+    this.alimentoSeleccionado = alimento
   }
 
-  seleccionarAlimento(alimentoSeleccionado:Alimento){
-    this.alimento=alimentoSeleccionado;
-    console.log(this.alimento)
-  }
+
 }

@@ -14,6 +14,7 @@ export class AlimentosperfilComponent implements OnInit {
   @Input() titulo: string
   @Input() listaDeAlimentos: Alimento[]
   @Input() usuario: Usuario
+  @Input() tipoAlimento: number
   alimentoRecibido: Alimento
 
   constructor(private router: Router, public usuarioService: UsuarioService, private route: ActivatedRoute) {
@@ -23,20 +24,15 @@ export class AlimentosperfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.cargarAlimento()
-    console.log("Se inicia")
+
   }
 
   goToAlimento(){
-    this.router.navigate(['/alimento', this.usuario.id, this.listaDeAlimentos])
+    this.usuarioService.tipoAlimento = this.tipoAlimento
+    this.router.navigate(['/alimento', ])
   }
 
   eliminarAlimento(alimento: Alimento){
     this.listaDeAlimentos.splice(this.listaDeAlimentos.indexOf(alimento),1) 
-  }
-
-  cargarAlimento(){
-    if(!(JSON.stringify(this.alimentoRecibido) === '{}')) this.listaDeAlimentos.push(this.alimentoRecibido)
-
   }
 }
