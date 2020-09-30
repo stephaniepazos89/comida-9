@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RoutingService } from './services/routing.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'foodoverflow-angular';
+
+  constructor(private routingService: RoutingService){}
 }

@@ -17,6 +17,7 @@ import { IngredientesComponent } from './componentes/ingredientes/ingredientes.c
 import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-alimentos.component';
 import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimentosperfil.component';
 import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
+import { RoutingService } from './services/routing.service';
 
 
 
@@ -44,7 +45,9 @@ import { ColaboradorComponent } from './componentes/colaborador/colaborador.comp
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    RoutingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

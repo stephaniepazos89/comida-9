@@ -182,14 +182,6 @@ app-alimentosperfil {
     .listado-resultado {
         justify-content: center;
     }
-    .alimentos-top {
-        display: flex;
-        height: 6vh;
-        width: 100;
-        justify-content: center;
-        width: 100%;
-        align-self: center;
-    }
     .condiciones-tipos-bloque {
         font-size: 0.9rem;
     }
@@ -205,13 +197,6 @@ app-alimentosperfil {
         width: 55%;
         min-width: 95px;
         padding: 6px;
-    }
-    .alimentos-display {
-        width: 48%;
-    }
-    .alimentos-boton.button {
-        height: 50%;
-        flex: 4 4 30%
     }
 }
 
@@ -255,39 +240,10 @@ app-alimentosperfil {
         min-width: 117px;
         padding: 0;
     }
-    .alimentos {
+    .datosperfil {
+        width: 20%;
+        min-width: 0;
         display: flex;
         flex-flow: column;
-        width: 100%;
-        padding: 2vh 0;
-        align-content: center;
-    }
-    .alimentos-display {
-        width: 100%;
-        display: flex;
-    }
-    .alimentos-top {
-        justify-content: space-between;
-        height: 3vh;
-        width: 100%;
-        font-size: 0.9rem;
-        margin-top: 1vh;
-    }
-    .alimentos-boton-400 {
-        display: block;
-        border: 1px;
-        border-style: solid;
-        padding: 0.1vh 0.4vh 0;
-        border-radius: 3px;
-        align-self: center;
-    }
-    .fa.fa-plus-circle {
-        color: white;
-    }
-    .alimentos-boton.button {
-        display: none;
-    }
-    table {
-        margin: 1vh 0;
     }
 }

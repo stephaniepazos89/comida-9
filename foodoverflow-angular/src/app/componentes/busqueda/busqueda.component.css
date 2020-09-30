@@ -62,3 +62,31 @@ p .recetainfo {
     position: fixed;
     bottom: 8vh;
 }
+
+@media screen and (max-width: 400px) {
+    .busqueda {
+        width: 95%;
+    }
+    h4 {
+        width: 95%;
+    }
+    .boton-agregar {
+        width: 90%;
+    }
+    .card-receta {
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+}
+
+@media screen and (min-width:401px) and (max-width: 768px) {
+    .busqueda {
+        width: 90%;
+    }
+    h4 {
+        width: 90%;
+    }
+    .boton-agregar {
+        width: 75%;
+    }
+}

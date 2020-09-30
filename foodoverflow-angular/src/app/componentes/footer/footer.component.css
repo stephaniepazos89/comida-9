@@ -20,3 +20,20 @@ footer div {
     background-position: center;
     background-size: cover;
 }
+
+@media screen and (max-width: 768px) and (min-width:401px) {
+    footer div {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    footer .grupo {
+        display: none;
+    }
+    footer div {
+        width: 100%;
+        margin-right: 30%
+    }
+}

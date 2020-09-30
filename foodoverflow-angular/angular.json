@@ -25,8 +25,13 @@
                         ],
                         "styles": [
                             "src/styles.css"
+
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./node_modules/mdbootstrap/js/jquery.min.js",
+                            "./node_modules/mdbootstrap/js/bootstrap.min.js",
+                            "./node_modules/mdbootstrap/js/popper.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

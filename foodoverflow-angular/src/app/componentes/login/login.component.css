@@ -2,7 +2,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
 }
 
 .contenedor {
@@ -51,4 +51,16 @@ input {
     margin: 0 0 10px 0px;
     padding: 10px;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 400px) {
+    .contenedor {
+        margin: 0 5%;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width:401px) {
+    .contenedor {
+        margin: 0 5%;
+    }
 }

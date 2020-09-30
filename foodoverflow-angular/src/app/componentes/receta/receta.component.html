@@ -4,7 +4,7 @@
             <img src="assets/img/{{receta.img}}" class="imagenreceta" />
 
             <div class="perfil-receta">
-                <h2><input class="inputtitulo contenedor-colorsecundario" type="text" [(ngModel)]="receta.nombreDelPlato"></h2>
+                <h2><input type="text" class="inputtitulo contenedor-colorsecundario" size='15' maxlength='20' [(ngModel)]="receta.nombreDelPlato"></h2>
                 <p>por {{receta.autor.nombre}}</p>
                 <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara()">{{inadecuado.nombre}}{{" "}}</span></p>
             </div>

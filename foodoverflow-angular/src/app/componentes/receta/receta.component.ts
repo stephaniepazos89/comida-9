@@ -5,6 +5,7 @@ import { Ingrediente } from 'src/domain/ingrediente';
 import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
+import { RoutingService } from 'src/app/services/routing.service';
 
 
 @Component({
@@ -20,40 +21,39 @@ export class RecetaComponent implements OnInit {
   esNueva: boolean
 
   
-  constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
+
 
   ngOnInit(): void {
-    this.route.params.subscribe(params =>{
-      if (params.id >= 0){
-        this.recetaService.recetaEditada = Object.assign(new Receta(),this.recetaService.getRecetaByID(params.id))
-        this.ruteoRecetaExistente()
-      }else{
-        this.ruteoNuevaReceta()
-      }
 
-      if (!this.receta){
-        this.irAHome()
-      }
-    })
-   // this.ruteoRecetaExistente()
-
+    this.observableRouting()
     this.enumDificultades = Object.keys(this.dificultades)
   }
 
+  observableRouting(){
+    this.route.params.subscribe(params =>{
+      if (params.id >= 0){
+        this.ruteoRecetaExistente(params.id)
+      }else{
+        this.ruteoNuevaReceta()
+      }
+    })
+  }
 
   ruteoNuevaReceta(){
     this.receta = this.recetaService.recetaEditada
     this.esNueva = true
   }
 
-  ruteoRecetaExistente(){
+  ruteoRecetaExistente(idReceta){
+    this.recetaService.recetaEditada = Object.assign(new Receta(),this.recetaService.getRecetaByID(idReceta))
     this.receta = this.recetaService.recetaEditada
     this.esNueva = false
 
   }
 
   irAHome(){
-    this.router.navigate(['/busqueda'])
+    this.router.navigate([this.routingService.rutaAnteriorEstricta.value])
   }
 
   aceptar(){

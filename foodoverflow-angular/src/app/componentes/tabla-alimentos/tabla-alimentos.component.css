@@ -33,3 +33,10 @@
 .selector:focus {
     background-color: var(--color-fondo);
 }
+
+@media (max-width: 768px) {
+    .lista {
+        height: 100%;
+        overflow-y: hidden;
+    }
+}

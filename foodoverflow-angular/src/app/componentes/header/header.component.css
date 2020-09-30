@@ -40,3 +40,39 @@ header a {
 .fa-sign-out {
     font-size: 22px;
 }
+
+@media screen and (max-width: 400px) {
+    .nav-links {
+        display: none;
+        height: 15%;
+    }
+    .nav-links a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        clear: right;
+        justify-content: space-between;
+        margin: 0;
+        float: right;
+    }
+    .navtoggle {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1rem;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+    }
+    #toggle:checked+.nav-links {
+        display: flex;
+        flex-direction: column;
+        right: 0;
+        position: absolute;
+        width: 35%;
+        margin-top: 5.3rem;
+        background-color: var(--color-primario);
+    }
+    .icononav {
+        display: flex;
+    }
+}

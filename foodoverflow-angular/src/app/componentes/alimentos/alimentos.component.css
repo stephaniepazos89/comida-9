@@ -43,4 +43,30 @@ main {
     display: flex;
     justify-content: flex-end;
     margin: 1rem 0 0 0;
-} 
+}
+
+@media (max-width: 768px) {
+    .contenedor {
+        width: 90%;
+        min-width: 385px;
+    }
+    main {
+        height: 68vh;
+    }
+    .contenedor-listadealimentos {
+        padding: 3vh 5vh;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        height: 58vh;
+    }
+    .contenedor {
+        width: 90%;
+        min-width: 330px;
+    }
+    .contenedor-listadealimentos {
+        padding: 3vh 2vh;
+    }
+}
