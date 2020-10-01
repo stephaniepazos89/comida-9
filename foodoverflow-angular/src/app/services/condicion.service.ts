@@ -21,4 +21,8 @@ export class CondicionService {
   getCondiciones(): CondicionAlimenticia[] {
     return this.condicionesAlimenticias
   }
+
+  getCondicion(posicion: number): CondicionAlimenticia{
+    return this.condicionesAlimenticias[posicion]
+  }
 }

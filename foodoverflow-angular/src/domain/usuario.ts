@@ -6,7 +6,7 @@ import { Alimento } from './alimento'
 export class Usuario {
     
     public condicionesAlimenticias: CondicionAlimenticia[] = []
-    public rutina: Rutina = NaN
+    public rutina: Rutina
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
     public fechaDeNacimiento = new Date
@@ -16,6 +16,10 @@ export class Usuario {
 
     public agregarCondicion(condicion: CondicionAlimenticia): void {
         this.condicionesAlimenticias.push(condicion)
+    }
+
+    public quitarCondicion(condicion: CondicionAlimenticia): void {
+        this.condicionesAlimenticias.splice(this.condicionesAlimenticias.indexOf(condicion), 1)
     }
 
     public agregarAlimentoPreferido(alimento:Alimento): void{

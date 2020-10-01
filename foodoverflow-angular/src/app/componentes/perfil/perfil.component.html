@@ -33,12 +33,8 @@
                     </div>
                     <div class="bot-datos-rutina datos-bloque">
                         <label class="bot-datos-rutinatexto" for="rutina">Rutina</label>
-                        <select class="datos-input border-colorsecundario" id="rutina" name="rutina">
-                            <option value="intensivo">Intensivo</option>
-                            <option value="activo">Activo</option>
-                            <option value="mediano">Mediano</option>
-                            <option value="leve">Leve</option>
-                            <option value="nada">Nada</option>
+                        <select class="datos-input border-colorsecundario" id="rutina" [(ngModel)]="usuarioPerfil.rutina" name="usuarioPerfil.rutina">
+                            <option *ngFor="let rutina of listaDeRutinas" [value]="rutina">{{rutinas[rutina]}}</option>
                         </select>
                     </div>
                 </div>
@@ -48,8 +44,8 @@
                 <div class="condiciones-nombre">Condiciones</div>
                 <div class="condiciones-tipos border-colorsecundario">
                     <div class="condiciones-tipos-bloque" *ngFor="let condicion of condiciones">
-                        <label class="tipos-bloque" for={{condicion.nombre}}>
-                            <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}}>{{condicion.nombre}}</label>
+                            <label class="tipos-bloque" for={{condicion.nombre}}>
+                            <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}} [checked]=tieneCondicion(condicion) (change)="agregarCondicion(condicion)">{{condicion.nombre}}</label>
                     </div>
                 </div>
             </div>

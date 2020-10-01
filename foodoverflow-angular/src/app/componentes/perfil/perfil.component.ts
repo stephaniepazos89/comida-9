@@ -4,9 +4,13 @@ import { CondicionService } from 'src/app/services/condicion.service'
 import { RecetaService } from 'src/app/services/receta.service'
 import { UsuarioService } from 'src/app/services/usuario.service'
 import { Alimento } from 'src/domain/alimento'
-import { CondicionAlimenticia } from 'src/domain/condicionAlimenticia'
+import { CondicionAlimenticia, Diabetico } from 'src/domain/condicionAlimenticia'
+import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio'
 import { Receta } from 'src/domain/receta'
+import { Rutina } from 'src/domain/rutina'
 import { Usuario } from 'src/domain/usuario'
+import * as _ from "lodash"
+import * as R from "ramda"
 
 @Component({
   selector: 'app-perfil',
@@ -22,6 +26,9 @@ export class PerfilComponent implements OnInit {
   condiciones: CondicionAlimenticia[] = []
   preferido: number = 1
   disgustado: number = 0
+  rutinas = Rutina
+  listaDeRutinas = []
+
   
 
   constructor(public usuarioService: UsuarioService, public condicionesService: CondicionService, public recetaService: RecetaService, private router: Router ) {}
@@ -33,11 +40,22 @@ export class PerfilComponent implements OnInit {
 
   inicializacionDeUsuario(){
     this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
+    //this.usuarioService.usuarioCopia = R.clone(this.usuarioService.usuarioLogueado())
     this.usuarioPerfil = this.usuarioService.usuarioCopia
     this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
+  
+    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
+    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
     this.condiciones = this.condicionesService.getCondiciones()
+
     this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
     this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
+    
+
+    this.usuarioPerfil.agregarAlimentoDisgustado(new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
+    this.usuarioPerfil.agregarAlimentoPreferido(new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
+    
+    this.listaDeRutinas = Object.keys(this.rutinas)
   }
 
   irAHome(){
@@ -56,5 +74,18 @@ export class PerfilComponent implements OnInit {
 
   eliminarReceta(receta: Receta) {
     this.ultimasRecetas.splice(this.ultimasRecetas.indexOf(receta), 1)
+  }
+
+  agregarCondicion(condicion: CondicionAlimenticia) {
+    if (!(this.tieneCondicion(condicion))) {
+      this.usuarioPerfil.agregarCondicion(condicion)
+      console.log(this.usuarioPerfil.condicionesAlimenticias)
+    }    
+    else this.usuarioPerfil.quitarCondicion(condicion)
+  }
+
+  tieneCondicion(condicion: CondicionAlimenticia): boolean {
+     
+    return this.usuarioPerfil.condicionesAlimenticias.includes(condicion)
   }
 }
