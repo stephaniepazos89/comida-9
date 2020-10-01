@@ -7,7 +7,7 @@ import { Usuario } from 'src/domain/usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
-
+  public enEdicion: boolean
   private usuarios: Usuario[]
   private usuarioLogin: Usuario
   public usuarioCopia: Usuario

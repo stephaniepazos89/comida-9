@@ -29,6 +29,7 @@ export class AlimentosperfilComponent implements OnInit {
 
   goToAlimento(){
     this.usuarioService.tipoAlimento = this.tipoAlimento
+    this.usuarioService.enEdicion = true
     this.router.navigate(['/alimento', ])
   }
 

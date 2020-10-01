@@ -7,6 +7,7 @@ import { AlimentosComponent } from './componentes/alimentos/alimentos.component'
 import { LoginComponent } from './componentes/login/login.component';
 import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
 import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
+import { PasosComponent } from './componentes/pasos/pasos.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'alimento', component: AlimentosComponent },
   { path: 'ingrediente', component:IngredientesComponent},
   { path: 'colaborador', component: ColaboradorComponent},
+  { path: 'pasos', component: PasosComponent},
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ]
 

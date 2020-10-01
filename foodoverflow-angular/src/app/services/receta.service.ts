@@ -4,7 +4,7 @@ import { Usuario } from 'src/domain/usuario';
 import { Ingrediente } from 'src/domain/ingrediente';
 import { Alimento } from 'src/domain/alimento';
 import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
-import { Vegano } from 'src/domain/condicionAlimenticia';
+import { Vegano, Vegetariano } from 'src/domain/condicionAlimenticia';
 import { Dificultad } from 'src/domain/dificultad';
 import { UsuarioService } from './usuario.service';
 
@@ -12,7 +12,7 @@ import { UsuarioService } from './usuario.service';
   providedIn: 'root'
 })
 export class RecetaService {
-
+  public enEdicion: boolean
   public recetaEditada
   private recetas: Receta[]
   asignadorID: number = 0
@@ -40,12 +40,14 @@ export class RecetaService {
     this.asignadorID++
 
     // PROVISORIO PARA PROBAR.
-    let papa
+    let papa, carne
     receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
-    receta.listaIngredientes.push(new Ingrediente(new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
+    receta.listaIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), 500))
     receta.listaIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
     papa.agregarInadecuado(new Vegano())
+    carne.agregarInadecuado(new Vegetariano(), new Vegano())
+    receta.agregarPaso("Cortar la papa")
     receta.dificultad = Dificultad.Media
     receta.img = "guiso.jpg"
     return receta
