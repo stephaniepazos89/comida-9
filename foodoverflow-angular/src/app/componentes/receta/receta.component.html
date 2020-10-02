@@ -6,7 +6,7 @@
             <div class="perfil-receta">
                 <h2><input type="text" class="inputtitulo contenedor-colorsecundario" size='15' maxlength='20' [(ngModel)]="receta.nombreDelPlato"></h2>
                 <p>por {{receta.autor.nombre}}</p>
-                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara()">{{inadecuado.nombre}}{{" "}}</span></p>
+                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara()">{{inadecuado.nombre}}  </span></p>
             </div>
         </div>
         <div class="bot-receta contenedor-blanco">
@@ -30,7 +30,7 @@
                     <div class="titulo-bot">
                         <h3>Ingredientes</h3>
                         <button (click)="agregarIngrediente()" class="button mobile">Agregar</button>
-                        <button class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                        <button (click)="agregarIngrediente()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div>
                         <table class="TablaIngredientes">
@@ -47,13 +47,13 @@
                 <div class="pasos">
                     <div class="titulo-bot">
                         <h3>Pasos</h3>
-                        <button class="button mobile">Agregar</button>
-                        <button class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                        <button (click)="agregarPaso()" class="button mobile">Agregar</button>
+                        <button (click)="agregarPaso()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div>
                         <table class="TablaIngredientes">
-                            <tr *ngFor="let paso of receta.listaPasos">
-                                <td>{{paso}}</td>
+                            <tr *ngFor="let paso of receta.listaPasos;let indice=index">
+                                <td>{{indice+1}}. {{paso}}</td>
                                 <td class="Tabla_Cruz"><a><i (click)="eliminarPaso(paso)" class="fa fa-times-circle"></i></a></td>
                             </tr>
                         </table>
@@ -64,8 +64,8 @@
 
             <div class="colaboradores">
                 <h3>Colaboradores</h3>
-                <button [routerLink]="['/colaborador']" class="button mobile">Agregar</button>
-                <button class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                <button (click)="agregarColaborador()" class="button mobile">Agregar</button>
+                <button (click)="agregarColaborador()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
             </div>
 
             <div class="contenedor-lista-colaboradores">

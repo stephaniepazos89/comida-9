@@ -18,6 +18,7 @@ import { TablaAlimentosComponent } from './componentes/tabla-alimentos/tabla-ali
 import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimentosperfil.component';
 import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
 import { RoutingService } from './services/routing.service';
+import { PasosComponent } from './componentes/pasos/pasos.component';
 
 
 
@@ -38,7 +39,8 @@ import { RoutingService } from './services/routing.service';
     LoginComponent,
     AlimentosperfilComponent,
     ColaboradorComponent,
-    AlimentosperfilComponent
+    AlimentosperfilComponent,
+    PasosComponent
   ],
   imports: [
     BrowserModule,

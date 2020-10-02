@@ -34,6 +34,11 @@
     background-color: var(--color-fondo);
 }
 
+.activo {
+    background-color: var(--color-fondo);
+    border: solid 2px black;
+}
+
 @media (max-width: 768px) {
     .lista {
         height: 100%;

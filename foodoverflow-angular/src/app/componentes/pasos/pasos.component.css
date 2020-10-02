@@ -5,13 +5,38 @@ main {
     height: 80vh;
 }
 
-.colaboradores {
+.paso {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.contenedor-lista-colaboradores {
+.nuevoPaso {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+}
+
+.inputnuevoPaso {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+}
+
+.inputnuevoPaso input {
+    width: 99%;
+    border: 0;
+    padding: 0.5rem;
+}
+
+.textonuevoPaso {
+    margin: 1rem 0 0 0;
+}
+
+.contenedor-lista-paso {
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -49,9 +74,8 @@ main {
     overflow-x: hidden;
 }
 
-.colaborador {
+.paso {
     width: 100%;
-    height: 4vh;
     display: flex;
     align-items: center;
     padding: 1vh 0;
@@ -59,9 +83,10 @@ main {
     position: relative;
 }
 
-.colaborador p {
+.paso p {
     text-align: center;
     width: 100%;
+    margin: 0px;
 }
 
 .top-lista {
@@ -69,7 +94,7 @@ main {
     justify-content: center;
 }
 
-.colaborador a {
+.paso a {
     text-align: right;
     position: absolute;
     right: 0;
@@ -84,6 +109,12 @@ main {
 .botones-block {
     display: flex;
     justify-content: flex-end;
+    margin: 1rem 0 0 0;
+}
+
+.botones-separados {
+    display: flex;
+    justify-content: space-between;
     margin: 1rem 0 0 0;
 }
 

@@ -39,19 +39,29 @@ export class PerfilComponent implements OnInit {
   }
 
   inicializacionDeUsuario(){
-    this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
-    //this.usuarioService.usuarioCopia = R.clone(this.usuarioService.usuarioLogueado())
-    this.usuarioPerfil = this.usuarioService.usuarioCopia
-    this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
-  
-    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
-    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
-    this.condiciones = this.condicionesService.getCondiciones()
 
+    this.ruteoDeUsuario()
+
+    this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
     this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
     this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
+
+    this.condiciones = this.condicionesService.getCondiciones()
+
+    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
+    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
     
     this.listaDeRutinas = Object.keys(this.rutinas)
+  }
+
+  ruteoDeUsuario(){
+    if(this.usuarioService.enEdicion){
+      this.usuarioPerfil = this.usuarioService.usuarioCopia
+      this.recetaService.enEdicion = false
+    }else {
+    this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
+    this.usuarioPerfil = this.usuarioService.usuarioCopia
+    }
   }
 
   irAHome(){

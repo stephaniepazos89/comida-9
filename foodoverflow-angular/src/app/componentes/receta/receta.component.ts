@@ -19,14 +19,16 @@ export class RecetaComponent implements OnInit {
   dificultades = Dificultad
   enumDificultades = []
   esNueva: boolean
+  enEdicion: boolean 
 
   
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
 
 
   ngOnInit(): void {
-
+    this.enEdicion = this.recetaService.enEdicion
     this.observableRouting()
+    
     this.enumDificultades = Object.keys(this.dificultades)
   }
 
@@ -46,10 +48,14 @@ export class RecetaComponent implements OnInit {
   }
 
   ruteoRecetaExistente(idReceta){
+    if(this.recetaService.enEdicion){
+      this.receta = this.recetaService.recetaEditada
+      this.recetaService.enEdicion = false
+    }else {
     this.recetaService.recetaEditada = Object.assign(new Receta(),this.recetaService.getRecetaByID(idReceta))
     this.receta = this.recetaService.recetaEditada
+    }
     this.esNueva = false
-
   }
 
   irAHome(){
@@ -70,7 +76,18 @@ export class RecetaComponent implements OnInit {
   }
 
   agregarIngrediente(){
+    this.recetaService.enEdicion = true
     this.router.navigate(['/ingrediente']);
+  }
+  
+  agregarColaborador(){
+    this.recetaService.enEdicion = true
+    this.router.navigate(['/colaborador'])
+  }
+
+  agregarPaso(){
+    this.recetaService.enEdicion = true
+    this.router.navigate(['/pasos'])
   }
 
   eliminarPaso(paso: string){

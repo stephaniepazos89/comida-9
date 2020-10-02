@@ -34,7 +34,9 @@ export class IngredientesComponent implements OnInit {
   }
 
   aceptar(){
+    if(this.childAlimento.alimentoSeleccionado){
     this.receta.agregarIngrediente(new Ingrediente(this.childAlimento.alimentoSeleccionado, this.cantidad))
+  }
     this.irAReceta()
   }
   cancelar(){
