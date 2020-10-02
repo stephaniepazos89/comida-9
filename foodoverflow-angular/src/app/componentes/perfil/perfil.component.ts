@@ -51,10 +51,6 @@ export class PerfilComponent implements OnInit {
     this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
     this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
     
-
-    this.usuarioPerfil.agregarAlimentoDisgustado(new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
-    this.usuarioPerfil.agregarAlimentoPreferido(new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
-    
     this.listaDeRutinas = Object.keys(this.rutinas)
   }
 

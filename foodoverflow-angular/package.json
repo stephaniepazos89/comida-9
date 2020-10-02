@@ -21,6 +21,7 @@
     "@angular/router": "~10.1.1",
     "@types/ramda": "^0.27.19",
     "mdbootstrap": "^4.19.1",
+    "ramda": "^0.27.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
