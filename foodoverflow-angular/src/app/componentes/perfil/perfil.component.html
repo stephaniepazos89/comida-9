@@ -1,3 +1,4 @@
+<app-header></app-header>
 <main>
     <div class="contenedor">
         <div class="top perfil-top contenedor-colorsecundario">
@@ -44,7 +45,7 @@
                 <div class="condiciones-nombre">Condiciones</div>
                 <div class="condiciones-tipos border-colorsecundario">
                     <div class="condiciones-tipos-bloque" *ngFor="let condicion of condiciones">
-                            <label class="tipos-bloque" for={{condicion.nombre}}>
+                        <label class="tipos-bloque" for={{condicion.nombre}}>
                             <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}} [checked]=tieneCondicion(condicion) (change)="agregarCondicion(condicion)">{{condicion.nombre}}</label>
                     </div>
                 </div>

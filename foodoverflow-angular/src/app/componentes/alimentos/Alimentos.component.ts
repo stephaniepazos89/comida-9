@@ -29,13 +29,15 @@ export class AlimentosComponent implements OnInit {
   }
 
   aceptar(){
+   
     if(this.usuarioService.tipoAlimento == 1){
       this.usuario.agregarAlimentoPreferido(this.childAlimento.alimentoSeleccionado)
-      
+       
     }else{
-      this.usuario.agregarAlimentoDisgustado(this.childAlimento.alimentoSeleccionado)
+      this.usuario.agregarAlimentoDisgustado(this.childAlimento.alimentoSeleccionado) 
     }
     this.irAHome()
+    
   }
 
   cancelar(){

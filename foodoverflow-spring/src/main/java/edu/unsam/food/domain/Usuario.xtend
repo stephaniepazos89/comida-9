@@ -1,0 +1,304 @@
+package edu.unsam.food.domain
+
+import java.time.LocalDate
+import java.util.HashSet
+import java.util.List
+import java.util.Set
+import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.ArrayList
+
+@Accessors
+abstract class Usuario extends Entidad{
+	
+	String nombreYApellido
+	String username
+	double peso
+	double estatura
+	Rutina rutina
+	LocalDate fechaDeNacimiento
+	
+	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
+	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
+	public Set <CondicionAlimenticia> condicionAlimenticia = new HashSet<CondicionAlimenticia>
+	public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
+	
+	def double calcularIMC()
+	
+	def void establecerFecha(CharSequence _fecha)
+	
+	def boolean esSaludable()
+	
+	def void agregarAlimentoPreferido(Alimento _alimento)
+	
+	def void agregarAlimentoDisgustado(Alimento _alimento)
+	
+	def void agregarCondicionAlimenticia(CondicionAlimenticia _condicion)
+
+	def boolean esValido()
+	
+	def boolean validacionNombre()
+	
+	def boolean validacionNoNulo()
+	
+	def boolean validacionHipertensoDiabetico()
+		
+	def boolean validacionFecha()
+	
+	def Receta generarCopia(Receta _receta)
+	
+	def Receta sugerenciaIndividual( List <Receta> listaReceta)	
+		
+	def sugerenciaGrupal(List<Receta> listaReceta, List<Usuario> listaUsuario){}
+				
+	override boolean busqueda(String value)
+	
+	def boolean coincideNombreOApellido(String value)
+	
+	def boolean coincideUser(String value)
+	
+	def String leerMensaje(Integer posicion)
+	
+	def void enviarMensaje(String mensajeAEnviar, Usuario usuarioDestino)
+	
+	def void ingresarMensaje(Mensaje mensaje)
+	
+	def boolean esAutor(){ return false }
+	
+	def void sumarCopia(){ }
+}	
+
+@Accessors
+class UsuarioPorDefecto extends Usuario { 
+	
+
+	new (String _nombreYApellido, String _username, double _peso, double _estatura){
+		nombreYApellido = _nombreYApellido
+		username = _username
+		peso = _peso
+		estatura = _estatura
+	}
+	
+	
+	override calcularIMC(){
+		return peso / (estatura*estatura)
+	}
+	
+	override establecerFecha(CharSequence _fecha){
+				fechaDeNacimiento = LocalDate.parse(_fecha)
+			}
+	
+	override esSaludable(){
+		return (this.calcularIMC() >= 18.00 && this.calcularIMC() <=30.00 ) 
+					|| condicionAlimenticia.forall[esSaludable(this)]
+
+	}
+	
+	override agregarAlimentoPreferido(Alimento _alimento){
+		alimentosPreferidos.add(_alimento)
+	}
+	
+	override agregarAlimentoDisgustado(Alimento _alimento){
+		alimentosDisgustados.add(_alimento)
+	}
+	
+	override agregarCondicionAlimenticia(CondicionAlimenticia _condicion){
+		condicionAlimenticia.add(_condicion)
+	}
+
+	override esValido(){
+		validacionNombre && validacionNoNulo 
+		&& validacionHipertensoDiabetico && validacionFecha
+	}
+	
+	override validacionNombre(){
+		nombreYApellido.length > 4
+	}
+	
+	override validacionNoNulo(){
+		return nombreYApellido !== null && peso != 0.0 
+		&& estatura != 0.0 && fechaDeNacimiento !== null && rutina !== null
+	}
+	
+	override validacionHipertensoDiabetico(){
+
+		if(condicionAlimenticia.forall[condicion | condicion.validarAlimento]){
+			!alimentosPreferidos.empty
+		}else {
+			true
+		}
+	}
+	
+	override validacionFecha(){
+		fechaDeNacimiento.isBefore(LocalDate.now.minusDays(1))
+	}
+	
+	override generarCopia(Receta _receta){
+		_receta.copyObservers.forEach[ copia | copia.copiaGenerada(_receta, this)]
+		_receta.generarCopia(new UsuarioAutor(this))
+
+	}
+	
+	override sugerenciaIndividual( List <Receta> listaReceta){
+		return listaReceta.findFirst[ receta | receta.validaPara(alimentosDisgustados, condicionAlimenticia)]
+	}
+	
+		
+	override sugerenciaGrupal(List<Receta> listaReceta, List<Usuario> listaUsuario) {
+			
+		var Receta recetaTodos
+		var Set<Receta> setGrupal = new HashSet <Receta>
+		
+		recetaTodos = listaReceta.findFirst[receta | receta.esValidaGrupo(listaUsuario)]
+		
+	 	if (recetaTodos !== null){
+			return recetaTodos
+			
+		}else{
+			setGrupal.addAll(listaUsuario.map[ usuario | usuario.sugerenciaIndividual(listaReceta)])
+			return setGrupal
+		}
+		
+	}	
+				
+	override boolean busqueda(String value){
+		coincideNombreOApellido(value) || coincideUser(value)
+	}
+	
+	override coincideNombreOApellido(String value) {
+		nombreYApellido.toLowerCase.contains(value.toLowerCase)
+	}
+	
+	override coincideUser(String value){
+		username.equalsIgnoreCase(value)
+	}
+	
+	override leerMensaje(Integer posicion){
+		
+		bandejaDeEntrada.get(posicion).verMensaje
+	}
+	
+	override enviarMensaje(String mensajeAEnviar, Usuario usuarioDestino){
+		
+		MailSender.instance.enviarMensaje(mensajeAEnviar, usuarioDestino, this)
+	}
+	
+	override ingresarMensaje(Mensaje mensaje){
+		
+		bandejaDeEntrada.add(mensaje)
+	}
+	
+}
+
+abstract class UsuarioDecorator extends Usuario{
+	
+	protected Usuario usuario
+	
+	override calcularIMC(){ usuario.calcularIMC }
+	
+	override establecerFecha(CharSequence _fecha){ usuario.establecerFecha(_fecha) }
+	
+	override esSaludable(){ usuario.esSaludable}
+	
+	override agregarAlimentoPreferido(Alimento _alimento) { usuario.agregarAlimentoPreferido(_alimento) }
+	
+	override agregarAlimentoDisgustado(Alimento _alimento) { usuario.agregarAlimentoDisgustado(_alimento)}
+	
+	override agregarCondicionAlimenticia(CondicionAlimenticia _condicion){ usuario.agregarCondicionAlimenticia(_condicion) }
+
+	override esValido(){ usuario.esValido }
+	
+	override validacionNombre(){ usuario.validacionNombre }
+	
+	override validacionNoNulo(){ usuario.validacionNoNulo }
+	
+	override validacionHipertensoDiabetico(){ usuario.validacionHipertensoDiabetico }
+		
+	override validacionFecha(){ usuario.validacionFecha }
+	
+	override generarCopia(Receta _receta){ usuario.generarCopia(_receta) }
+	
+	override sugerenciaIndividual( List <Receta> listaReceta){ usuario.sugerenciaIndividual(listaReceta) }
+		
+	override sugerenciaGrupal(List<Receta> listaReceta, List<Usuario> listaUsuario){ usuario.sugerenciaGrupal(listaReceta,listaUsuario) }
+				
+	override busqueda(String value){ usuario.busqueda(value) }
+	
+	override coincideNombreOApellido(String value){ usuario.coincideNombreOApellido(value) }
+	
+	override coincideUser(String value){ usuario.coincideUser(value) }
+	
+	override leerMensaje(Integer posicion){ usuario.leerMensaje(posicion) }
+	
+	override enviarMensaje(String mensajeAEnviar, Usuario usuarioDestino){ usuario.enviarMensaje(mensajeAEnviar, usuarioDestino) }
+	
+	override ingresarMensaje(Mensaje mensaje){ usuario.ingresarMensaje(mensaje)	}
+}
+
+class UsuarioColaborador extends UsuarioDecorator{
+	
+	new(Usuario _usuario){
+		usuario = _usuario
+	}
+	
+	def void solicitarCambioDeTitulo(Receta receta, String nuevoTitulo){
+		
+		receta.ingresarAccion(this, new EditarTitulo(nuevoTitulo))
+	}
+	
+	def void solicitarCambioDeDificultad(Receta receta, Dificultad nuevaDificultad){
+	
+	receta.ingresarAccion(this, new EditarDificultad(nuevaDificultad))
+	}
+	
+	def void solicitarAgregarColaborador(Receta receta, UsuarioColaborador nuevoColaborador){
+		
+		receta.ingresarAccion(this, new AgregarColaborador(nuevoColaborador))
+	}
+	
+	def void solicitarEliminarPaso(Receta receta, Integer pasoAEliminar){
+		
+		receta.ingresarAccion(this, new EliminarPaso(pasoAEliminar))
+	}
+}
+
+class UsuarioAutor extends UsuarioDecorator{
+	
+	@Accessors int cantCopiasAutor = 0
+	
+	new(Usuario _usuario){
+		usuario = _usuario
+	}
+	
+	def void autorizarTodosLosCambios(Receta receta){ 
+		
+		receta.realizarTodasLasAcciones()
+	}
+	
+	def void autorizarCambio(Receta receta, Integer posicion){
+		
+		receta.realizarAccion(posicion)
+	}
+	
+	def void desautorizarCambio(Receta receta, Integer posicion){
+		
+		receta.removerAccion(posicion)
+	}
+	
+	override esAutor(){ return true }
+	
+	override void sumarCopia() {
+		cantCopiasAutor++
+	}
+	
+	override generarCopia(Receta _receta){
+		_receta.copyObservers.forEach[ copia | copia.copiaGenerada(_receta, this)]
+		_receta.generarCopia(this)
+	}
+	
+}
+
+
+
+
+
+
