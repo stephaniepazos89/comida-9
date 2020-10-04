@@ -1,13 +1,12 @@
 package edu.unsam.food.repos
 
 import edu.unsam.food.domain.Alimento
-import edu.unsam.food.domain.GrupoAlimenticio
 
-class RepoAlimentos {
+class RepoAlimentos extends Repositorio<Alimento> {
 	
 	static RepoAlimentos instance
 	
-	static def getInstance() {
+	static def RepoAlimentos getInstance() {
 		
 		if (instance === null) {
 			instance = new RepoAlimentos
@@ -17,11 +16,5 @@ class RepoAlimentos {
 	}
 	
 	
-	Repositorio<Alimento> repoAlimentos = new Repositorio =>[
-		create(new Alimento("Peceto", GrupoAlimenticio.GRUPO4))
-		create(new Alimento("Papa", GrupoAlimenticio.GRUPO1))
-		create(new Alimento("Huevo", GrupoAlimenticio.GRUPO1))
-		create(new Alimento("Aceite de Girasol", GrupoAlimenticio.GRUPO2))
-	]
 	
 }

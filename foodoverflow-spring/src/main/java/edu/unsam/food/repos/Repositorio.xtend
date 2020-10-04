@@ -1,24 +1,15 @@
 package edu.unsam.food.repos
-
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Set
-import java.util.HashSet
 import java.util.List
 import edu.unsam.food.domain.Entidad
 import edu.unsam.food.domain.ExceptionID
-import edu.unsam.food.domain.UsuarioPorDefecto
-import edu.unsam.food.domain.Alimento
-import edu.unsam.food.domain.GrupoAlimenticio
-import edu.unsam.food.domain.UsuarioAutor
-import edu.unsam.food.domain.RecetaSimple
-import edu.unsam.food.domain.RecetaCompuesta
-import edu.unsam.food.domain.Receta
+import java.util.ArrayList
 
 @Accessors
 class Repositorio<T extends Entidad> {
 	
-	 Set<T> lista = new HashSet()
-	 Integer idRepo = 0
+	 List<T> lista = new ArrayList()
+	 Integer idRepo = 1
 	
 	new (){
 		
@@ -44,7 +35,7 @@ class Repositorio<T extends Entidad> {
 	}
 
 	def T getById(int id) {
-		lista.filter[objetos|objetos.id == id].get(0)
+		lista.filter[objetos|objetos.id == id].head
 	}
 
 	def List<T> search(String value) {	

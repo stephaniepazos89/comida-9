@@ -5,9 +5,13 @@ import java.util.HashSet
 import java.util.List
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName
 
-@Accessors
-abstract class Receta extends Entidad{
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes( @JsonSubTypes.Type(value = RecetaSimple, name = "recetaSimple"), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
+@Accessors abstract class Receta extends Entidad{
 
 	String nombreDePlato
 	String ultimoNombre
@@ -176,7 +180,7 @@ abstract class Receta extends Entidad{
 }
 
 
-
+@JsonTypeName("recetaCompuesta")
 class RecetaCompuesta extends Receta {
 		
 	@Accessors List<Receta> subrecetas = new ArrayList<Receta>
@@ -247,6 +251,7 @@ class RecetaCompuesta extends Receta {
 	}	
 }
 
+@JsonTypeName("recetaSimple")
 @Accessors
 class RecetaSimple extends Receta{
 	
@@ -296,7 +301,8 @@ class RecetaSimple extends Receta{
 					listaDePasos = this.listaDePasos
 					calorias = this.calorias
 					dificultad = this.dificultad 
-					recetaOriginal = this    ]    	
+					recetaOriginal = this    
+					]    	
 
 	            return copiaReceta
 	}
