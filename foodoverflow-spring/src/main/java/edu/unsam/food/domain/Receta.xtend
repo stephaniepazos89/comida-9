@@ -8,8 +8,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes( @JsonSubTypes.Type(value = RecetaSimple, name = "recetaSimple"), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
 @Accessors abstract class Receta extends Entidad{
 
@@ -24,6 +27,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 	Receta recetaOriginal
 	Accion ultimaAccion
 	String pasoEliminado
+
+	 @JsonProperty("autorReceta")
+	def String getAutorReceta() {
+		if (autor === null) {
+			return "Pedro"
+		}
+		autor.nombreYApellido
+	}
+	
 
 	
 	def boolean caloriasAceptables(){
@@ -135,7 +147,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 	
 	override boolean busqueda(String value){
 		
-		 coindiceNombre(value)  || coincideIngrediente(value) 
+		 coindiceNombre(value)  || coincideIngrediente(value) || coindiceAutor(value)
+	}
+	
+	def boolean coindiceAutor(String value){
+		
+		getAutorReceta.toLowerCase().contains(value.toLowerCase())
 	}
 	
 	def boolean coincideIngrediente(String value){

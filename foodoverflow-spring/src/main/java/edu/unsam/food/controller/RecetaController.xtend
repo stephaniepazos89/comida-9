@@ -14,9 +14,27 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.domain.Receta
 
+
 @RestController
 @CrossOrigin
 class RecetaController {
+
+	@GetMapping("/busqueda")
+	def buscar(@RequestBody (required=false) String body) {
+		try {
+			if (body===null){
+				val tareas = RepoRecetas.instance.lista
+				ResponseEntity.ok(tareas)
+			} else {
+				
+				val busqueda = mapper.readValue(body, String)
+				val encontrada = RepoRecetas.instance.search(busqueda)
+			ResponseEntity.ok(encontrada)
+			}
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
 	
 	@GetMapping("/receta/{id}")
 def recetaByID(@PathVariable Integer id) {
@@ -33,6 +51,7 @@ def recetaByID(@PathVariable Integer id) {
 		ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
 	}
 }
+
 	
 	@PutMapping("/receta/{id}")
 	def actualizar(@RequestBody String body, @PathVariable Integer id) {

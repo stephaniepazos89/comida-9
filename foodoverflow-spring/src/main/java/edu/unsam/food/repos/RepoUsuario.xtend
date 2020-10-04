@@ -1,8 +1,8 @@
 package edu.unsam.food.repos
 
-import edu.unsam.food.domain.UsuarioPorDefecto
+import edu.unsam.food.domain.Usuario
 
-class RepoUsuario extends Repositorio<UsuarioPorDefecto> {
+class RepoUsuario extends Repositorio<Usuario> {
 	
 	static RepoUsuario instance
 	
