@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes( @JsonSubTypes.Type(value = RecetaSimple, name = "recetaSimple"), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
 @Accessors abstract class Receta extends Entidad{
 
@@ -28,15 +28,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	Accion ultimaAccion
 	String pasoEliminado
 
-	 @JsonProperty("autorReceta")
+	/*  @JsonProperty("autorReceta")
 	def String getAutorReceta() {
 		if (autor === null) {
-			return "Pedro"
+			return ""
 		}
 		autor.nombreYApellido
-	}
+	}*/
 	
-
 	
 	def boolean caloriasAceptables(){
 		
@@ -152,7 +151,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	
 	def boolean coindiceAutor(String value){
 		
-		getAutorReceta.toLowerCase().contains(value.toLowerCase())
+		autor.nombreYApellido.toLowerCase().contains(value.toLowerCase())
 	}
 	
 	def boolean coincideIngrediente(String value){
@@ -213,6 +212,10 @@ class RecetaCompuesta extends Receta {
 	new (UsuarioAutor _autor){
 		
 		autor = _autor
+		
+	}
+	
+	new (){
 		
 	}
 	
@@ -287,6 +290,10 @@ class RecetaSimple extends Receta{
 	new (UsuarioAutor _autor){
 		
 		autor = _autor
+		
+	}
+	
+	new (){
 		
 	}
 	

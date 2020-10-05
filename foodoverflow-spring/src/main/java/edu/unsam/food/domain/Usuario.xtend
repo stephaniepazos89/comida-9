@@ -78,6 +78,9 @@ class UsuarioPorDefecto extends Usuario {
 		estatura = _estatura
 	}
 	
+	new (){
+		
+	}
 	
 	override calcularIMC(){
 		return peso / (estatura*estatura)
@@ -237,7 +240,11 @@ abstract class UsuarioDecorator extends Usuario{
 class UsuarioColaborador extends UsuarioDecorator{
 	
 	new(Usuario _usuario){
-		usuario = _usuario
+		id = _usuario.id
+		nombreYApellido = _usuario.nombreYApellido
+		username = _usuario.username
+		peso = _usuario.peso
+		estatura = _usuario.estatura
 	}
 	
 	def void solicitarCambioDeTitulo(Receta receta, String nuevoTitulo){
@@ -266,9 +273,16 @@ class UsuarioAutor extends UsuarioDecorator{
 	@Accessors int cantCopiasAutor = 0
 	
 	new(Usuario _usuario){
-		usuario = _usuario
+		id = _usuario.id
+		nombreYApellido = _usuario.nombreYApellido
+		username = _usuario.username
+		peso = _usuario.peso
+		estatura = _usuario.estatura
 	}
-	
+
+	new (){
+		
+	}
 	def void autorizarTodosLosCambios(Receta receta){ 
 		
 		receta.realizarTodasLasAcciones()

@@ -13,7 +13,7 @@ import edu.unsam.food.error.BusinessException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.domain.Receta
-
+import edu.unsam.food.domain.RecetaCompuesta
 
 @RestController
 @CrossOrigin
@@ -50,7 +50,8 @@ def recetaByID(@PathVariable Integer id) {
 	} catch (RuntimeException e) {
 		ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
 	}
-}
+} 
+
 
 	
 	@PutMapping("/receta/{id}")
