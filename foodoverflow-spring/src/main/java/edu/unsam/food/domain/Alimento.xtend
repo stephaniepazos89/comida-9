@@ -4,7 +4,6 @@ import java.util.HashSet
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-
 class Alimento extends Entidad {
 	
 	String nombreDeAlimento
@@ -22,6 +21,8 @@ class Alimento extends Entidad {
 		grupoAlimenticio = _grupoAlimenticio
 			
 	}
+	
+	new(){}
 	
 	def void agregarInadecuado(CondicionAlimenticia _condicion){
 		inadecuadoPara.add(_condicion)

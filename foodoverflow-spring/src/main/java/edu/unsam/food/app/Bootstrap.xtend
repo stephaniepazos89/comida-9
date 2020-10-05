@@ -30,7 +30,12 @@ class Bootstrap {
 
 	def void crearUsuarios() {
 		RepoUsuario.instance => [
-			create(new UsuarioPorDefecto("Pedro Alvarez", "peal14", 80, 1.80))
+			create(new UsuarioPorDefecto(
+			"Pedro Alvarez", "peal14", 80, 1.80
+			) => [
+				agregarAlimentoPreferido(new Alimento("Peceto", GrupoAlimenticio.GRUPO4))
+				]
+			)
 			create(new UsuarioPorDefecto("Manuel Gerry", "manuguer", 60, 1.50))
 			create(new UsuarioPorDefecto("Alberto Sabatini","albertito86", 73, 1.76))
 			create(new UsuarioPorDefecto("Jorge Fiorela", "jorgito", 110 , 1.81))

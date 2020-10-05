@@ -6,16 +6,23 @@ import java.util.List
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeName
+import com.fasterxml.jackson.annotation.JsonIgnore
 
-@Accessors
-abstract class Usuario extends Entidad{
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto") )
+@Accessors abstract class Usuario extends Entidad{
 	
 	String nombreYApellido
 	String username
 	double peso
 	double estatura
 	Rutina rutina
-	LocalDate fechaDeNacimiento
+	@JsonIgnore LocalDate fechaDeNacimiento
+	//static String DATE_PATTERN = "dd/MM/yyyy"
 	
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
@@ -65,8 +72,23 @@ abstract class Usuario extends Entidad{
 	def boolean esAutor(){ return false }
 	
 	def void sumarCopia(){ }
+	
+//	@JsonProperty("fechaDeNacimiento")
+//	def getFechaAsString() {
+//		formatter.format(this.fechaDeNacimiento)
+//	}
+//
+//	@JsonProperty("fechaDeNacimiento")
+//	def asignarFecha(String fecha) {
+//		this.fechaDeNacimiento = LocalDate.parse(fecha, formatter)
+//	}
+//
+//	def formatter() {
+//		DateTimeFormatter.ofPattern(DATE_PATTERN)
+//	}
 }	
 
+@JsonTypeName("usuarioPorDefecto")
 @Accessors
 class UsuarioPorDefecto extends Usuario { 
 	
@@ -192,6 +214,8 @@ class UsuarioPorDefecto extends Usuario {
 	
 }
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"), @JsonSubTypes.Type(value = UsuarioAutor, name = "usuarioAutor") )
 abstract class UsuarioDecorator extends Usuario{
 	
 	protected Usuario usuario
@@ -237,6 +261,7 @@ abstract class UsuarioDecorator extends Usuario{
 	override ingresarMensaje(Mensaje mensaje){ usuario.ingresarMensaje(mensaje)	}
 }
 
+@JsonTypeName("usuarioColaborador")
 class UsuarioColaborador extends UsuarioDecorator{
 	
 	new(Usuario _usuario){
@@ -246,6 +271,8 @@ class UsuarioColaborador extends UsuarioDecorator{
 		peso = _usuario.peso
 		estatura = _usuario.estatura
 	}
+	
+	new(){}
 	
 	def void solicitarCambioDeTitulo(Receta receta, String nuevoTitulo){
 		
@@ -268,6 +295,7 @@ class UsuarioColaborador extends UsuarioDecorator{
 	}
 }
 
+@JsonTypeName("usuarioAutor")
 class UsuarioAutor extends UsuarioDecorator{
 	
 	@Accessors int cantCopiasAutor = 0
