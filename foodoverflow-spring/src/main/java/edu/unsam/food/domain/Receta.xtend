@@ -8,12 +8,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes( @JsonSubTypes.Type(value = RecetaSimple, name = "recetaSimple"), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
+@JsonSubTypes( @JsonSubTypes.Type(name = "recetaSimple", value = RecetaSimple ), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
 @Accessors abstract class Receta extends Entidad{
 
 	String nombreDePlato
@@ -198,7 +196,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonTypeName("recetaCompuesta")
 class RecetaCompuesta extends Receta {
-		
+	@JsonProperty("@type")
+     private final String type = "recetaCompuesta";
+	
 	@Accessors List<Receta> subrecetas = new ArrayList<Receta>
 	
 	
@@ -274,6 +274,8 @@ class RecetaCompuesta extends Receta {
 @JsonTypeName("recetaSimple")
 @Accessors
 class RecetaSimple extends Receta{
+		@JsonProperty("@type")
+     private final String type = "recetaSimple";
 	
 	Integer calorias
 	Dificultad dificultad

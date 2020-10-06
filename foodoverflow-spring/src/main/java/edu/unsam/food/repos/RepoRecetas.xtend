@@ -18,4 +18,5 @@ class RepoRecetas extends Repositorio<Receta> {
 	private new() {
 	}
 	
+	
 }

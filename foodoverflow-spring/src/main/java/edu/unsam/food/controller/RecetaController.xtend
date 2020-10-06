@@ -13,22 +13,24 @@ import edu.unsam.food.error.BusinessException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.domain.Receta
-import edu.unsam.food.domain.RecetaCompuesta
+
 
 @RestController
 @CrossOrigin
 class RecetaController {
 
+
 	@GetMapping("/busqueda")
 	def buscar(@RequestBody (required=false) String body) {
 		try {
 			if (body===null){
-				val tareas = RepoRecetas.instance.lista
-				ResponseEntity.ok(tareas)
+				val recetas = RepoRecetas.instance.lista
+				ResponseEntity.ok(recetas)
 			} else {
 				
 				val busqueda = mapper.readValue(body, String)
 				val encontrada = RepoRecetas.instance.search(busqueda)
+				
 			ResponseEntity.ok(encontrada)
 			}
 		} catch (Exception e) {
@@ -40,11 +42,12 @@ class RecetaController {
 def recetaByID(@PathVariable Integer id) {
 	try {
 		if (id === 0) {
-			return ResponseEntity.badRequest.body('''Debe ingresar el parámetro id''')
+			return ResponseEntity.badRequest.body('''Debe ingresar el id de Receta''')
 		}
+
 		val receta = RepoRecetas.instance.getById(id)
 		if (receta === null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body('''No se encontró receta con el id <«id»>''')
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body('''No se encontro receta con ID <«id»>''')
 		}
 		ResponseEntity.ok(receta)
 	} catch (RuntimeException e) {
@@ -63,7 +66,7 @@ def recetaByID(@PathVariable Integer id) {
 			val actualizada = mapper.readValue(body, Receta)
 
 			if (id != actualizada.id) {
-				return ResponseEntity.badRequest.body("Id en URL distinto del id que viene en el body")
+				return ResponseEntity.badRequest.body("ID de URL distinto que ID de Body")
 			}
 			RepoRecetas.instance.update(actualizada)
 			ResponseEntity.ok(actualizada)

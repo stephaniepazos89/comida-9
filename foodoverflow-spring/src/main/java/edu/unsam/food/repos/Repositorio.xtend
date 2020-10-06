@@ -19,6 +19,7 @@ class Repositorio<T extends Entidad> {
 		lista.add(object)
 		object.id = idRepo
 		idRepo++
+		return object
 	}
 
 	def delete(T object) {
@@ -39,7 +40,7 @@ class Repositorio<T extends Entidad> {
 	}
 
 	def List<T> search(String value) {	
-		return lista.filter[busqueda(value)].toList
+		lista.filter[objetos | objetos.busqueda(value)].toList
 	}
 	
 }
