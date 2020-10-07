@@ -42,7 +42,7 @@ export class PerfilComponent implements OnInit {
 
     this.ruteoDeUsuario()
 
-    this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
+    //this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
     this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
     this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
 

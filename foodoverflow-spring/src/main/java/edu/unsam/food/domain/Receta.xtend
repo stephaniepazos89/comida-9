@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes( @JsonSubTypes.Type(name = "recetaSimple", value = RecetaSimple ), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
 @Accessors abstract class Receta extends Entidad{
 
-	String nombreDePlato
+	String nombreDelPlato
 	String ultimoNombre
 	UsuarioAutor autor
 	List<Usuario> listaDeColaboradores = new ArrayList<Usuario>
@@ -22,18 +23,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	List<Accion> listaDeAcciones = new ArrayList<Accion>
 	List<CopyObserver> copyObservers= new ArrayList
 	Dificultad dificultadPorAutorizar
-	Receta recetaOriginal
+	@JsonIgnore Receta recetaOriginal
 	Accion ultimaAccion
 	String pasoEliminado
 
-	/*  @JsonProperty("autorReceta")
-	def String getAutorReceta() {
-		if (autor === null) {
-			return ""
-		}
-		autor.nombreYApellido
-	}*/
-	
 	
 	def boolean caloriasAceptables(){
 		
@@ -160,7 +153,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	
 	def boolean coindiceNombre(String value){
 		
-		nombreDePlato.toLowerCase().contains(value.toLowerCase())
+		nombreDelPlato.toLowerCase().contains(value.toLowerCase())
 	}
 	
 	def Receta generarCopia(UsuarioAutor _usuario)
@@ -172,8 +165,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	
 	def void seEditaTitulo(String nuevoTitulo, Accion editarTitulo){  // Carga nuevo titulo para posterior aprobación
 		
-		ultimoNombre = nombreDePlato
-		nombreDePlato = nuevoTitulo
+		ultimoNombre = nombreDelPlato
+		nombreDelPlato = nuevoTitulo
 		ultimaAccion = editarTitulo
 	}
 	
@@ -182,7 +175,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 	
 	def void seRecuperaTitulo(){
 		
-		nombreDePlato = ultimoNombre
+		nombreDelPlato = ultimoNombre
 	}
 	
 	def void seRecuperaDificultad(){}
@@ -204,7 +197,7 @@ class RecetaCompuesta extends Receta {
 	
 	new (String _nombreDePlato, UsuarioAutor _autor){    // Constructor de Objetos
 		
-		nombreDePlato = _nombreDePlato
+		setNombreDelPlato = _nombreDePlato
 		
 		autor = _autor			
 	}
@@ -256,7 +249,7 @@ class RecetaCompuesta extends Receta {
 	           
 	            copiaReceta = new RecetaCompuesta(_usuario) =>[
 	            
-					nombreDePlato = this.nombreDePlato
+					setNombreDelPlato = this.getNombreDelPlato
 					listaDePasos = this.listaDePasos
 					recetaOriginal = this        	
 					subrecetas = this.subrecetas]
@@ -282,9 +275,10 @@ class RecetaSimple extends Receta{
 	Dificultad anteriorDificultad
 	Set<Ingrediente>listaDeIngredientes  = new HashSet<Ingrediente> 
 	
+	
 	new (String _nombreDePlato, UsuarioAutor _autor){    
 	
-		nombreDePlato = _nombreDePlato
+		setNombreDelPlato = _nombreDePlato
 		
 		autor = _autor		
 	}
@@ -322,7 +316,7 @@ class RecetaSimple extends Receta{
 	           
 	            copiaReceta = new RecetaSimple(_usuario)=>[
 	            
-					nombreDePlato = this.nombreDePlato
+					setNombreDelPlato = this.getNombreDelPlato
 					listaDeIngredientes = this.listaDeIngredientes
 					listaDePasos = this.listaDePasos
 					calorias = this.calorias

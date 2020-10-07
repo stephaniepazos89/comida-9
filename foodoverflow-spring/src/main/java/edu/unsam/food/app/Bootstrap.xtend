@@ -9,6 +9,7 @@ import edu.unsam.food.repos.RepoUsuario
 import edu.unsam.food.repos.RepoAlimentos
 import edu.unsam.food.domain.Alimento
 import edu.unsam.food.domain.GrupoAlimenticio
+import edu.unsam.food.domain.Dificultad
 
 class Bootstrap {
 	
@@ -22,7 +23,7 @@ class Bootstrap {
 	def void crearRecetas() {
 		val usuario = new UsuarioAutor(new UsuarioPorDefecto("Eduardo Biloni", "Biloba", 60, 1.70))
 		RepoRecetas.instance => [
-			create(new RecetaSimple("Milanesa", usuario))
+			create(new RecetaSimple("Milanesa", usuario)=>[calorias = 1002 dificultad = Dificultad.Media])
 			create(new RecetaCompuesta("Milanesa con Papas Fritas y Huevo Frito", new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "Gimi14", 80, 1.74))))
 			create(new RecetaSimple("Papas Fritas", new UsuarioAutor(new UsuarioPorDefecto("Mauro Silva", "Mauro96", 90, 1.60))))
 		]

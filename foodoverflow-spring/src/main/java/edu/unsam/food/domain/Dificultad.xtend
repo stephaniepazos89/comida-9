@@ -3,6 +3,7 @@ package edu.unsam.food.domain
 enum Dificultad{
 	
 	FACIL,
-	MEDIA,
+	Media,
 	DIFICIL
 }
+

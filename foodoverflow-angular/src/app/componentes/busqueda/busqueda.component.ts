@@ -5,6 +5,10 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 
+function mostrarError(component, error) {
+  const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
+  component.errors.push(errorMessage)
+}
 
 @Component({
   selector: 'app-busqueda',
@@ -14,23 +18,27 @@ import { Usuario } from 'src/domain/usuario';
 export class BusquedaComponent implements OnInit {
   recetaBuscada = ''
   recetas: Receta[] = []
-  mostrarBusqueda: Boolean
   isChecked: Boolean = false
   receta: Receta
   
   constructor(public recetaService : RecetaService, public usuarioService : UsuarioService, private router: Router) { }
   
-  ngOnInit(): void {
+  async ngOnInit() {
+    try {
+      this.recetas = await this.recetaService.getRecetas()
+    } catch (error) {
+      mostrarError(this, error)
+    }
   }
 
-  realizarBusqueda(recetaBuscada): void{
-   this.mostrarBusqueda = true
-   
+  async realizarBusqueda(recetaBuscada): Promise<void>{
+
    if(!this.isChecked){
-    this.recetas =  this.recetaService.busquedaCompleta(recetaBuscada)
-   }else {
-     this.recetas = this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, this.usuarioLogueado())
-   }
+    this.recetas =  await this.recetaService.busquedaPorPalabra(recetaBuscada)
+   }/*else {
+     this.recetas = await this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, this.usuarioLogueado())
+   }*/
+   
    }
 
    usuarioLogueado(): Usuario{
