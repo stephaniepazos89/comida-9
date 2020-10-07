@@ -13,26 +13,32 @@ import edu.unsam.food.error.BusinessException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.domain.Receta
-
+import com.fasterxml.jackson.databind.SerializationFeature
 
 @RestController
 @CrossOrigin
 class RecetaController {
 
 
-	@GetMapping("/busqueda")
-	def buscar(@RequestBody (required=false) String body) {
+	@GetMapping("/busqueda/recetas")
+	def buscarPorNombre(@RequestBody String body) {
 		try {
-			if (body===null){
+			
+			val busqueda = mapper.readValue(body, String)
+			val encontrada = RepoRecetas.instance.search(busqueda)				
+			ResponseEntity.ok(encontrada)
+
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+	@GetMapping("/busqueda")
+	def buscarTodasRecetas() {
+		try {
 				val recetas = RepoRecetas.instance.lista
 				ResponseEntity.ok(recetas)
-			} else {
-				
-				val busqueda = mapper.readValue(body, String)
-				val encontrada = RepoRecetas.instance.search(busqueda)
-				
-			ResponseEntity.ok(encontrada)
-			}
+			
 		} catch (Exception e) {
 			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
 		}
@@ -46,6 +52,7 @@ def recetaByID(@PathVariable Integer id) {
 		}
 
 		val receta = RepoRecetas.instance.getById(id)
+		
 		if (receta === null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body('''No se encontro receta con ID <«id»>''')
 		}
@@ -80,6 +87,7 @@ def recetaByID(@PathVariable Integer id) {
 	static def mapper() {
 		new ObjectMapper => [
 			configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+			configure(SerializationFeature.INDENT_OUTPUT, true)
 		]
 	}
 	

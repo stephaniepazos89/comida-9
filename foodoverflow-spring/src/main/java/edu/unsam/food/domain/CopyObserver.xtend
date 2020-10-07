@@ -9,7 +9,7 @@ abstract class CopyObserver {    //generada como abstract class ya que Travis si
 class MensajeAutor extends CopyObserver{
 	
 	override void copiaGenerada(Receta _receta, Usuario usuario){
-		var localString = String.format("Hice una copia de tu receta %s", _receta.nombreDePlato)
+		var localString = String.format("Hice una copia de tu receta %s", _receta.getNombreDelPlato)
 		usuario.enviarMensaje(localString, _receta.autor)
 	}
 }
@@ -17,7 +17,7 @@ class MensajeAutor extends CopyObserver{
 class MensajeColaborador extends CopyObserver{
 	
 	override void copiaGenerada(Receta _receta, Usuario usuario){
-		val localString = String.format("%s generó copia de la Receta %s", usuario.username, _receta.nombreDePlato)
+		val localString = String.format("%s generó copia de la Receta %s", usuario.username, _receta.getNombreDelPlato)
 		_receta.listaDeColaboradores.forEach[ colaborador | usuario.enviarMensaje(localString, colaborador) ] // Quien manda mail?
 		
 	}
@@ -44,7 +44,7 @@ class RegistroCopias extends CopyObserver{
 			cantFacil++;
 		}
 		
-		if(_receta.dificultadCompuesta == Dificultad.MEDIA){
+		if(_receta.dificultadCompuesta == Dificultad.Media){
 			cantMedia++;
 		}
 		

@@ -12,7 +12,10 @@ export class Receta {
 
     constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
 
-    
+    static fromJson(recetaJSON): Receta {
+        return Object.assign(new Receta(), recetaJSON, { })
+    }
+
     public esAutor(usuario: Usuario): boolean{
         return this.autor == usuario
     }
@@ -41,6 +44,12 @@ export class Receta {
         let listaCondicion = this.listaIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
         let reduce = [].concat.apply([], listaCondicion)
         return reduce   
+    }
+
+    toJSON(): any {
+        return {
+            ...this,
+        }
     }
 
 }

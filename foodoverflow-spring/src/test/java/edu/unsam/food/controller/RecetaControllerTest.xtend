@@ -21,6 +21,7 @@ import edu.unsam.food.domain.UsuarioAutor
 import edu.unsam.food.domain.UsuarioPorDefecto
 import edu.unsam.food.domain.RecetaSimple
 import edu.unsam.food.domain.RecetaCompuesta
+import org.junit.jupiter.api.AfterEach
 
 @AutoConfigureJsonTesters
 @ContextConfiguration(classes=RecetaController)
@@ -43,29 +44,34 @@ class RecetaControllerTest {
 		receta = repoRecetas.create(new RecetaSimple("Guiso", usuario))
 	}
 	
-	@DisplayName("Al buscar con el campo busqueda vacio, obtenemos todas las recetas.")
+	@AfterEach
+	def void end(){
+		repoRecetas.lista.clear
+	}
+
+	@DisplayName("Al iniciar Home obtenemos todas las recetas.")
 	@Test
-	def void testEmptyBodyGetAllRecetas() {
+	def void testGetAllRecetas() {
 		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.get("/busqueda")).andReturn.response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)
 		assertEquals(recetas.size, 3)
 	}
 	
-	@DisplayName("Al buscar con el campo de busqueda con una palabra obtenemos receta con ese nombre")
+	@DisplayName("Buscamos colocando inicio de palabra Milanesa y obtenemos receta con ese nombre de Receta")
 	@Test
 	def void testBuscaRecetaPorNombreReceta() {
 		val nombreReceta = "mil"
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
 			response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)
-		assertTrue(recetas.exists[receta | receta.nombreDePlato.toLowerCase.contains(nombreReceta)])
+		assertTrue(recetas.exists[receta | receta.getNombreDelPlato.toLowerCase.contains(nombreReceta)])
 		assertEquals(recetas.size,2)
 	}
 	
-	@DisplayName("Al buscar con el campo de busqueda con una palabra obtenemos receta con ese Autor")
+	@DisplayName("Buscamos colocando inicio de nombre Demian y obtenemos receta con ese Autor")
 	@Test
 	def void testBuscaRecetaPorNombreAutor() {
 		val nombreAutor = "dem"
@@ -77,12 +83,12 @@ class RecetaControllerTest {
 		assertTrue(recetas.exists[receta | receta.autor.nombreYApellido.toLowerCase.contains(nombreAutor)])
 	}
 	
-	@DisplayName("Se busca con campo de busqueda una palabra y no obtenemos resultados")
+	@DisplayName("Se busca una palabra y no obtenemos resultados")
 	@Test
-	def void testBuscarTareasPorDescripcionNoMatch() {
+	def void testBuscarRecetaNoEncontrada() {
 		val nombreReceta = "Pizza"
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
 			response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)
@@ -92,17 +98,17 @@ class RecetaControllerTest {
 	
 	@DisplayName("Se busca receta por el ID y obtengo la receta")
 	@Test
-	def void testBuscaRecetaPorId() {
-		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.get("/receta/" + 1)).andReturn.response
+	def void testBuscaRecetaPorIdCorrecto() {
+		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.get("/receta/1")).andReturn.response
 		val recetaBuscada = responseEntity.contentAsString.fromJson(Receta)
 		assertEquals(200, responseEntity.status)
-		assertEquals(recetaBuscada.nombreDePlato, "Milanesa")
+		assertEquals(recetaBuscada.nombreDelPlato, "Milanesa")
 	}
 	
 
 	@DisplayName("Se busca receta por id CERO (Nulo) y obtengo error 400")
 	@Test
-	def void testBuscaTareaPorIdInvalido() {
+	def void testBuscaRecetaPorIdInvalido() {
 		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.get("/receta/0")).andReturn.response
 		assertEquals(400, responseEntity.status)
 		assertEquals("Debe ingresar el id de Receta", responseEntity.contentAsString)
@@ -110,7 +116,7 @@ class RecetaControllerTest {
 	
 	@DisplayName("Se busca receta por ID que no existe y obtengo error 404")
 	@Test
-	def void testBuscaTareaPorIdInexistente() {
+	def void testBuscaRecetaPorIdInexistente() {
 		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.get("/receta/100")).andReturn.response
 		assertEquals(404, responseEntity.status)
 		assertEquals("No se encontro receta con ID <100>", responseEntity.contentAsString)
@@ -129,7 +135,7 @@ class RecetaControllerTest {
 		val responseEntityGet = mockMvc.perform(MockMvcRequestBuilders.get("/receta/" + receta.id)).andReturn.response
 		val recetaActualizada = responseEntityGet.contentAsString.fromJson(Receta)
 		assertEquals(200, responseEntityGet.status)
-		assertEquals(recetaActualizada.nombreDePlato, recetaBody.nombreDePlato)
+		assertEquals(recetaActualizada.getNombreDelPlato, recetaBody.getNombreDelPlato)
 	}
 	
 	@DisplayName("Se intenta actualizar receta pero no coincide ID de la url y el body y produce error 400")
@@ -148,7 +154,7 @@ class RecetaControllerTest {
 	def getReceta(){
 		new RecetaSimple => [
 						autor = usuario
-						nombreDePlato= "Lentejas"
+						setNombreDelPlato= "Lentejas"
 		]
 	}
 	

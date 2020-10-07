@@ -95,7 +95,7 @@ class TestReceta {
 	def void noValidaXPasos(){
 		
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 )
-		subreceta1.dificultad = Dificultad.MEDIA
+		subreceta1.dificultad = Dificultad.Media
 		subreceta1.calorias = 2000
 		subreceta1.ingresarIngrediente(new Ingrediente(alimento2, "Medio Repollo"))
 		
@@ -258,12 +258,12 @@ class TestReceta {
 	
 	def void testDificultadCompuesta(){
 		subreceta1 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.DIFICIL ]
-		subreceta2 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.MEDIA ]
+		subreceta2 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.Media ]
 		receta1 = new RecetaCompuesta ("Milanesa con papas fritas", usuarioAutor2 )
 
 		receta1.ingresarReceta(subreceta2)
 		
-		assertEquals(receta1.dificultadCompuesta,Dificultad.MEDIA)
+		assertEquals(receta1.dificultadCompuesta,Dificultad.Media)
 		
 		receta1.ingresarReceta(subreceta1)
 		

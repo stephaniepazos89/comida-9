@@ -19,6 +19,7 @@ import { AlimentosperfilComponent } from './componentes/alimentosperfil/alimento
 import { ColaboradorComponent } from './componentes/colaborador/colaborador.component';
 import { RoutingService } from './services/routing.service';
 import { PasosComponent } from './componentes/pasos/pasos.component';
+import { HttpClientModule } from '@angular/common/http'
 
 
 
@@ -45,6 +46,7 @@ import { PasosComponent } from './componentes/pasos/pasos.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [

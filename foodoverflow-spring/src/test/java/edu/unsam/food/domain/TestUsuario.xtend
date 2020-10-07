@@ -179,7 +179,7 @@ class TestUsuario {
 		
 		subreceta1.ingresarIngrediente(ingrediente1)
 		
-		assertTrue(usuario2.generarCopia(subreceta1).nombreDePlato.contains("Ensalada"))
+		assertTrue(usuario2.generarCopia(subreceta1).getNombreDelPlato.contains("Ensalada"))
 	}
 	
 	@Test
@@ -312,11 +312,11 @@ class TestUsuario {
 		usuarioColaborador1.solicitarCambioDeTitulo(subreceta1,"EnsaladaSuper")
 		usuarioAutor1.autorizarCambio(subreceta1,0)
 		
-		assertEquals("EnsaladaSuper",subreceta1.nombreDePlato)
+		assertEquals("EnsaladaSuper",subreceta1.getNombreDelPlato)
 		
 		subreceta1.deshacerCambio()
 		
-		assertEquals("Ensalada",subreceta1.nombreDePlato)
+		assertEquals("Ensalada",subreceta1.getNombreDelPlato)
 		}
 		
 	@Test
@@ -327,7 +327,7 @@ class TestUsuario {
 		usuarioAutor1 = new UsuarioAutor (new UsuarioPorDefecto("Miguel Suarez", "miguelito", 71, 1.5))
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 )
 		
-		subreceta1.dificultad = Dificultad.MEDIA
+		subreceta1.dificultad = Dificultad.Media
 		subreceta1.ingresarColaborador(usuarioColaborador1)
 		usuarioColaborador1.solicitarCambioDeDificultad(subreceta1, Dificultad.FACIL)
 		usuarioAutor1.autorizarCambio(subreceta1,0)
@@ -336,7 +336,7 @@ class TestUsuario {
 		
 		subreceta1.deshacerCambio()
 		
-		assertEquals(Dificultad.MEDIA,subreceta1.dificultad)
+		assertEquals(Dificultad.Media,subreceta1.dificultad)
 		}
 		
 	@Test
