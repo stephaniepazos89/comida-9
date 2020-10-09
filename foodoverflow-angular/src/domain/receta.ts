@@ -9,7 +9,7 @@ export class Receta {
      public listaDePasos: String[] = []
      public dificultad: Dificultad
      public img: string
-     
+     public usuarioAutor?: String
 
     constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
 

@@ -45,8 +45,8 @@ export class StubRecetaService {
     let papa, carne
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
-    receta.listaDeIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), 500))
-    receta.listaDeIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
+    receta.listaDeIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), "500"))
+    receta.listaDeIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), "500"))
     papa.agregarInadecuado(new Vegano())
     carne.agregarInadecuado(new Vegetariano(), new Vegano())
     receta.agregarPaso("Cortar la papa")

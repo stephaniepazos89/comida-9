@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	UsuarioAutor autor
 	List<Usuario> listaDeColaboradores = new ArrayList<Usuario>
 	List<String> listaDePasos = new ArrayList<String>
-	List<Accion> listaDeAcciones = new ArrayList<Accion>
-	List<CopyObserver> copyObservers= new ArrayList
-	Dificultad dificultadPorAutorizar
+	@JsonIgnore List<Accion> listaDeAcciones = new ArrayList<Accion>
+	@JsonIgnore List<CopyObserver> copyObservers= new ArrayList
+	@JsonIgnore Dificultad dificultadPorAutorizar
 	@JsonIgnore Receta recetaOriginal
-	Accion ultimaAccion
-	String pasoEliminado
+	@JsonIgnore Accion ultimaAccion
+	@JsonIgnore String pasoEliminado
 	String img = "guiso.jpg"
 
 	
@@ -280,7 +280,7 @@ class RecetaSimple extends Receta{
 	
 	Integer calorias
 	Dificultad dificultad
-	Dificultad anteriorDificultad
+	@JsonIgnore Dificultad anteriorDificultad
 	Set<Ingrediente>listaDeIngredientes  = new HashSet<Ingrediente> 
 	
 	
