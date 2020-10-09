@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeName
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes( @JsonSubTypes.Type(value = Alimento, name = "alimento") )
@@ -13,12 +14,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 class Alimento extends Entidad {
 	
 	String nombreDeAlimento
-	String descripcion
+	@JsonIgnore String descripcion
 	Integer id
 
-	GrupoAlimenticio grupoAlimenticio
+	@JsonIgnore GrupoAlimenticio grupoAlimenticio
 	
-	HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
+	@JsonIgnore HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
 
 	new (String _nombreDeAlimento, GrupoAlimenticio _grupoAlimenticio){
 		
