@@ -6,16 +6,18 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class Mensaje {
 	
 	String cuerpoDeMensaje
-	Usuario destinatario
-	Usuario emisor
+	String destinatario
+	String emisor
 	LocalDateTime horaDeEmision
 	LocalDateTime horaDeLectura
 	boolean mensajeLeido = false
 	
+	new(){}
+	
 	new (String _cuerpoDeMensaje, Usuario _destinatario){
 	
 		cuerpoDeMensaje = _cuerpoDeMensaje
-		destinatario = _destinatario
+		destinatario = _destinatario.nombreYApellido
 	}
 	
 	def String verMensaje(){

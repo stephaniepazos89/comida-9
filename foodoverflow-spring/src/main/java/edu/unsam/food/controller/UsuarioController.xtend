@@ -21,12 +21,18 @@ class UsuarioController {
 	def cargarUsuario(@RequestBody String id) {
 		try {
 			if (id === null) {
-				return ResponseEntity.badRequest.body('''Solicitud incorrecta''')
+				return  ResponseEntity.badRequest.body('''Solicitud Incorrecta''')
 			}
 			val usuarioId = mapper.readValue(id, Integer)
 			
-			val usuario = RepoUsuario.instance.getById(usuarioId)
-			ResponseEntity.ok(usuario)
+			if (this.cantidadDeUsuariosValida(usuarioId)) {
+				return  ResponseEntity.badRequest.body('''Solicitud Incorrecta''')
+			} else {
+				val usuario = RepoUsuario.instance.getById(usuarioId)
+				ResponseEntity.ok(usuario)
+			}
+			
+			
 		} catch (BusinessException e) {
 		ResponseEntity.badRequest.body(e.message)
 		} catch (Exception e) {
@@ -42,9 +48,15 @@ class UsuarioController {
 				return ResponseEntity.badRequest.body('''No se recibe Usuario''')
 			}
 			val usuarioActualizado = mapper.readValue(nuevoUsuario, UsuarioPorDefecto)
-
-			RepoUsuario.instance.update(usuarioActualizado)
-			ResponseEntity.ok(usuarioActualizado)
+			
+			if (this.cantidadDeUsuariosValida(usuarioActualizado.id)) {
+				return  ResponseEntity.badRequest.body('''Solicitud Incorrecta''')
+			} else {
+				RepoUsuario.instance.update(usuarioActualizado)
+				ResponseEntity.ok(usuarioActualizado)
+			}
+			
+			
 		} catch (BusinessException e) {
 			ResponseEntity.badRequest.body(e.message)
 		} catch (Exception e) {
@@ -56,5 +68,9 @@ class UsuarioController {
 		new ObjectMapper => [
 			configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 		]
+	}
+	
+	def boolean cantidadDeUsuariosValida(Integer id) {
+		return id === 0 || RepoUsuario.instance.lista.size < id
 	}
 }

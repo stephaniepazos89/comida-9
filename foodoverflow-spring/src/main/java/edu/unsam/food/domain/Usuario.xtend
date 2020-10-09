@@ -10,11 +10,18 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeName
 import com.fasterxml.jackson.annotation.JsonIgnore
-
+import java.time.format.DateTimeFormatter
+import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto"), @JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"), @JsonSubTypes.Type(value = UsuarioAutor, name = "usuarioAutor"))
-@Accessors abstract class Usuario extends Entidad{
+@JsonSubTypes(
+	 @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto"),
+	@JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"),
+	 @JsonSubTypes.Type(value = UsuarioAutor, name = "usuarioAutor")
+)
+@Accessors 
+abstract class Usuario extends Entidad{
+
 	
 	String nombreYApellido
 	String username
@@ -22,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	double estatura
 	Rutina rutina
 	@JsonIgnore LocalDate fechaDeNacimiento
-	//static String DATE_PATTERN = "dd/MM/yyyy"
+	static String DATE_PATTERN = "dd/MM/yyyy"
 	
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
@@ -73,19 +80,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	
 	def void sumarCopia(){ }
 	
-//	@JsonProperty("fechaDeNacimiento")
-//	def getFechaAsString() {
-//		formatter.format(this.fechaDeNacimiento)
-//	}
-//
-//	@JsonProperty("fechaDeNacimiento")
-//	def asignarFecha(String fecha) {
-//		this.fechaDeNacimiento = LocalDate.parse(fecha, formatter)
-//	}
-//
-//	def formatter() {
-//		DateTimeFormatter.ofPattern(DATE_PATTERN)
-//	}
+	@JsonProperty("fechaDeNacimiento")
+	def getFechaAsString() {
+		if(this.fechaDeNacimiento !== null)
+		formatter.format(this.fechaDeNacimiento)
+	}
+
+	@JsonProperty("fechaDeNacimiento")
+	def asignarFecha(String fecha) {
+		if(this.fechaDeNacimiento !== null)
+		this.fechaDeNacimiento = LocalDate.parse(fecha, formatter)
+	}
+
+	def formatter() {
+		DateTimeFormatter.ofPattern(DATE_PATTERN)
+	}
 }	
 
 @JsonTypeName("usuarioPorDefecto")
