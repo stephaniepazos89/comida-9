@@ -20,13 +20,13 @@ export class IngredientesComponent implements OnInit {
   nombreTabla: String = 'Alimento'
   alimentos: Alimento[]=[]
   receta: Receta = this.recetaService.recetaEditada
-  cantidad: number
+  cantidad: string
 
 
   constructor(public alimentoService: AlimentoService, public router: Router, public route: ActivatedRoute, private recetaService: RecetaService ) { }
 
-  ngOnInit() {
-    this.alimentos=this.alimentoService.getAlimento()
+ async ngOnInit() {
+    this.alimentos=  await this.alimentoService.getAlimentos()
   }
 
   irAReceta(){

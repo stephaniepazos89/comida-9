@@ -50,6 +50,8 @@ class Ingrediente{
 	 Alimento alimento
 	 String cantidad
 	 
+	 new(){}
+	 
 	 new (Alimento _alimento, String _cantidad){
 		
 		alimento = _alimento

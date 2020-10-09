@@ -16,8 +16,8 @@ export class TablaAlimentosComponent implements OnInit {
 
   constructor(public alimentoService: AlimentoService) { }
 
-  ngOnInit() {
-    this.alimentos = this.alimentoService.getAlimento()
+  async ngOnInit() {
+    this.alimentos = await this.alimentoService.getAlimentos()
   }
 
   seleccionarAlimento(alimento: Alimento) {

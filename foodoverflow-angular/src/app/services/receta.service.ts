@@ -69,6 +69,7 @@ export class RecetaService implements InterfaceRecetaService{
   }
 
   async modificarReceta(receta: Receta) {
+    console.log(receta)
     await this.http.put(REST_SERVER_URL + '/receta/' + receta.id, receta.toJSON()).toPromise()
   }
 

@@ -276,7 +276,7 @@ class RecetaCompuesta extends Receta {
 @Accessors
 class RecetaSimple extends Receta{
 		@JsonProperty("type")
-     private final String type = "recetaSimple";
+     final String type = "recetaSimple";
 	
 	Integer calorias
 	Dificultad dificultad
