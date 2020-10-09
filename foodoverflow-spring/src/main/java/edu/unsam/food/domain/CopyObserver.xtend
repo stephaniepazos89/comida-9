@@ -40,7 +40,7 @@ class RegistroCopias extends CopyObserver{
 	
 	def void copiaDificultad(Receta _receta, Usuario usuario){
 		
-		if(_receta.dificultadCompuesta == Dificultad.FACIL){
+		if(_receta.dificultadCompuesta == Dificultad.Facil){
 			cantFacil++;
 		}
 		
@@ -48,7 +48,7 @@ class RegistroCopias extends CopyObserver{
 			cantMedia++;
 		}
 		
-		if(_receta.dificultadCompuesta == Dificultad.DIFICIL){
+		if(_receta.dificultadCompuesta == Dificultad.Dificil){
 			cantDificil++;
 		}
 	}

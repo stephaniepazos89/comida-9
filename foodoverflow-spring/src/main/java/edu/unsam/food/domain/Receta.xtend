@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonIgnore
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes( @JsonSubTypes.Type(name = "recetaSimple", value = RecetaSimple ), @JsonSubTypes.Type(value = RecetaCompuesta, name = "recetaCompuesta") )
 @Accessors abstract class Receta extends Entidad{
 
@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	@JsonIgnore Receta recetaOriginal
 	Accion ultimaAccion
 	String pasoEliminado
+	String img = "guiso.jpg"
 
 	
 	def boolean caloriasAceptables(){
@@ -140,6 +141,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 		 coindiceNombre(value)  || coincideIngrediente(value) || coindiceAutor(value)
 	}
 	
+	def boolean busquedaAutor(RecetaBusquedaAutor busqueda){
+		val palabraBuscada = busqueda.palabraBuscada
+		val autorBuscado = busqueda.nombreAutor
+		
+		coindiceNombre(palabraBuscada) && coindiceAutor(autorBuscado)
+	}
+	
 	def boolean coindiceAutor(String value){
 		
 		autor.nombreYApellido.toLowerCase().contains(value.toLowerCase())
@@ -189,7 +197,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 @JsonTypeName("recetaCompuesta")
 class RecetaCompuesta extends Receta {
-	@JsonProperty("@type")
+	@JsonProperty("type")
      private final String type = "recetaCompuesta";
 	
 	@Accessors List<Receta> subrecetas = new ArrayList<Receta>
@@ -267,7 +275,7 @@ class RecetaCompuesta extends Receta {
 @JsonTypeName("recetaSimple")
 @Accessors
 class RecetaSimple extends Receta{
-		@JsonProperty("@type")
+		@JsonProperty("type")
      private final String type = "recetaSimple";
 	
 	Integer calorias
@@ -346,3 +354,16 @@ class RecetaSimple extends Receta{
 	}
 }
 
+@Accessors
+class RecetaBusquedaAutor{
+	
+	String palabraBuscada
+	String nombreAutor
+	
+	new(){}
+	
+    new(String _palabraBuscada , String _nombreAutor){ 
+    	palabraBuscada = _palabraBuscada
+    	nombreAutor = _nombreAutor
+    }
+}

@@ -109,8 +109,8 @@ class TestReceta {
 		
 		receta1 = new RecetaCompuesta("Milanesa con Ensalada", usuarioAutor1)
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor2 )
-		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
-		alimento2 = new Alimento("Tomate", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
+		alimento2 = new Alimento("Tomate", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "1 Planta")
 		ingrediente2 = new Ingrediente(alimento2, "4 Peritas")
 		
@@ -176,8 +176,8 @@ class TestReceta {
 		
 		receta1 = new RecetaCompuesta("Milanesa con Ensalada", usuarioAutor1)
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor2 )
-		alimento1 = new Alimento("Peceto", GrupoAlimenticio.GRUPO4)
-		alimento2 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO)
+		alimento2 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		condicion1 = new Vegano
 		condicion2 = new Diabetico
 		
@@ -203,8 +203,8 @@ class TestReceta {
 		
 		receta1 = new RecetaCompuesta("Milanesa con Ensalada", usuarioAutor1)
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor2 )
-		alimento1 = new Alimento("Peceto", GrupoAlimenticio.GRUPO4)
-		alimento2 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO)
+		alimento2 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500")
 		ingrediente2 = new Ingrediente(alimento2, "500")
 
@@ -223,7 +223,7 @@ class TestReceta {
 	def void copiaSubreceta(){
 		
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor2 )
-		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500")
 		
 		subreceta1.calorias = 3000
@@ -241,7 +241,7 @@ class TestReceta {
 	def void copiaRecetaCompuesta(){
 		subreceta1 = new RecetaSimple ("Papas Fritas", usuarioAutor2 )
 		receta1 = new RecetaCompuesta ("Milanesa con papas fritas", usuarioAutor2 )
-		alimento1 = new Alimento("Papa", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500")
 		
 		
@@ -257,7 +257,7 @@ class TestReceta {
 	@DisplayName("Se retorna el grado de dificultad Mayor")
 	
 	def void testDificultadCompuesta(){
-		subreceta1 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.DIFICIL ]
+		subreceta1 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.Dificil ]
 		subreceta2 = new RecetaSimple ("Papas Fritas", usuarioAutor2 ) => [dificultad = Dificultad.Media ]
 		receta1 = new RecetaCompuesta ("Milanesa con papas fritas", usuarioAutor2 )
 
@@ -267,6 +267,6 @@ class TestReceta {
 		
 		receta1.ingresarReceta(subreceta1)
 		
-		assertEquals(receta1.dificultadCompuesta,Dificultad.DIFICIL)
+		assertEquals(receta1.dificultadCompuesta,Dificultad.Dificil)
 	}
 }

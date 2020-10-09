@@ -17,7 +17,7 @@ export class UsuarioService {
 
   constructor() {
     this.usuarios = [
-      this.crearUsuario("German", 94, 1.60),
+      this.crearUsuario("Eduardo", 94, 1.60),
       this.crearUsuario("Pedro", 80, 1.56),
       this.crearUsuario("Fernando", 65, 1.60),
       this.crearUsuario("Nahuel", 60, 1.72)

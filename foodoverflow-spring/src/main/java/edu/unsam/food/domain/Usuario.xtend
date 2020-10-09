@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto") )
+@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto"), @JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"), @JsonSubTypes.Type(value = UsuarioAutor, name = "usuarioAutor"))
 @Accessors abstract class Usuario extends Entidad{
 	
 	String nombreYApellido

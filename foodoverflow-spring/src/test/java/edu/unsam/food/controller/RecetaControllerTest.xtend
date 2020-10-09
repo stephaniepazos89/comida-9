@@ -63,7 +63,7 @@ class RecetaControllerTest {
 	def void testBuscaRecetaPorNombreReceta() {
 		val nombreReceta = "mil"
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			MockMvcRequestBuilders.post("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
 			response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)
@@ -88,7 +88,7 @@ class RecetaControllerTest {
 	def void testBuscarRecetaNoEncontrada() {
 		val nombreReceta = "Pizza"
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			MockMvcRequestBuilders.post("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
 			response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)

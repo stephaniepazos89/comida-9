@@ -14,18 +14,34 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.domain.Receta
 import com.fasterxml.jackson.databind.SerializationFeature
+import org.springframework.web.bind.annotation.PostMapping
+import edu.unsam.food.domain.RecetaBusquedaAutor
+import org.springframework.web.bind.annotation.DeleteMapping
 
 @RestController
 @CrossOrigin
 class RecetaController {
 
 
-	@GetMapping("/busqueda/recetas")
+	@PostMapping("/busqueda")
 	def buscarPorNombre(@RequestBody String body) {
 		try {
 			
 			val busqueda = mapper.readValue(body, String)
 			val encontrada = RepoRecetas.instance.search(busqueda)				
+			ResponseEntity.ok(encontrada)
+
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+		@PostMapping("/busquedausuariologin")
+	def buscarPorNombreYUsuarioLogueado(@RequestBody String body) {
+		try {
+			
+			val busqueda = mapper.readValue(body, RecetaBusquedaAutor)
+			val encontrada = RepoRecetas.instance.searchAutorYNombre(busqueda)				
 			ResponseEntity.ok(encontrada)
 
 		} catch (Exception e) {
@@ -77,6 +93,31 @@ def recetaByID(@PathVariable Integer id) {
 			}
 			RepoRecetas.instance.update(actualizada)
 			ResponseEntity.ok(actualizada)
+		} catch (BusinessException e) {
+			ResponseEntity.badRequest.body(e.message)
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+	@PutMapping("/recetanueva")
+	def crear(@RequestBody String body) {
+		try {
+			val receta = mapper.readValue(body, Receta)
+			RepoRecetas.instance.create(receta)
+			ResponseEntity.ok(receta)
+		} catch (BusinessException e) {
+			ResponseEntity.badRequest.body(e.message)
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+	@DeleteMapping("/receta/{id}")
+	def borrar(@PathVariable Integer id) {
+		try {
+			RepoRecetas.instance.deleteById(id)
+
 		} catch (BusinessException e) {
 			ResponseEntity.badRequest.body(e.message)
 		} catch (Exception e) {

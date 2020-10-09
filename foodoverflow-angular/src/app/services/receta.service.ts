@@ -33,14 +33,11 @@ export class RecetaService implements InterfaceRecetaService{
     return Receta.fromJson(receta)
     }
 
-  agregarReceta(receta: Receta){
-    this.recetas.push(receta)
-  }
-
   crearRecetaVacia(){
     const receta = new Receta(-1, this.usuarioLogueado())
     this.recetaEditada = receta
     this.recetaEditada.nombreDelPlato="Nueva Receta"
+    this.recetaEditada.listaDePasos.push("Hola")
   }
   
 
@@ -53,24 +50,30 @@ export class RecetaService implements InterfaceRecetaService{
   }
 
   async busquedaPorPalabra(palabraBuscada){
-    const recetas = await this.http.get<Receta[]>(REST_SERVER_URL + '/busqueda/receta', palabraBuscada).toPromise()
+    const recetas = await this.http.post<Receta[]>(REST_SERVER_URL + '/busqueda', JSON.stringify(palabraBuscada)).toPromise()
     return recetas.map((receta) => Receta.fromJson(receta))
    }
  
-  busquedaRecetaDeUnAutor(recetaBuscada, autor) {
-   // return this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, recetaBuscada) && receta.autor.nombre == autor.nombre)
+  async busquedaRecetaDeUnAutor(busqueda) {
+    const recetas = await this.http.post<Receta[]>(REST_SERVER_URL + '/busquedausuariologin', JSON.stringify(busqueda)).toPromise()
+    return recetas.map((receta) => Receta.fromJson(receta))
   }
 
   coincidencia(valor1: string, valor2: string) {
     return valor1.toLowerCase().match(valor2.toLowerCase())
   }
 
+  async agregarReceta(receta: Receta){
+    console.log(receta.toJSON())
+    await this.http.put(REST_SERVER_URL + '/recetanueva', receta.toJSON()).toPromise()
+  }
+
   async modificarReceta(receta: Receta) {
     await this.http.put(REST_SERVER_URL + '/receta/' + receta.id, receta.toJSON()).toPromise()
   }
 
-  eliminarReceta(receta: Receta){
-    this.recetas.splice(this.recetas.indexOf(receta), 1)
+  async eliminarReceta(receta: Receta){
+    await this.http.delete(REST_SERVER_URL + '/receta/' + receta.id).toPromise()
   }
 
 }

@@ -13,7 +13,7 @@ import { TablaAlimentosComponent } from '../tabla-alimentos/tabla-alimentos.comp
 })
 export class AlimentosComponent implements OnInit {
   usuario: Usuario = this.usuarioService.usuarioCopia
-  nombretabla: String = 'Alimento'
+  nombreTabla: String = 'Alimento'
   alimentos: Alimento[] = []
 
   @ViewChild(TablaAlimentosComponent) childAlimento;

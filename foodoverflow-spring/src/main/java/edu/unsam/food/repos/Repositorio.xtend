@@ -25,6 +25,10 @@ class Repositorio<T extends Entidad> {
 	def delete(T object) {
 		lista.remove(object)
 	}
+	
+	def deleteById(int id){
+		lista.remove(getById(id))
+	}
 
 	def update(T object) {
 		try {
@@ -41,7 +45,7 @@ class Repositorio<T extends Entidad> {
 
 	def List<T> search(String value) {	
 		lista.filter[objetos | objetos.busqueda(value)].toList
-	}
+	}	
 	
 }
 

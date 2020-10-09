@@ -1,6 +1,7 @@
 package edu.unsam.food.repos
 
 import edu.unsam.food.domain.Receta
+import edu.unsam.food.domain.RecetaBusquedaAutor
 
 class RepoRecetas extends Repositorio<Receta> {
 	
@@ -16,6 +17,10 @@ class RepoRecetas extends Repositorio<Receta> {
 	}
 	
 	private new() {
+	}
+	
+	def searchAutorYNombre(RecetaBusquedaAutor busqueda){
+		lista.filter[receta | receta.busquedaAutor(busqueda)].toList
 	}
 	
 	

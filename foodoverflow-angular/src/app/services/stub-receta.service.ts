@@ -43,10 +43,10 @@ export class StubRecetaService {
 
     // PROVISORIO PARA PROBAR.
     let papa, carne
-    receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
-    receta.listaColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
-    receta.listaIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), 500))
-    receta.listaIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
+    receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
+    receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
+    receta.listaDeIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), 500))
+    receta.listaDeIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), 500))
     papa.agregarInadecuado(new Vegano())
     carne.agregarInadecuado(new Vegetariano(), new Vegano())
     receta.agregarPaso("Cortar la papa")
@@ -72,15 +72,15 @@ export class StubRecetaService {
   }
 
   busquedaCompleta(recetaBuscada): Receta[]{
-  return this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombre, recetaBuscada) )
+  return this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombreYApellido, recetaBuscada) )
   }
 
   busquedaPorUsuario(usuarioBuscado): Receta[]{
-    return  this.getRecetas().filter(receta => !usuarioBuscado || this.coincidencia(receta.autor.nombre, usuarioBuscado) )
+    return  this.getRecetas().filter(receta => !usuarioBuscado || this.coincidencia(receta.autor.nombreYApellido, usuarioBuscado) )
    }
  
   busquedaRecetaDeUnAutor(recetaBuscada, autor): Receta[]{
-    return  this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, recetaBuscada) && receta.autor.nombre == autor.nombre)
+    return  this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, recetaBuscada) && receta.autor.nombreYApellido == autor.nombre)
   }
 
   coincidencia(valor1: string, valor2: string) {
