@@ -10,8 +10,12 @@ import { Receta } from 'src/domain/receta'
 import { Rutina } from 'src/domain/rutina'
 import { Usuario } from 'src/domain/usuario'
 import * as _ from "lodash"
-import * as R from "ramda"
 
+
+function mostrarError(component, error) {
+  const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
+  component.errors.push(errorMessage)
+}
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -34,42 +38,51 @@ export class PerfilComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, public condicionesService: CondicionService, public recetaService: RecetaService, private router: Router ) {}
 
 
-  ngOnInit() { 
-    this.inicializacionDeUsuario()
+  async ngOnInit() { 
+    try{
+      await this.inicializacionDeUsuario()
+  } catch (error) {
+      mostrarError(this, error)
+  }
   }
 
-  inicializacionDeUsuario(){
+  async inicializacionDeUsuario(){
 
-    this.ruteoDeUsuario()
+    // await this.ruteoDeUsuario()
+    const usuario = await this.usuarioService.getUsuario(this.usuarioService.usuarioLogueado().id)
+    this.usuarioPerfil = usuario
+    console.log(this.usuarioPerfil)
+    // this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
+    // this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
 
-    //this.ultimasRecetas = this.recetaService.busquedaPorUsuario(this.usuarioPerfil.nombre)
-    this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
-    this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
+    console.log(this.alimentosPreferidos)
 
     this.condiciones = this.condicionesService.getCondiciones()
 
-    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
-    this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
+    // this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
+    // this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
     
     this.listaDeRutinas = Object.keys(this.rutinas)
   }
 
-  ruteoDeUsuario(){
-    if(this.usuarioService.enEdicion){
-      this.usuarioPerfil = this.usuarioService.usuarioCopia
-      this.recetaService.enEdicion = false
-    }else {
-    this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
-    this.usuarioPerfil = this.usuarioService.usuarioCopia
-    }
-  }
+  // async ruteoDeUsuario(){
+ 
+    // if(this.usuarioService.enEdicion){
+    //   this.usuarioPerfil = this.usuarioService.usuarioCopia
+    //   this.recetaService.enEdicion = false
+    // }else {
+    // this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
+    // this.usuarioPerfil = this.usuarioService.usuarioCopia
+    // }
+    // console.log(this.usuarioPerfil)
+  // }
 
   irAHome(){
     this.router.navigate(['/busqueda'])
   }
 
   aceptar(){
-    this.usuarioService.modificarUsuario(this.usuarioPerfil)
+    //this.usuarioService.modificarUsuario(this.usuarioPerfil)
     this.irAHome()
   }
 
@@ -92,6 +105,6 @@ export class PerfilComponent implements OnInit {
 
   tieneCondicion(condicion: CondicionAlimenticia): boolean {
      
-    return this.usuarioPerfil.condicionesAlimenticias.includes(condicion)
+    return this.usuarioPerfil.condicionesAlimenticias.map(condicion => condicion.nombre).includes(condicion.nombre)
   }
 }

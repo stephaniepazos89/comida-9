@@ -4,17 +4,16 @@ import { GrupoAlimenticio } from './grupoAlimenticio';
 export class Alimento {
   
   constructor(
+    public id?: number,
     public nombreDeAlimento?: string,//? puede ser no asignada
     public grupoAlimenticio?: GrupoAlimenticio,
-    public listaInadecuado?: CondicionAlimenticia[],
+    public inadecuadoPara?: CondicionAlimenticia[],
   ) {}
 
    static fromJson(alimentoJSON): Alimento {
     return Object.assign(new Alimento(), alimentoJSON);
   }
 
-  inadecuadoPara = (): CondicionAlimenticia[] => this.listaInadecuado;
-
   agregarInadecuado = (condicion: CondicionAlimenticia) =>
-    this.listaInadecuado.push(condicion);
+    this.inadecuadoPara.push(condicion);
 }

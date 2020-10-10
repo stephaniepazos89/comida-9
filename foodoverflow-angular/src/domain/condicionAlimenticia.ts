@@ -1,6 +1,7 @@
 import { Usuario } from './usuario'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
+import { type } from 'os'
 
 export interface CondicionAlimenticia {
 
@@ -11,6 +12,7 @@ export interface CondicionAlimenticia {
 
 export class Diabetico {
 
+    
     nombre: string = 'Diabetico'
 
     esSaludable(usuario: Usuario): boolean{

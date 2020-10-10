@@ -10,7 +10,7 @@ export class Usuario {
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
     public fechaDeNacimiento = new Date
-    public type: String = "usuarioAutor"
+    //public type: String = "usuarioAutor"
 
     constructor(public id?: number, public nombreYApellido?: string, public peso?: number, public estatura?: number){}
 
@@ -46,5 +46,16 @@ export class Usuario {
 
     public esSaludable(): boolean {
         return this.imcSaludable() || this.condicionAlimenticiaSaludable()
+    }
+
+    static fromJson(usuarioJSON): Usuario {
+        return Object.assign(new Usuario(), usuarioJSON, {})
+    }
+
+    toJSON(): Usuario {
+        return {
+            type: "usuarioPorDefecto",
+            ...this
+        }
     }
 }
