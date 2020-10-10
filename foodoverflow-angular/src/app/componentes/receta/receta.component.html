@@ -7,7 +7,7 @@
             <div class="perfil-receta">
                 <h2><input type="text" class="inputtitulo contenedor-colorsecundario" size="15" maxlength="20" [(ngModel)]="receta.nombreDelPlato"></h2>
                 <p>por {{receta.autor.nombreYApellido}}</p>
-                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara()">{{inadecuado.nombre}}  </span></p>
+                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara">{{inadecuado.nombre}}  </span></p>
             </div>
         </div>
         <div class="bot-receta contenedor-blanco">

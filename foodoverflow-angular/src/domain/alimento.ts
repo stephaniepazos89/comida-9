@@ -2,11 +2,11 @@ import { CondicionAlimenticia } from './condicionAlimenticia';
 import { GrupoAlimenticio } from './grupoAlimenticio';
 
 export class Alimento {
-  private listaInadecuado: CondicionAlimenticia[] = [];
-
+  
   constructor(
     public nombreDeAlimento?: string,//? puede ser no asignada
-    public grupoAlimenticio?: GrupoAlimenticio
+    public grupoAlimenticio?: GrupoAlimenticio,
+    public listaInadecuado?: CondicionAlimenticia[],
   ) {}
 
    static fromJson(alimentoJSON): Alimento {
