@@ -7,7 +7,7 @@ import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
 import { Vegano, Vegetariano } from 'src/domain/condicionAlimenticia';
 import { Dificultad } from 'src/domain/dificultad';
 import { UsuarioService } from './usuario.service';
-import { REST_SERVER_URL } from './configuracion'
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,15 +42,14 @@ export class StubRecetaService {
     this.asignadorID++
 
     // PROVISORIO PARA PROBAR.
-    let papa, carne
+    let papa: Alimento = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS, [new Vegano()])
+    let carne: Alimento = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO, [new Vegetariano()])
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
-    receta.listaDeIngredientes.push(new Ingrediente( carne = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO), "500"))
-    receta.listaDeIngredientes.push(new Ingrediente( papa = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS), "500"))
-    papa.agregarInadecuado(new Vegano())
-    carne.agregarInadecuado(new Vegetariano(), new Vegano())
+    receta.listaDeIngredientes.push(new Ingrediente( carne, "500"))
+    receta.listaDeIngredientes.push(new Ingrediente( papa , "500"))
     receta.agregarPaso("Cortar la papa")
-    receta.dificultad = Dificultad.Media
+    receta.dificultad = Dificultad.Dificil
     receta.img = "guiso.jpg"
     return receta
   }

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 )
 @Accessors
 abstract class CondicionAlimenticia{
+	String nombre
 	
 	def boolean esSaludable(UsuarioPorDefecto usuario)
 	

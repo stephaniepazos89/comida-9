@@ -15,6 +15,7 @@ import java.time.LocalDate
 import edu.unsam.food.domain.Celiaco
 import edu.unsam.food.domain.Mensaje
 import edu.unsam.food.domain.Ingrediente
+import edu.unsam.food.domain.Vegetariano
 
 class Bootstrap {
 	
@@ -72,7 +73,7 @@ class Bootstrap {
 	
 	def void crearAlimentos(){
 		RepoAlimentos.instance => [
-			create(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO)) => [ inadecuadoPara.add(new Vegano())]
+			create(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO)) => [ inadecuadoPara.add(new Vegano()) inadecuadoPara.add(new Vegetariano())]
 			create(new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 			create(new Alimento("Huevo", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 			create(new Alimento("Aceite de Girasol", GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))

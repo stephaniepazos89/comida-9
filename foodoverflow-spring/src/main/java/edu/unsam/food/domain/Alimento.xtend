@@ -10,9 +10,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes( @JsonSubTypes.Type(value = Alimento, name = "alimento") )
-@JsonTypeName("alimento")
 @Accessors
 class Alimento extends Entidad {
 	
@@ -52,9 +49,7 @@ class Alimento extends Entidad {
 	
 	} 
 
-
-
-@JsonTypeName("ingrediente")	
+	
 
 @Accessors	
 class Ingrediente{

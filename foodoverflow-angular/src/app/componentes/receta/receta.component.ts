@@ -24,6 +24,7 @@ export class RecetaComponent implements OnInit {
   enumDificultades = []
   esNueva: boolean
   enEdicion: boolean 
+  listadoInadecuados: String [] 
   errors = []
   
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
@@ -33,6 +34,7 @@ export class RecetaComponent implements OnInit {
     try {
       await this.observableRouting()
       this.enumDificultades = Object.values(this.dificultades)
+      
     } catch (error) {
       mostrarError(this, error)
     }

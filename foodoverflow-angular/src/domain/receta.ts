@@ -8,10 +8,10 @@ export class Receta {
      public listaDeIngredientes: Ingrediente[] = []
      public listaDePasos: String[] = []
      public dificultad: Dificultad
-     public img: string
+     
      public usuarioAutor?: String
 
-    constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
+    constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number, public img?: string, public inadecuadoPara?:String[]){   }
 
     static fromJson(recetaJSON): Receta {
         return Object.assign(new Receta(), recetaJSON, {})
@@ -47,7 +47,7 @@ export class Receta {
         this.listaDePasos.push(paso)
      }
 
-    public inadecuadoPara(): CondicionAlimenticia[]{
+    public inadecuadaPara(): String[]{
         let listaCondicion = this.listaDeIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
         let reduce = [].concat.apply([], listaCondicion)
         return reduce   

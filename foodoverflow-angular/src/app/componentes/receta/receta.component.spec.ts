@@ -59,4 +59,32 @@ it('should create', () => {
   expect(component).toBeTruthy()
 })
 
+it('Calorias mostradas son las que asignamos a la receta en Stub', () => {
+  fixture.detectChanges()
+  expect(component.receta.calorias).toEqual(4000)
+})
+
+it('El componente visualiza el nombre del autor de la Receta que creamos en Stub, German', () => {
+  fixture.detectChanges()
+  expect(component.receta.autor.nombreYApellido).toEqual("German")
+})
+
+it('Compara cantidad de filas de colaboradores con 2', async () => {
+  fixture.detectChanges()
+  const resultHtml = fixture.debugElement.nativeElement
+  expect(resultHtml.querySelectorAll('[data-testid="fila-colaboradores"]').length).toBe(2)
+})
+
+it('Compara cantidad de filas de pasos con 1', async () => {
+  fixture.detectChanges()
+  const resultHtml = fixture.debugElement.nativeElement
+  expect(resultHtml.querySelectorAll('[data-testid="fila-pasos"]').length).toBe(1)
+})
+
+it('Compara cantidad de filas de ingredientes con 2', async () => {
+  fixture.detectChanges()
+  const resultHtml = fixture.debugElement.nativeElement
+  expect(resultHtml.querySelectorAll('[data-testid="fila-ingredientes"]').length).toBe(2)
+})
+
 })
