@@ -10,9 +10,9 @@ export class Usuario {
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
     public fechaDeNacimiento = new Date
+    public type: String = "usuarioAutor"
 
-
-    constructor(public id?: number, public nombre?: string, public peso?: number, public estatura?: number){}
+    constructor(public id?: number, public nombreYApellido?: string, public peso?: number, public estatura?: number){}
 
     public agregarCondicion(condicion: CondicionAlimenticia): void {
         this.condicionesAlimenticias.push(condicion)

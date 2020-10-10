@@ -124,7 +124,7 @@ class TestRepositorio {
 	
 	def void searchByNombreAlimento(){
 		testAlimento = new Repositorio =>[
-		create(alimento1 = new Alimento("Banana", GrupoAlimenticio.GRUPO1))]
+		create(alimento1 = new Alimento("Banana", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))]
 		
 		assertTrue(testAlimento.search("Ban").contains(alimento1))
 	}
@@ -134,7 +134,7 @@ class TestRepositorio {
 	
 	def void searchByDescripcionAlimento(){
 		testAlimento = new Repositorio =>[
-		create(alimento1 = new Alimento("Banana", GrupoAlimenticio.GRUPO1))]
+		create(alimento1 = new Alimento("Banana", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))]
 		
 		alimento1.descripcion = "Banana de medio kilo de peso"
 		
@@ -160,7 +160,7 @@ class TestRepositorio {
 		subreceta1 = new RecetaSimple("Milanesa", usuarioAutor1)
 		testReceta = new Repositorio =>[
 		create(receta1 = new RecetaCompuesta("Milanesa con Papas Fritas", usuarioAutor1))]
-		alimento1 = new Alimento("Peceto", GrupoAlimenticio.GRUPO4)
+		alimento1 = new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO)
 		ingrediente1 = new Ingrediente(alimento1, "1 Kilo")
 		
 		subreceta1.ingresarIngrediente(ingrediente1)
@@ -176,7 +176,7 @@ class TestRepositorio {
 		usuario1 = new UsuarioPorDefecto("Pedro Alvarez", "peal14", 80, 1.80)
 		testReceta = new Repositorio =>[
 		create(receta1 = new RecetaCompuesta("Milanesa con Papitas Fritas", usuarioAutor1))]
-		alimento1 = new Alimento("Papa", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "1 Kilo")
 		subreceta1 = new RecetaSimple("Papas Fritas", usuarioAutor1)
 		
@@ -193,7 +193,7 @@ class TestRepositorio {
 		usuario1 = new UsuarioPorDefecto("Pedro Alvarez", "peal14", 80, 1.80)
 		testReceta = new Repositorio =>[
 		create(receta1 = new RecetaCompuesta("Milanesa con Papas Fritas y huevo frito", usuarioAutor1))]
-		alimento1 = new Alimento("Huevo prueba", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Huevo prueba", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "Media docena")
 		receta2 = new RecetaCompuesta("Papas Fritas y huevo frito", usuarioAutor1)
 		subreceta1 = new RecetaSimple("Huevo Frito", usuarioAutor1)

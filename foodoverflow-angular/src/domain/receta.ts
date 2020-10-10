@@ -4,16 +4,23 @@ import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Dificultad } from './dificultad'
 export class Receta {
 
-     public listaColaboradores: Usuario[] = []
-     public listaIngredientes: Ingrediente[] = []
-     public listaPasos: string[] = []
+     public listaDeColaboradores: Usuario[] = []
+     public listaDeIngredientes: Ingrediente[] = []
+     public listaDePasos: String[] = []
      public dificultad: Dificultad
      public img: string
+     public usuarioAutor?: String
 
     constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number){   }
 
     static fromJson(recetaJSON): Receta {
-        return Object.assign(new Receta(), recetaJSON, { })
+        return Object.assign(new Receta(), recetaJSON, {})
+    }
+
+    copy(): Receta {
+        const clone = Object.assign(new Receta(), JSON.parse(JSON.stringify(this)))
+        clone.doCopy(this)
+        return clone
     }
 
     public esAutor(usuario: Usuario): boolean{
@@ -21,7 +28,7 @@ export class Receta {
     }
 
     public esColaborador(usuario:Usuario): boolean{
-        return this.listaColaboradores.includes(usuario)
+        return this.listaDeColaboradores.includes(usuario)
     }
 
     public esEditablePor(usuario:Usuario): boolean{
@@ -29,27 +36,33 @@ export class Receta {
     }
 
     public agregarColaborador(_colaborador: Usuario): void{
-       this.listaColaboradores.push(_colaborador)
+       this.listaDeColaboradores.push(_colaborador)
     }
 
     public agregarIngrediente(ingrediente: Ingrediente): void{
-        this.listaIngredientes.push(ingrediente)
+        this.listaDeIngredientes.push(ingrediente)
      }
 
      public agregarPaso(paso: string): void{
-        this.listaPasos.push(paso)
+        this.listaDePasos.push(paso)
      }
 
     public inadecuadoPara(): CondicionAlimenticia[]{
-        let listaCondicion = this.listaIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
+        let listaCondicion = this.listaDeIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
         let reduce = [].concat.apply([], listaCondicion)
         return reduce   
     }
 
-    toJSON(): any {
+    toJSON(): Receta {
         return {
-            ...this,
+            type: "recetaSimple",
+            ...this
         }
     }
 
+}
+
+export class RecetaBusquedaAutor{
+
+    constructor(public palabraBuscada: string, public nombreAutor: string){ }
 }

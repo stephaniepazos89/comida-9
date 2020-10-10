@@ -10,7 +10,6 @@ import { ResultadosComponent } from './componentes/resultados/resultados.compone
 import { CardrecetaComponent } from './componentes/cardreceta/cardreceta.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { AlimentosComponent } from './componentes/alimentos/alimentos.component';
-import { RecetaPipe } from './pipes/receta.pipe';
 import { RecetaComponent } from './componentes/receta/receta.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { IngredientesComponent } from './componentes/ingredientes/ingredientes.component';
@@ -35,7 +34,6 @@ import { HttpClientModule } from '@angular/common/http'
     AlimentosComponent,
     IngredientesComponent,
     TablaAlimentosComponent,
-    RecetaPipe,
     RecetaComponent,
     LoginComponent,
     AlimentosperfilComponent,

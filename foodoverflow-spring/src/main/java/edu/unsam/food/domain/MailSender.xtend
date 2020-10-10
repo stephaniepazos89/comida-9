@@ -20,8 +20,8 @@ class MailSender {
 		var mensaje = new Mensaje(mensajeAEnviar, usuarioDestino) => [
 			
 			cuerpoDeMensaje = mensajeAEnviar
-			destinatario = usuarioDestino
-			emisor = usuarioEmisor
+			destinatario = usuarioDestino.nombreYApellido
+			emisor = usuarioEmisor.nombreYApellido
 			horaDeEmision = LocalDateTime.now()
 		]
 		

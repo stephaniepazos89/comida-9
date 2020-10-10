@@ -7,6 +7,10 @@ import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
 import { RoutingService } from 'src/app/services/routing.service';
 
+function mostrarError(component, error) {
+  const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
+  component.errors.push(errorMessage)
+}
 
 @Component({
   selector: 'app-receta',
@@ -20,40 +24,51 @@ export class RecetaComponent implements OnInit {
   enumDificultades = []
   esNueva: boolean
   enEdicion: boolean 
-
+  errors = []
   
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
 
 
-  ngOnInit(): void {
-    this.enEdicion = this.recetaService.enEdicion
-    this.observableRouting()
+  async ngOnInit() {
+    try {
+      await this.observableRouting()
+      this.enumDificultades = Object.values(this.dificultades)
+    } catch (error) {
+      mostrarError(this, error)
+    }
+  
+  }
+
+  async observableRouting(){
+    const idReceta = this.route.snapshot.params['id']
     
-    this.enumDificultades = Object.keys(this.dificultades)
-  }
-
-  observableRouting(){
-    this.route.params.subscribe(params =>{
-      if (params.id >= 0){
-        this.ruteoRecetaExistente(params.id)
+      if (idReceta > 0){
+        await this.ruteoRecetaExistente(idReceta)
       }else{
-        this.ruteoNuevaReceta()
+       await this.ruteoNuevaReceta()
       }
-    })
+    
   }
 
-  ruteoNuevaReceta(){
-    this.receta = this.recetaService.recetaEditada
-    this.esNueva = true
-  }
-
-  ruteoRecetaExistente(idReceta){
-    if(this.recetaService.enEdicion){
+  async ruteoNuevaReceta(){
+    if(!this.recetaService.enEdicion){
+      this.recetaService.crearRecetaVacia()
+      this.receta = this.recetaService.recetaEditada
+      this.esNueva = true
+    }else{
       this.receta = this.recetaService.recetaEditada
       this.recetaService.enEdicion = false
+
+    }
+  }
+
+  async ruteoRecetaExistente(idReceta){
+    if(!this.recetaService.enEdicion){
+      this.receta = await this.recetaService.getRecetaByID(idReceta)
+      this.recetaService.recetaEditada = this.receta
     }else {
-    this.recetaService.recetaEditada = Object.assign(new Receta(),this.recetaService.getRecetaByID(idReceta))
-    this.receta = this.recetaService.recetaEditada
+      this.receta = this.recetaService.recetaEditada
+      this.recetaService.enEdicion = false
     }
     this.esNueva = false
   }
@@ -62,13 +77,17 @@ export class RecetaComponent implements OnInit {
     this.router.navigate([this.routingService.rutaAnteriorEstricta.value])
   }
 
-  aceptar(){
-    if(!this.esNueva){
-      this.recetaService.modificarReceta(this.receta)
-    } else { 
-      this.recetaService.agregarReceta(this.receta)
+  async aceptar(){
+    try {
+      if(!this.esNueva){
+        await this.recetaService.modificarReceta(this.receta)
+      } else { 
+        await this.recetaService.agregarReceta(this.receta)
+      }
+        this.irAHome()
+    } catch (e) {
+      this.errors.push(e.error)
     }
-      this.irAHome()
   }
 
   cancelar(){
@@ -91,15 +110,15 @@ export class RecetaComponent implements OnInit {
   }
 
   eliminarPaso(paso: string){
-    this.receta.listaPasos.splice(this.receta.listaPasos.indexOf(paso), 1)  
+    this.receta.listaDePasos.splice(this.receta.listaDePasos.indexOf(paso), 1)  
   }
 
   eliminarIngrediente(ingrediente: Ingrediente){
-    this.receta.listaIngredientes.splice(this.receta.listaIngredientes.indexOf(ingrediente), 1)
+    this.receta.listaDeIngredientes.splice(this.receta.listaDeIngredientes.indexOf(ingrediente), 1)
   }
 
   eliminarColaborador(colaborador: Usuario){
-    this.receta.listaColaboradores.splice(this.receta.listaColaboradores.indexOf(colaborador), 1)
+    this.receta.listaDeColaboradores.splice(this.receta.listaDeColaboradores.indexOf(colaborador), 1)
   }
 
 }

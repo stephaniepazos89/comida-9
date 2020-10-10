@@ -47,6 +47,7 @@ class RecetaControllerTest {
 	@AfterEach
 	def void end(){
 		repoRecetas.lista.clear
+		repoRecetas.idRepo = 1
 	}
 
 	@DisplayName("Al iniciar Home obtenemos todas las recetas.")
@@ -63,7 +64,7 @@ class RecetaControllerTest {
 	def void testBuscaRecetaPorNombreReceta() {
 		val nombreReceta = "mil"
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			MockMvcRequestBuilders.post("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
 			response
 		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
 		assertEquals(200, responseEntity.status)
@@ -83,19 +84,6 @@ class RecetaControllerTest {
 		assertTrue(recetas.exists[receta | receta.autor.nombreYApellido.toLowerCase.contains(nombreAutor)])
 	}
 	
-	@DisplayName("Se busca una palabra y no obtenemos resultados")
-	@Test
-	def void testBuscarRecetaNoEncontrada() {
-		val nombreReceta = "Pizza"
-		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/busqueda/recetas").content(mapper.writeValueAsString(nombreReceta))).andReturn.
-			response
-		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
-		assertEquals(200, responseEntity.status)
-		assertTrue(recetas.isEmpty)
-	}
-	
-	
 	@DisplayName("Se busca receta por el ID y obtengo la receta")
 	@Test
 	def void testBuscaRecetaPorIdCorrecto() {
@@ -104,6 +92,19 @@ class RecetaControllerTest {
 		assertEquals(200, responseEntity.status)
 		assertEquals(recetaBuscada.nombreDelPlato, "Milanesa")
 	}
+	
+	@DisplayName("Se busca una palabra y no obtenemos resultados")
+	@Test
+	def void testBuscarRecetaNoEncontrada() {
+		val nombreReceta = "Pizza"
+		val responseEntity = mockMvc.perform(
+			MockMvcRequestBuilders.post("/busqueda").content(mapper.writeValueAsString(nombreReceta))).andReturn.
+			response
+		val recetas = responseEntity.contentAsString.fromJsonToList(Receta)
+		assertEquals(200, responseEntity.status)
+		assertTrue(recetas.isEmpty)
+	}
+	
 	
 
 	@DisplayName("Se busca receta por id CERO (Nulo) y obtengo error 400")

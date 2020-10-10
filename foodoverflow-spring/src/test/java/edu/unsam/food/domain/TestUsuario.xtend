@@ -91,8 +91,8 @@ class TestUsuario {
 		usuario1 = new UsuarioPorDefecto("Carlos Tevez", "elapache09", 71, 1.5)
 		
 		usuario1.agregarCondicionAlimenticia(new Vegano)
-		usuario1.agregarAlimentoPreferido(new Alimento("Pera", GrupoAlimenticio.GRUPO1))
-		usuario1.agregarAlimentoPreferido(new Alimento("Manzana", GrupoAlimenticio.GRUPO1))
+		usuario1.agregarAlimentoPreferido(new Alimento("Pera", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
+		usuario1.agregarAlimentoPreferido(new Alimento("Manzana", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 		
 		assertTrue(usuario1.esSaludable)
 
@@ -106,7 +106,7 @@ class TestUsuario {
 		usuario1 = new UsuarioPorDefecto("Tom", "tomguirz", 71, 1.5)
 		
 		usuario1.agregarCondicionAlimenticia(new Vegetariano) 
-		usuario1.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa", GrupoAlimenticio.GRUPO5))
+		usuario1.agregarAlimentoPreferido(new Alimento("Bizcocho de Grasa", GrupoAlimenticio.ACEITES_GRASAS_AZUCARES))
 		
 		assertFalse(usuario1.esSaludable)
 
@@ -121,7 +121,7 @@ class TestUsuario {
 		usuario1.agregarCondicionAlimenticia(new Hipertenso) 
 		usuario1.establecerFecha("2020-02-02")
 		usuario1.rutina = Rutina.ACTIVO
-		usuario1.agregarAlimentoPreferido(new Alimento("Sandia", GrupoAlimenticio.GRUPO1))
+		usuario1.agregarAlimentoPreferido(new Alimento("Sandia", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 		
 		assertTrue(usuario1.esValido)
 	}
@@ -136,7 +136,7 @@ class TestUsuario {
 		usuario1.agregarCondicionAlimenticia(new Hipertenso) 
 
 		usuario1.rutina = Rutina.ACTIVO
-		usuario1.agregarAlimentoPreferido(new Alimento("Sandia", GrupoAlimenticio.GRUPO1))
+		usuario1.agregarAlimentoPreferido(new Alimento("Sandia", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 		
 		assertFalse(usuario1.esValido)
 	}
@@ -174,7 +174,7 @@ class TestUsuario {
 		usuarioAutor1 = new UsuarioAutor(usuario1)
 		
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 )
-		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500")
 		
 		subreceta1.ingresarIngrediente(ingrediente1)
@@ -190,7 +190,7 @@ class TestUsuario {
 		usuario1 = new UsuarioPorDefecto("Jorge Zarate", "zar90", 110, 1.5)
 		usuarioAutor1 = new UsuarioAutor(usuario1)
 		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 )
-		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Lechuga", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500")
 		
 		usuario1.agregarCondicionAlimenticia(condicion1)
@@ -219,9 +219,9 @@ class TestUsuario {
 		subreceta1 = new RecetaSimple ("Carne al horno", usuarioAutor2 )
 		subreceta2 = new RecetaSimple("Ensalada Cesar", usuarioAutor2)
 		subreceta3 = new RecetaSimple("Papa rellena de Muzarella", usuarioAutor1)
-		alimento1 = new Alimento("Carne", GrupoAlimenticio.GRUPO4)=>[agregarInadecuado(condicion1)]
-		alimento2 = new Alimento("Lechuga",GrupoAlimenticio.GRUPO1)=>[agregarInadecuado(condicion2)]
-		alimento3 = new Alimento("Papa",GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO)=>[agregarInadecuado(condicion1)]
+		alimento2 = new Alimento("Lechuga",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)=>[agregarInadecuado(condicion2)]
+		alimento3 = new Alimento("Papa",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500g sin grasa")
 		ingrediente2 = new Ingrediente(alimento2, "1 Planta")
 		ingrediente3 = new Ingrediente(alimento3, "1 Kilo")
@@ -260,9 +260,9 @@ class TestUsuario {
 		subreceta1 = new RecetaSimple ("Carne al horno", usuarioAutor2 )
 		subreceta2 = new RecetaSimple("Ensalada Cesar", usuarioAutor2)
 		subreceta3 = new RecetaSimple("Papa rellena de Muzarella", usuarioAutor1)
-		alimento1 = new Alimento("Carne", GrupoAlimenticio.GRUPO4)=>[agregarInadecuado(condicion1)]
-		alimento2 = new Alimento("Lechuga",GrupoAlimenticio.GRUPO1)=>[agregarInadecuado(condicion2)]
-		alimento3 = new Alimento("Papa",GrupoAlimenticio.GRUPO1)
+		alimento1 = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO)=>[agregarInadecuado(condicion1)]
+		alimento2 = new Alimento("Lechuga",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)=>[agregarInadecuado(condicion2)]
+		alimento3 = new Alimento("Papa",GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS)
 		ingrediente1 = new Ingrediente(alimento1, "500g sin grasa")
 		ingrediente2 = new Ingrediente(alimento2, "1 Planta")
 		ingrediente3 = new Ingrediente(alimento3, "1 Kilo")
@@ -329,10 +329,10 @@ class TestUsuario {
 		
 		subreceta1.dificultad = Dificultad.Media
 		subreceta1.ingresarColaborador(usuarioColaborador1)
-		usuarioColaborador1.solicitarCambioDeDificultad(subreceta1, Dificultad.FACIL)
+		usuarioColaborador1.solicitarCambioDeDificultad(subreceta1, Dificultad.Facil)
 		usuarioAutor1.autorizarCambio(subreceta1,0)
 		
-		assertEquals(Dificultad.FACIL,subreceta1.dificultad)
+		assertEquals(Dificultad.Facil,subreceta1.dificultad)
 		
 		subreceta1.deshacerCambio()
 		
@@ -419,13 +419,13 @@ class TestUsuario {
 	def void registroContadorPorDificultad(){
 		
 		usuarioAutor1 = new UsuarioAutor(new UsuarioPorDefecto("Jorge Zarate", "zar90", 110, 1.5))
-		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 ) =>[ dificultad = Dificultad.FACIL
+		subreceta1 = new RecetaSimple ("Ensalada", usuarioAutor1 ) =>[ dificultad = Dificultad.Facil
 																  copyObservers.add(registro1 = new RegistroCopias)
 		assertEquals(registro1.cantFacil, 0)													]
 		
 		usuarioAutor1.generarCopia(subreceta1)
 		usuarioAutor1.generarCopia(subreceta1)
-		subreceta1.dificultad = Dificultad.DIFICIL
+		subreceta1.dificultad = Dificultad.Dificil
 		usuarioAutor1.generarCopia(subreceta1)
 		
 		assertEquals(registro1.cantFacil, 2)

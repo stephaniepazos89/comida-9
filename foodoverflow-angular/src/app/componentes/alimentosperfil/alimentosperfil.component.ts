@@ -7,7 +7,7 @@ import { Usuario } from 'src/domain/usuario'
 @Component({
   selector: 'app-alimentosperfil',
   templateUrl: './alimentosperfil.component.html',
-  styleUrls: ['./alimentosperfil.component.scss']
+  styleUrls: ['./alimentosperfil.component.css']
 })
 export class AlimentosperfilComponent implements OnInit {
  

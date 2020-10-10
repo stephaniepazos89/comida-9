@@ -20,8 +20,9 @@ export class AlimentosComponent implements OnInit {
 
   constructor(public alimentoService: AlimentoService, public usuarioService: UsuarioService,  private router: Router, private route: ActivatedRoute) {   }
 
-  ngOnInit() {
-    this.alimentos = this.alimentoService.getAlimento()
+  //recibo una promesa alimento por eso es asincronico
+  async ngOnInit() {
+    this.alimentos = await this.alimentoService.getAlimentos()
   }
 
   irAHome(){

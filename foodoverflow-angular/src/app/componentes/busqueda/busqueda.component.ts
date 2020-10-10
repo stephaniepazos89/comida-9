@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecetaService } from 'src/app/services/receta.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Receta } from 'src/domain/receta';
+import { Receta, RecetaBusquedaAutor } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 
 function mostrarError(component, error) {
@@ -21,7 +21,10 @@ export class BusquedaComponent implements OnInit {
   isChecked: Boolean = false
   receta: Receta
   
-  constructor(public recetaService : RecetaService, public usuarioService : UsuarioService, private router: Router) { }
+  constructor(public recetaService : RecetaService, public usuarioService : UsuarioService, private router: Router) {
+
+    this.ngOnInit()
+   }
   
   async ngOnInit() {
     try {
@@ -35,9 +38,10 @@ export class BusquedaComponent implements OnInit {
 
    if(!this.isChecked){
     this.recetas =  await this.recetaService.busquedaPorPalabra(recetaBuscada)
-   }/*else {
-     this.recetas = await this.recetaService.busquedaRecetaDeUnAutor(recetaBuscada, this.usuarioLogueado())
-   }*/
+   }else {
+     let busqueda = new RecetaBusquedaAutor(recetaBuscada,this.usuarioLogueado().nombreYApellido)
+     this.recetas = await this.recetaService.busquedaRecetaDeUnAutor(busqueda)
+   }
    
    }
 

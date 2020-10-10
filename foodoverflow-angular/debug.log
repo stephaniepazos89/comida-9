@@ -120,3 +120,4 @@
 [0916/104556.566:ERROR:process_memory_win.cc(73)] ReadMemory at 0x7ffd46f7f4f8 of 40 bytes failed: Solo se completó una parte de una solicitud ReadProcessMemory o WriteProcessMemory. (0x12B)
 [0916/104556.566:ERROR:process_memory_win.cc(73)] ReadMemory at 0x7ffd46f7f978 of 48 bytes failed: Solo se completó una parte de una solicitud ReadProcessMemory o WriteProcessMemory. (0x12B)
 [0916/104556.566:ERROR:process_memory_win.cc(73)] ReadMemory at 0x7ffd46f853c0 of 64 bytes failed: Solo se completó una parte de una solicitud ReadProcessMemory o WriteProcessMemory. (0x12B)
+[1009/182247.131:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)

@@ -3,7 +3,7 @@ import { Alimento } from './alimento'
 
 export class Ingrediente {
 
-    constructor(public alimento: Alimento, public cantidad: number ){}
+    constructor(public alimento?: Alimento, public cantidad?: string ){}
 
     nombre :string = this.alimento.nombreDeAlimento
 
