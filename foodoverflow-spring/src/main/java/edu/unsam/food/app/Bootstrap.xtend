@@ -14,13 +14,17 @@ import edu.unsam.food.domain.Vegano
 import java.time.LocalDate
 import edu.unsam.food.domain.Celiaco
 import edu.unsam.food.domain.Mensaje
+import edu.unsam.food.domain.Ingrediente
 
 class Bootstrap {
 	
+	Ingrediente peceto
+	
 		def void run() {
+			crearAlimentos()
+			crearIngredientes()
 			crearRecetas()
 			crearUsuarios()
-			crearAlimentos()
 			
 	}
 
@@ -29,6 +33,7 @@ class Bootstrap {
 		RepoRecetas.instance => [
 			create(new RecetaSimple("Milanesa", usuario)=>[calorias = 1002 
 														   dificultad = Dificultad.Media
+														  listaDeIngredientes.add(peceto)
 														   listaDePasos.add("Cortar el pecetto fino")
 														   listaDePasos.add("Romper 2 huevos")
 														   listaDeColaboradores.add(new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "Gimi14", 80, 1.74)))
@@ -36,6 +41,7 @@ class Bootstrap {
 			create(new RecetaSimple("Guiso", new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "Gimi14", 80, 1.74))))
 			create(new RecetaSimple("Papas Fritas", usuario))
 		]
+		
 	}
 
 	def void crearUsuarios() {
@@ -71,5 +77,10 @@ class Bootstrap {
 			create(new Alimento("Huevo", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
 			create(new Alimento("Aceite de Girasol", GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
 		]
+	}
+	def void crearIngredientes(){
+		peceto=new Ingrediente(RepoAlimentos.instance.getById(1),'500')
+			
+		
 	}
 }

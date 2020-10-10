@@ -1,20 +1,28 @@
 package edu.unsam.food.domain
 
 import java.util.HashSet
+import com.fasterxml.jackson.annotation.JsonTypeName
 import org.eclipse.xtend.lib.annotations.Accessors
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonSubTypes
+
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes( @JsonSubTypes.Type(value = Alimento, name = "alimento") )
+@JsonTypeName("alimento")
 @Accessors
 class Alimento extends Entidad {
 	
 	String nombreDeAlimento
 	@JsonIgnore String descripcion
-	@JsonIgnore Integer id
+	Integer id
 
 	@JsonIgnore GrupoAlimenticio grupoAlimenticio
 	
-	@JsonIgnore HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
+	HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
 
 	new (String _nombreDeAlimento, GrupoAlimenticio _grupoAlimenticio){
 		
@@ -44,7 +52,10 @@ class Alimento extends Entidad {
 	
 	} 
 
-	
+
+
+@JsonTypeName("ingrediente")	
+
 @Accessors	
 class Ingrediente{
 	 Alimento alimento
