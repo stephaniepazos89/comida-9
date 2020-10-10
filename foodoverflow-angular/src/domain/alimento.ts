@@ -10,7 +10,7 @@ export class Alimento {
   ) {}
 
    static fromJson(alimentoJSON): Alimento {
-    return Object.assign(new Alimento(), alimentoJSON, {});
+    return Object.assign(new Alimento(), alimentoJSON);
   }
 
   inadecuadoPara = (): CondicionAlimenticia[] => this.listaInadecuado;
