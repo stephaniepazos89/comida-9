@@ -61,10 +61,10 @@ export class PerfilComponent implements OnInit {
 
    async ruteoDeUsuario(){
     if(!this.usuarioService.enEdicion){
-      this.usuarioPerfil = await this.usuarioService.getUsuario(this.usuarioService.usuarioLogin.id)
-      this.usuarioService.usuarioCopia = this.usuarioPerfil
+      await this.usuarioService.fetchUsuarioLogueado()
+      this.usuarioPerfil = this.usuarioService.usuarioLogin
     }else {
-      this.usuarioPerfil = this.usuarioService.usuarioCopia
+      this.usuarioPerfil = this.usuarioService.usuarioLogin
       this.usuarioService.enEdicion = false
       
     }
@@ -77,7 +77,7 @@ export class PerfilComponent implements OnInit {
   }
 
   aceptar(){
-    this.usuarioService.modificarUsuario(this.usuarioPerfil)
+    this.usuarioService.modificarUsuario(this.usuarioService.usuarioLogin)
     this.irAHome()
   }
 
