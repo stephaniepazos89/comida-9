@@ -11,7 +11,7 @@ export class Ingrediente {
 
     nombre :string = this.alimento.nombreDeAlimento
 
-    inadecuadoPara = (): CondicionAlimenticia[] => this.alimento.inadecuadoPara()
+    inadecuadoPara = (): CondicionAlimenticia[] => this.alimento.inadecuadoPara
 
     agregarInadecuado = (condicion: CondicionAlimenticia) => this.alimento.agregarInadecuado(condicion)
 

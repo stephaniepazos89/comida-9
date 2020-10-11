@@ -12,12 +12,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.error.BusinessException
 import edu.unsam.food.domain.UsuarioPorDefecto
+import org.springframework.web.bind.annotation.PostMapping
+import edu.unsam.food.domain.Usuario
 
 @RestController
 @CrossOrigin
 class UsuarioController {
 	
-	@GetMapping("/perfil")
+	@PostMapping("/perfil")
 	def cargarUsuario(@RequestBody String id) {
 		try {
 			if (id === null) {
@@ -47,7 +49,7 @@ class UsuarioController {
 			if (nuevoUsuario === null) {
 				return ResponseEntity.badRequest.body('''No se recibe Usuario''')
 			}
-			val usuarioActualizado = mapper.readValue(nuevoUsuario, UsuarioPorDefecto)
+			val usuarioActualizado = mapper.readValue(nuevoUsuario, Usuario)
 			
 			if (this.cantidadDeUsuariosValida(usuarioActualizado.id)) {
 				return  ResponseEntity.badRequest.body('''Solicitud Incorrecta''')

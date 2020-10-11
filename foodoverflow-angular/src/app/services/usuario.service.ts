@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class UsuarioService {
   public enEdicion: boolean
   private usuarios: Usuario[]
-  private usuarioLogin: Usuario
+  public usuarioLogin: Usuario
   public usuarioCopia: Usuario
 
   asignadorID: number = 0
@@ -20,20 +20,18 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
     this.usuarios = [
       this.crearUsuario("Eduardo", 94, 1.60)
-    //   this.crearUsuario("Pedro", 80, 1.56),
-    //   this.crearUsuario("Fernando", 65, 1.60),
-    //   this.crearUsuario("Nahuel", 60, 1.72)
     ]
 
   }
 
-  async getUsuario(iDusuario) {
-    const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/perfil', JSON.stringify(iDusuario)).toPromise()
+  async getUsuario(IDusuario) {
+    const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/perfil', JSON.stringify(IDusuario)).toPromise()
     return Usuario.fromJson(usuario)
   }
-  usuarioLogueado(): Usuario {
-    this.usuarioLogin = this.getUsuarioLogueado(0)
-    return this.usuarioLogin
+
+
+  async fetchUsuarioLogueado() {
+    this.usuarioLogin = await this.getUsuario(1)
   }
 
   crearUsuario(nombre:string, peso: number, estatura: number){
@@ -60,9 +58,8 @@ export class UsuarioService {
     })
   }
 
-  modificarUsuario(usuario: Usuario) {
-    this.usuarios.splice(usuario.id, 1, usuario)
-    console.log(usuario.id)
+  async modificarUsuario(usuario: Usuario) {
+    await this.http.put(REST_SERVER_URL + '/perfil', usuario.toJSON()).toPromise()
   }
 
   

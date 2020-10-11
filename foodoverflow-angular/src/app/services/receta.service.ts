@@ -42,7 +42,7 @@ export class RecetaService implements InterfaceRecetaService{
   
 
   usuarioLogueado(): Usuario{
-   return this.usuarioService.usuarioLogueado()
+   return this.usuarioService.usuarioLogin
   }
 
   busquedaCompleta(recetaBuscada) {

@@ -20,7 +20,12 @@ import edu.unsam.food.domain.Vegetariano
 class Bootstrap {
 	
 	Ingrediente peceto
-	
+	val usuario = new UsuarioAutor(new UsuarioPorDefecto("Eduardo Biloni", "Biloba", 60, 1.70) => [
+				agregarAlimentoPreferido(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO))
+				establecerFecha("2020-12-20")
+				agregarCondicionAlimenticia(new Diabetico())
+				agregarCondicionAlimenticia(new Celiaco())
+			])
 		def void run() {
 			crearAlimentos()
 			crearIngredientes()
@@ -30,7 +35,7 @@ class Bootstrap {
 	}
 
 	def void crearRecetas() {
-		val usuario = new UsuarioAutor(new UsuarioPorDefecto("Eduardo Biloni", "Biloba", 60, 1.70))
+		
 		RepoRecetas.instance => [
 			create(new RecetaSimple("Milanesa", usuario)=>[calorias = 1002 
 														   dificultad = Dificultad.Media
@@ -47,9 +52,7 @@ class Bootstrap {
 
 	def void crearUsuarios() {
 		RepoUsuario.instance => [
-			create(new UsuarioPorDefecto("Manuel Gerry", "manuguer", 60, 1.50) => [
-				fechaDeNacimiento = LocalDate.now()
-			])
+			create(usuario)
 			
 			create(new UsuarioPorDefecto(
 			"Pedro Alvarez", "peal14", 80, 1.80

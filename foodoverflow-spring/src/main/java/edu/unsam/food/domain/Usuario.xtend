@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import java.time.format.DateTimeFormatter
 import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes(
 	 @JsonSubTypes.Type(value = UsuarioPorDefecto, name = "usuarioPorDefecto"),
 	@JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"),
@@ -100,7 +100,8 @@ abstract class Usuario extends Entidad{
 @JsonTypeName("usuarioPorDefecto")
 @Accessors
 class UsuarioPorDefecto extends Usuario { 
-	
+	@JsonProperty("type")
+     private final String type = "usuarioPorDefecto"
 
 	new (String _nombreYApellido, String _username, double _peso, double _estatura){
 		nombreYApellido = _nombreYApellido
@@ -223,8 +224,6 @@ class UsuarioPorDefecto extends Usuario {
 	
 }
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes( @JsonSubTypes.Type(value = UsuarioColaborador, name = "usuarioColaborador"), @JsonSubTypes.Type(value = UsuarioAutor, name = "usuarioAutor") )
 abstract class UsuarioDecorator extends Usuario{
 	
 	protected Usuario usuario
@@ -272,7 +271,9 @@ abstract class UsuarioDecorator extends Usuario{
 
 @JsonTypeName("usuarioColaborador")
 class UsuarioColaborador extends UsuarioDecorator{
-	
+		@JsonProperty("type")
+     private final String type = "usuarioColaborador";
+     
 	new(Usuario _usuario){
 		id = _usuario.id
 		nombreYApellido = _usuario.nombreYApellido
@@ -306,7 +307,8 @@ class UsuarioColaborador extends UsuarioDecorator{
 
 @JsonTypeName("usuarioAutor")
 class UsuarioAutor extends UsuarioDecorator{
-	
+	 @JsonProperty("type")
+     private final String type = "usuarioAutor";
 	@Accessors int cantCopiasAutor = 0
 	
 	new(Usuario _usuario){

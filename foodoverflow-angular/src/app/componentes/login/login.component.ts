@@ -11,10 +11,12 @@ export class LoginComponent implements OnInit {
 
   constructor(public usuarioService : UsuarioService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    
   }
 
   login(){
+    this.usuarioService.fetchUsuarioLogueado()
     this.router.navigate(['/busqueda'])
   }
 }

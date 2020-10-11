@@ -1,7 +1,6 @@
 import { Usuario } from './usuario'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
-import { type } from 'os'
 
 export interface CondicionAlimenticia {
 

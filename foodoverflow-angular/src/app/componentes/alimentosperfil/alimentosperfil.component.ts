@@ -15,22 +15,26 @@ export class AlimentosperfilComponent implements OnInit {
   @Input() listaDeAlimentos: Alimento[]
   @Input() usuario: Usuario
   @Input() tipoAlimento: number
+  usuarioPerfil: Usuario
   alimentoRecibido: Alimento
 
   constructor(private router: Router, public usuarioService: UsuarioService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params =>{
-      this.alimentoRecibido = params.alimentoParaAgregar
-    })
+
   }
 
   ngOnInit() {
-
+    if(this.tipoAlimento == 1){
+      this.listaDeAlimentos = this.usuarioService.usuarioLogin.alimentosPreferidos
+    }else{
+      this.listaDeAlimentos = this.usuarioService.usuarioLogin.alimentosDisgustados
+    }
+    
   }
 
   goToAlimento(){
     this.usuarioService.tipoAlimento = this.tipoAlimento
     this.usuarioService.enEdicion = true
-    this.router.navigate(['/alimento', ])
+    this.router.navigate(['/alimento'])
   }
 
   eliminarAlimento(alimento: Alimento){

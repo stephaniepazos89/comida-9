@@ -54,7 +54,7 @@ export class Usuario {
 
     toJSON(): Usuario {
         return {
-            type: "usuarioPorDefecto",
+            
             ...this
         }
     }

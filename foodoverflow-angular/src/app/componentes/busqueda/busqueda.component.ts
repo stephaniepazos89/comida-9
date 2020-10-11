@@ -46,7 +46,7 @@ export class BusquedaComponent implements OnInit {
    }
 
    usuarioLogueado(): Usuario{
-     return this.usuarioService.usuarioLogueado()
+     return this.usuarioService.usuarioLogin
    }
 
    nuevaReceta(){

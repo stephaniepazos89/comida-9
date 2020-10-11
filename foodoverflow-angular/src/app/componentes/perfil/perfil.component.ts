@@ -48,14 +48,8 @@ export class PerfilComponent implements OnInit {
 
   async inicializacionDeUsuario(){
 
-    // await this.ruteoDeUsuario()
-    const usuario = await this.usuarioService.getUsuario(this.usuarioService.usuarioLogueado().id)
-    this.usuarioPerfil = usuario
-    console.log(this.usuarioPerfil)
-    // this.alimentosPreferidos = this.usuarioPerfil.alimentosPreferidos
-    // this.alimentosDisgustados = this.usuarioPerfil.alimentosDisgustados
-
-    console.log(this.alimentosPreferidos)
+    await this.ruteoDeUsuario()
+    
 
     this.condiciones = this.condicionesService.getCondiciones()
 
@@ -65,24 +59,25 @@ export class PerfilComponent implements OnInit {
     this.listaDeRutinas = Object.keys(this.rutinas)
   }
 
-  // async ruteoDeUsuario(){
- 
-    // if(this.usuarioService.enEdicion){
-    //   this.usuarioPerfil = this.usuarioService.usuarioCopia
-    //   this.recetaService.enEdicion = false
-    // }else {
-    // this.usuarioService.usuarioCopia = Object.assign(new Usuario(),this.usuarioService.usuarioLogueado())
-    // this.usuarioPerfil = this.usuarioService.usuarioCopia
-    // }
-    // console.log(this.usuarioPerfil)
-  // }
+   async ruteoDeUsuario(){
+    if(!this.usuarioService.enEdicion){
+      this.usuarioPerfil = await this.usuarioService.getUsuario(this.usuarioService.usuarioLogin.id)
+      this.usuarioService.usuarioCopia = this.usuarioPerfil
+    }else {
+      this.usuarioPerfil = this.usuarioService.usuarioCopia
+      this.usuarioService.enEdicion = false
+      
+    }
+
+    }
+
 
   irAHome(){
     this.router.navigate(['/busqueda'])
   }
 
   aceptar(){
-    //this.usuarioService.modificarUsuario(this.usuarioPerfil)
+    this.usuarioService.modificarUsuario(this.usuarioPerfil)
     this.irAHome()
   }
 
