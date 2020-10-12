@@ -29,14 +29,31 @@ export class UsuarioService {
     return Usuario.fromJson(usuario)
   }
 
+
   async modificarUsuario(usuario: Usuario) {
     await this.http.put(REST_SERVER_URL + '/perfil', usuario.toJSON()).toPromise()
   }
+    
+  async getUsuarios(){
+    const usuarios = await this.http.get<Usuario[]>(REST_SERVER_URL + '/usuarios').toPromise()
+    return usuarios.map((usuario) => Usuario.fromJson(usuario))
+  }
 
   async fetchUsuarioLogueado() {
-    this.usuarioLogin = await this.getUsuario(2)
+    this.usuarioLogin = await this.getUsuario(1)
     console.log(this.usuarioLogin)
   }
+
+  async loguearUsuario(busqueda) {
+    const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/login', JSON.stringify(busqueda)).toPromise()
+    if(usuario !== null){
+      this.usuarioLogin = Usuario.fromJson(usuario)
+      return true
+    } else{
+      return false
+    }
+  }
+
 
   crearUsuario(nombre:string, peso: number, estatura: number){
     const usuario = new Usuario(this.asignadorID, nombre, peso, estatura)
@@ -48,10 +65,10 @@ export class UsuarioService {
 
   }
 
-  public getUsuarios(){
+ /* public getUsuarios(){
     return this.usuarios
   }
-
+*/
   getUsuarioLogueado(posicion: number){
     return this.usuarios[posicion]
   }
@@ -61,5 +78,5 @@ export class UsuarioService {
       return receta.id == id
     })
   }
-  
+
 }

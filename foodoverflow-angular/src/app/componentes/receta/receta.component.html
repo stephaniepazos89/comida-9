@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="contenedor-receta">
+<div class="contenedor-receta" *ngIf="!(receta==null)">
     <div class="receta">
         <div class="top-receta contenedor-colorsecundario">
             <img src="assets/img/{{receta.img}}" class="imagenreceta" />
@@ -83,7 +83,7 @@
 
 
             </div>
-
+            <div class="error" *ngIf="errorMessage"><i class="fa fa-times-circle"></i>{{ errorMessage }}</div>
         </div>
 
 

@@ -29,12 +29,15 @@ abstract class Usuario extends Entidad{
 	double estatura
 	Rutina rutina
 	@JsonIgnore LocalDate fechaDeNacimiento
+	@JsonIgnore String password
 	static String DATE_PATTERN = "dd/MM/yyyy"
 	
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
 	public Set <CondicionAlimenticia> condicionesAlimenticias = new HashSet<CondicionAlimenticia>
 	public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
+	
+	def boolean loginCorrecto(LoginUsuario busqueda)
 	
 	def double calcularIMC()
 	
@@ -108,10 +111,15 @@ class UsuarioPorDefecto extends Usuario {
 		username = _username
 		peso = _peso
 		estatura = _estatura
+		
 	}
 	
 	new (){
 		
+	}
+	
+	override loginCorrecto(LoginUsuario busqueda){
+		return ((busqueda.username == username) && (busqueda.password == password))
 	}
 	
 	override calcularIMC(){
@@ -280,9 +288,14 @@ class UsuarioColaborador extends UsuarioDecorator{
 		username = _usuario.username
 		peso = _usuario.peso
 		estatura = _usuario.estatura
+		password = _usuario.password
 	}
 	
 	new(){}
+	
+	override loginCorrecto(LoginUsuario busqueda){
+		return ((busqueda.username == username) && (busqueda.password == password))
+	}
 	
 	def void solicitarCambioDeTitulo(Receta receta, String nuevoTitulo){
 		
@@ -317,11 +330,17 @@ class UsuarioAutor extends UsuarioDecorator{
 		username = _usuario.username
 		peso = _usuario.peso
 		estatura = _usuario.estatura
+		password = _usuario.password
 	}
 
 	new (){
 		
 	}
+	
+	override loginCorrecto(LoginUsuario busqueda){
+		return ((busqueda.username == username) && (busqueda.password == password))
+	}
+	
 	def void autorizarTodosLosCambios(Receta receta){ 
 		
 		receta.realizarTodasLasAcciones()
@@ -350,7 +369,19 @@ class UsuarioAutor extends UsuarioDecorator{
 	
 }
 
-
+@Accessors
+class LoginUsuario{
+	
+	String username
+	String password
+	
+	new(){}
+	
+    new(String _username , String _password){ 
+    	username = _username
+    	password = _password
+    }
+}
 
 
 

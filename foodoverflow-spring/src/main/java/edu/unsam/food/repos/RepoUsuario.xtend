@@ -1,6 +1,7 @@
 package edu.unsam.food.repos
 
 import edu.unsam.food.domain.Usuario
+import edu.unsam.food.domain.LoginUsuario
 
 class RepoUsuario extends Repositorio<Usuario> {
 	
@@ -15,4 +16,7 @@ class RepoUsuario extends Repositorio<Usuario> {
 		instance
 	}
 	
+	def Usuario loginUser(LoginUsuario busqueda){
+		lista.findFirst[usuario | usuario.loginCorrecto(busqueda)]
+	}
 }

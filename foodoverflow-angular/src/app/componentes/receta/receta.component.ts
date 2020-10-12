@@ -6,6 +6,7 @@ import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
 import { RoutingService } from 'src/app/services/routing.service';
+import { isFunction } from 'lodash';
 
 function mostrarError(component, error) {
   const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
@@ -19,18 +20,19 @@ function mostrarError(component, error) {
 })
 export class RecetaComponent implements OnInit {
 
-  receta: Receta 
+  receta: Receta
   dificultades = Dificultad
   enumDificultades = []
   esNueva: boolean
   enEdicion: boolean 
   listadoInadecuados: String [] 
   errors = []
-  
+  errorMessage : string
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
 
 
   async ngOnInit() {
+    
     try {
       await this.observableRouting()
       this.enumDificultades = Object.values(this.dificultades)
@@ -47,12 +49,12 @@ export class RecetaComponent implements OnInit {
       if (idReceta > 0){
         await this.ruteoRecetaExistente(idReceta)
       }else{
-       await this.ruteoNuevaReceta()
+        this.ruteoNuevaReceta()
       }
     
   }
 
-  async ruteoNuevaReceta(){
+  ruteoNuevaReceta(){
     if(!this.recetaService.enEdicion){
       this.recetaService.crearRecetaVacia()
       this.receta = this.recetaService.recetaEditada
@@ -81,15 +83,31 @@ export class RecetaComponent implements OnInit {
 
   async aceptar(){
     try {
-      if(!this.esNueva){
-        await this.recetaService.modificarReceta(this.receta)
-      } else { 
-        await this.recetaService.agregarReceta(this.receta)
-      }
+      if(this.receta.esValida()){
+        if(this.esNueva){
+          await this.aceptarNueva()
+        }else{
+          await this.aceptarModificacion()
+        }
+
         this.irAHome()
+      }else{
+        this.errorMessage = "Debe llenar al menos un paso, un ingrediente, y calorias entre 10 y 5000"
+      }
+
     } catch (e) {
       this.errors.push(e.error)
     }
+  }
+
+
+  async aceptarNueva(){
+      this.receta.id = 0
+      await this.recetaService.agregarReceta(this.receta)
+  }
+
+  async aceptarModificacion(){
+    await this.recetaService.modificarReceta(this.receta)
   }
 
   cancelar(){

@@ -13,9 +13,14 @@ export interface CondicionAlimenticia {
     crearCondicion()
 }
 
-export class Diabetico {
 
+export class Diabetico {
+    
     nombre: string = 'Diabetico'
+
+    static fromJson(condicionJSON): Diabetico {
+        return Object.assign(new Diabetico(), condicionJSON)
+      }
 
     esSaludable(usuario: Usuario): boolean{
 
@@ -29,6 +34,10 @@ export class Celiaco {
 
     nombre: string = 'Celiaco'
 
+    static fromJson(condicionJSON): Celiaco {
+        return Object.assign(new Celiaco(), condicionJSON)
+      }
+
     esSaludable(usuario: Usuario): boolean{
        
         return true
@@ -41,6 +50,10 @@ export class Hipertenso {
 
     nombre: string = 'Hipertenso'
     
+    static fromJson(condicionJSON): Hipertenso {
+        return Object.assign(new Hipertenso(), condicionJSON)
+      }
+
     esSaludable(usuario: Usuario): boolean{
 
         return usuario.rutina == Rutina.INTENSIVO
@@ -51,6 +64,10 @@ export class Hipertenso {
 export class Vegano {
 
     nombre: string = 'Vegano'
+
+    static fromJson(condicionJSON): Vegano {
+        return Object.assign(new Vegano(), condicionJSON)
+      }
 
     esSaludable(usuario: Usuario): boolean{
 
@@ -64,7 +81,11 @@ export class Vegano {
 export class Vegetariano {
 
     nombre: string = 'Vegetariano'
-    
+
+    static fromJson(condicionJSON): Vegetariano {
+        return Object.assign(new Vegetariano(), condicionJSON)
+      }
+
     esSaludable(usuario: Usuario): boolean{
 
         return usuario.calculoIMC() < 30 || !usuario.alimentosPreferidos.some(

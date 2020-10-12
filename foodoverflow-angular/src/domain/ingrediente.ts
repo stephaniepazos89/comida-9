@@ -3,13 +3,13 @@ import { Alimento } from './alimento'
 
 export class Ingrediente {
 
-    static fromJson(recetaJSON): Ingrediente {
-        return Object.assign(new Ingrediente(), recetaJSON, {})
+    static fromJson(ingredienteJSON): Ingrediente {
+        return Object.assign(new Ingrediente(), ingredienteJSON, { alimento: Alimento.fromJson(ingredienteJSON.alimento)})
     }
 
     constructor(public alimento?: Alimento, public cantidad?: string ){}
 
-    nombre :string = this.alimento.nombreDeAlimento
+    nombre : string = this.alimento.nombreDeAlimento
 
     inadecuadoPara = (): CondicionAlimenticia[] => this.alimento.inadecuadoPara
 

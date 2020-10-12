@@ -21,8 +21,8 @@ export class ColaboradorComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private recetaService: RecetaService, private router: Router) {
    }
 
-  ngOnInit(): void {
-    this.colaboradores = this.usuarioService.getUsuarios()
+  async ngOnInit() {
+    this.colaboradores = await this.usuarioService.getUsuarios()
   }
 
   seleccion(colaborador){

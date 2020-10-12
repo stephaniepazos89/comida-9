@@ -17,8 +17,6 @@ export interface InterfaceRecetaService {
 export class RecetaService implements InterfaceRecetaService{
   public enEdicion: boolean
   public recetaEditada
-  private recetas: Receta[]
-  asignadorID: number = 0
 
   constructor(private usuarioService:UsuarioService, private http: HttpClient) { }
 
@@ -37,7 +35,6 @@ export class RecetaService implements InterfaceRecetaService{
     const receta = new Receta(-1, this.usuarioLogueado())
     this.recetaEditada = receta
     this.recetaEditada.nombreDelPlato="Nueva Receta"
-    this.recetaEditada.listaDePasos.push("Hola")
   }
   
 
@@ -45,8 +42,8 @@ export class RecetaService implements InterfaceRecetaService{
    return this.usuarioService.usuarioLogin
   }
 
-  busquedaCompleta(recetaBuscada) {
-    return this.getRecetas()
+  async busquedaCompleta(recetaBuscada) {
+    return await this.getRecetas()
   }
 
   async busquedaPorPalabra(palabraBuscada){

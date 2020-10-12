@@ -151,6 +151,13 @@ class RecetaControllerTest {
 		assertEquals("ID de URL distinto que ID de Body", responseEntityPut.contentAsString)
 	}
 	
+	@DisplayName("Se borra receta Milanesa con id 1")
+	@Test
+	def void testBorrarReceta() {
+		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.delete("/receta/1")).andReturn.response
+		assertEquals(200, responseEntity.status)
+		assertEquals(repoRecetas.getById(2), null)
+	}
 	
 	def getReceta(){
 		new RecetaSimple => [

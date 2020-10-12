@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 @Accessors abstract class Receta extends Entidad{
 
 	String nombreDelPlato
-	String ultimoNombre
+	@JsonIgnore String ultimoNombre
 	UsuarioAutor autor
 	List<Usuario> listaDeColaboradores = new ArrayList<Usuario>
 	List<String> listaDePasos = new ArrayList<String>
@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	@JsonIgnore Receta recetaOriginal
 	@JsonIgnore Accion ultimaAccion
 	@JsonIgnore String pasoEliminado
+	Set<Ingrediente>listaDeIngredientes  = new HashSet<Ingrediente> 
 	String img = "guiso.jpg"
 
 	 @JsonProperty("inadecuadoPara")
@@ -39,15 +40,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 		return lista
 	} 
 	
-		 
-	def inadecuadoPara() {
-		val lista = new ArrayList
-		if (inadecuadaPara() === null) {
-			return lista
-		}
-		inadecuadaPara().forEach(inadecuado | lista.add(inadecuado.nombre))
-		return lista
-	}
 	
 	def boolean caloriasAceptables(){
 		
@@ -301,7 +293,7 @@ class RecetaSimple extends Receta{
 	Integer calorias
 	Dificultad dificultad
 	@JsonIgnore Dificultad anteriorDificultad
-	Set<Ingrediente>listaDeIngredientes  = new HashSet<Ingrediente> 
+	
 	
 	
 	new (String _nombreDePlato, UsuarioAutor _autor){    
@@ -331,7 +323,7 @@ class RecetaSimple extends Receta{
 	
 	override inadecuadaPara (){
 		val HashSet<CondicionAlimenticia> localSet = new HashSet<CondicionAlimenticia>
-		localSet.addAll(listaDeIngredientes.map [ ingrediente | ingrediente.inadecuadaPara ].flatten)
+		localSet.addAll(listaDeIngredientes.map [ ingrediente | ingrediente.inadecuadoPara ].flatten)
 		return localSet
 
 	}

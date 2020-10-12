@@ -17,6 +17,14 @@ body {
     height: 100%;
 }
 
+.error {
+    margin: 10px 0px;
+    padding: 12px;
+    text-align: center;
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
 .titulocolor {
     font-size: 2rem;
     color: var(--color-titulo);

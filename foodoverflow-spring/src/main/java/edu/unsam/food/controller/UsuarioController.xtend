@@ -13,6 +13,8 @@ import edu.unsam.food.error.BusinessException
 import edu.unsam.food.domain.UsuarioPorDefecto
 import org.springframework.web.bind.annotation.PostMapping
 import edu.unsam.food.domain.Usuario
+import edu.unsam.food.domain.LoginUsuario
+import org.springframework.web.bind.annotation.GetMapping
 
 @RestController
 @CrossOrigin
@@ -41,6 +43,30 @@ class UsuarioController {
 		}
 		
 	}
+	
+	@PostMapping("/login")
+	def loginUsuario(@RequestBody String body) {
+		try {
+			val busqueda = mapper.readValue(body, LoginUsuario)
+			val encontrada = RepoUsuario.instance.loginUser(busqueda)				
+			ResponseEntity.ok(encontrada)
+
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+	@GetMapping("/usuarios")
+	def buscarTodosLosUsuarios() {
+		try {
+				val usuarios = RepoUsuario.instance.lista
+				ResponseEntity.ok(usuarios)
+			
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
 	
 	@PutMapping("/perfil")
 	def actualizarUsuario(@RequestBody String nuevoUsuario) {
