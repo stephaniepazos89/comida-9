@@ -12,7 +12,7 @@ class Alimento extends Entidad {
 	@JsonIgnore String descripcion
 	@JsonIgnore GrupoAlimenticio grupoAlimenticio
 	
-	@JsonIgnore HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
+	HashSet<CondicionAlimenticia> inadecuadoPara = new HashSet<CondicionAlimenticia>
 
 	new (String _nombreDeAlimento, GrupoAlimenticio _grupoAlimenticio){
 		
