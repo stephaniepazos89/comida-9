@@ -17,7 +17,9 @@ import edu.unsam.food.domain.Mensaje
 import edu.unsam.food.domain.Ingrediente
 import edu.unsam.food.domain.Vegetariano
 
+
 class Bootstrap {
+	
 	
 	Ingrediente peceto
 	val usuario = new UsuarioAutor(new UsuarioPorDefecto("Eduardo Biloni", "edu", 60, 1.70) => [
@@ -95,7 +97,5 @@ class Bootstrap {
 	}
 	def void crearIngredientes(){
 		peceto=new Ingrediente(RepoAlimentos.instance.getById(1),'500')
-			
-		
 	}
 }

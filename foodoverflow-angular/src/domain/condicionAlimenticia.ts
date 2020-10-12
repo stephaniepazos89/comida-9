@@ -1,21 +1,24 @@
 import { Usuario } from './usuario'
 import { Rutina } from './rutina'
 import { GrupoAlimenticio } from './grupoAlimenticio'
-import { type } from 'ramda'
+
 
 export interface CondicionAlimenticia {
 
-    
+    "@type": string
     nombre: string
 
     esSaludable(usuario: Usuario): boolean
 
     crearCondicion()
+    toJSON(): CondicionAlimenticia
 }
+
 
 
 export class Diabetico {
     
+    "@type": string = "diabetico"
     nombre: string = 'Diabetico'
 
     static fromJson(condicionJSON): Diabetico {
@@ -28,10 +31,19 @@ export class Diabetico {
     }
 
     crearCondicion(){ return new Diabetico() }
+
+    toJSON(): CondicionAlimenticia {
+        return {
+            
+            ...this,
+
+        }
+    }
 } 
 
 export class Celiaco {
 
+    "@type":string = "celiaco"
     nombre: string = 'Celiaco'
 
     static fromJson(condicionJSON): Celiaco {
@@ -44,10 +56,18 @@ export class Celiaco {
     }
 
     crearCondicion(){ return new Celiaco() }
+
+    toJSON(): CondicionAlimenticia {
+        return {
+            
+            ...this
+        }
+    }
 }
 
 export class Hipertenso {
 
+    "@type": string = "hipertenso"
     nombre: string = 'Hipertenso'
     
     static fromJson(condicionJSON): Hipertenso {
@@ -59,10 +79,18 @@ export class Hipertenso {
         return usuario.rutina == Rutina.INTENSIVO
     }
     crearCondicion(){ return new Hipertenso() }
+
+    toJSON(): CondicionAlimenticia {
+        return {
+            
+            ...this
+        }
+    }
 }
 
 export class Vegano {
 
+    "@type": string = "vegano"
     nombre: string = 'Vegano'
 
     static fromJson(condicionJSON): Vegano {
@@ -76,10 +104,18 @@ export class Vegano {
             ).length >= 2
     }
     crearCondicion(){ return new Vegano() }
+
+    toJSON(): CondicionAlimenticia {
+        return {
+            
+            ...this
+        }
+    }
 }
 
 export class Vegetariano {
 
+    "@type": string = "vegetariano"
     nombre: string = 'Vegetariano'
 
     static fromJson(condicionJSON): Vegetariano {
@@ -93,4 +129,11 @@ export class Vegetariano {
             )
     }
     crearCondicion(){ return new Vegetariano() }
+
+    toJSON(): CondicionAlimenticia {
+        return {
+            
+            ...this
+        }
+    }
 } 

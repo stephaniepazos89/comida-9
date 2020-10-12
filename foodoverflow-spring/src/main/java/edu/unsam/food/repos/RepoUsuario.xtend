@@ -2,6 +2,9 @@ package edu.unsam.food.repos
 
 import edu.unsam.food.domain.Usuario
 import edu.unsam.food.domain.LoginUsuario
+import edu.unsam.food.domain.CondicionAlimenticia
+import org.eclipse.xtend.lib.annotations.Accessors
+
 
 class RepoUsuario extends Repositorio<Usuario> {
 	
@@ -16,7 +19,12 @@ class RepoUsuario extends Repositorio<Usuario> {
 		instance
 	}
 	
+
 	def Usuario loginUser(LoginUsuario busqueda){
 		lista.findFirst[usuario | usuario.loginCorrecto(busqueda)]
 	}
+
+	@Accessors
+	CondicionAlimenticia condicionRecibida
+
 }

@@ -74,8 +74,8 @@ export class PerfilComponent implements OnInit {
     this.router.navigate(['/busqueda'])
   }
 
-  aceptar(){
-    this.usuarioService.modificarUsuario(this.usuarioPerfil)
+  async aceptar(){
+    await this.usuarioService.modificarUsuario(this.usuarioPerfil)
     this.irAHome()
   }
 

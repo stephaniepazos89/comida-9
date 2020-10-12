@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Alimento } from 'src/domain/alimento';
-import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
 import { Usuario } from 'src/domain/usuario';
 import { REST_SERVER_URL } from './configuracion'
 import { HttpClient } from '@angular/common/http';
 
+export interface IUsuarioService {
+
+  getUsuario(IDusuario): Promise<Usuario>
+  modificarUsuario(usuario: Usuario): Promise<void>
+  fetchUsuarioLogueado()
+  getUsuarios()
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuarioService implements IUsuarioService{
   public enEdicion: boolean
   private usuarios: Usuario[]
   public usuarioLogin: Usuario
@@ -17,12 +23,7 @@ export class UsuarioService {
   asignadorID: number = 0
   tipoAlimento: number;
 
-  constructor(private http: HttpClient) {
-    this.usuarios = [
-      this.crearUsuario("Eduardo", 94, 1.60)
-    ]
-
-  }
+  constructor(private http: HttpClient) {}
 
   async getUsuario(IDusuario) {
     const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/perfil', JSON.stringify(IDusuario)).toPromise()
@@ -53,30 +54,4 @@ export class UsuarioService {
       return false
     }
   }
-
-
-  crearUsuario(nombre:string, peso: number, estatura: number){
-    const usuario = new Usuario(this.asignadorID, nombre, peso, estatura)
-    this.asignadorID++
-    usuario.id = 2
-    // usuario.agregarAlimentoDisgustado(new Alimento('Lentejas',GrupoAlimenticio.CEREALES_LEGUMBRES_DERIVADOS))
-    // usuario.agregarAlimentoPreferido(new Alimento('Cebolla',GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS))
-    return usuario
-
-  }
-
- /* public getUsuarios(){
-    return this.usuarios
-  }
-*/
-  getUsuarioLogueado(posicion: number){
-    return this.usuarios[posicion]
-  }
-
-  getUsuarioByID(id:number){
-    return this.usuarios.find((receta) => {
-      return receta.id == id
-    })
-  }
-
 }

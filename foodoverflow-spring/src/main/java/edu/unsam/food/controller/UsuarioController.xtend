@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.DeserializationFeature
 import edu.unsam.food.error.BusinessException
-import edu.unsam.food.domain.UsuarioPorDefecto
 import org.springframework.web.bind.annotation.PostMapping
 import edu.unsam.food.domain.Usuario
 import edu.unsam.food.domain.LoginUsuario
 import org.springframework.web.bind.annotation.GetMapping
+import edu.unsam.food.domain.CondicionAlimenticia
+
 
 @RestController
 @CrossOrigin
@@ -83,6 +84,25 @@ class UsuarioController {
 				ResponseEntity.ok(usuarioActualizado)
 			}
 			
+			
+		} catch (BusinessException e) {
+			ResponseEntity.badRequest.body(e.message)
+		} catch (Exception e) {
+			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
+		}
+	}
+	
+	@PutMapping("/perfilcondicion")
+	def seRecibeCondicion(@RequestBody String condicion) {
+		try {
+			if (condicion === null) {
+				return ResponseEntity.badRequest.body('''No se recibe condicion''')
+			}
+			val condicionDeserializada = mapper.readValue(condicion, CondicionAlimenticia)
+			
+				RepoUsuario.instance.condicionRecibida = condicionDeserializada
+				ResponseEntity.ok(condicion)
+				
 			
 		} catch (BusinessException e) {
 			ResponseEntity.badRequest.body(e.message)

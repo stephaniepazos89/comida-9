@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-    <div class="contenedor">
+    <div class="contenedor" *ngIf="!(usuarioPerfil==null)">
         <div class="top perfil-top contenedor-colorsecundario">
             <div class="top-nombreimc">
                 <div class="top-nombreimc-nombre">{{usuarioPerfil.nombreYApellido}}</div>
