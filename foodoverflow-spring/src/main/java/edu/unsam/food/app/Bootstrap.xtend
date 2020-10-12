@@ -55,18 +55,18 @@ class Bootstrap {
 			create(usuario)
 			
 			create(new UsuarioPorDefecto(
-			"Pedro Alvarez", "peal14", 80, 1.80
+			"Eduardo Biloni", "peal14", 80, 1.80 
 			) => [
 
 				agregarAlimentoPreferido(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO))
 				fechaDeNacimiento = LocalDate.now()
 				agregarCondicionAlimenticia(new Diabetico())
 				agregarCondicionAlimenticia(new Celiaco())
-				ingresarMensaje(new Mensaje => [
-					cuerpoDeMensaje = "Hola como estas"
-					emisor = "Pedro Alvarez"
-					destinatario = RepoUsuario.instance.getById(1).nombreYApellido
-					])
+//				ingresarMensaje(new Mensaje => [
+//					cuerpoDeMensaje = "Hola como estas"
+//					emisor = "Pedro Alvarez"
+//					destinatario = RepoUsuario.instance.getById(1).nombreYApellido
+//					])
 				]
 			)
 			create(new UsuarioPorDefecto("Alberto Sabatini","albertito86", 73, 1.76))

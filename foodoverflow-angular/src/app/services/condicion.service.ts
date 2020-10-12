@@ -25,4 +25,13 @@ export class CondicionService {
   getCondicion(posicion: number): CondicionAlimenticia{
     return this.condicionesAlimenticias[posicion]
   }
+
+  crearCondicionesdeUsuario(usuarioJSON, usuarioLogueado){
+
+     usuarioJSON.condicionesAlimenticias.forEach(
+      condicion => usuarioLogueado.agregarCondicion(this.condicionesAlimenticias
+      .find(condicionAlimenticia => condicionAlimenticia.nombre == condicion.nombre).crearCondicion())
+      )
+    
+  }
 }

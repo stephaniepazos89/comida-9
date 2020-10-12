@@ -29,9 +29,13 @@ export class UsuarioService {
     return Usuario.fromJson(usuario)
   }
 
+  async modificarUsuario(usuario: Usuario) {
+    await this.http.put(REST_SERVER_URL + '/perfil', usuario.toJSON()).toPromise()
+  }
 
   async fetchUsuarioLogueado() {
-    this.usuarioLogin = await this.getUsuario(1)
+    this.usuarioLogin = await this.getUsuario(2)
+    console.log(this.usuarioLogin)
   }
 
   crearUsuario(nombre:string, peso: number, estatura: number){
@@ -57,11 +61,5 @@ export class UsuarioService {
       return receta.id == id
     })
   }
-
-  async modificarUsuario(usuario: Usuario) {
-    await this.http.put(REST_SERVER_URL + '/perfil', usuario.toJSON()).toPromise()
-  }
-
-  
   
 }

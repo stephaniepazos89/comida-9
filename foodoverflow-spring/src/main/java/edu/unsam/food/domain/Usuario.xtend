@@ -33,7 +33,7 @@ abstract class Usuario extends Entidad{
 	
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
-	public Set <CondicionAlimenticia> condicionAlimenticia = new HashSet<CondicionAlimenticia>
+	public Set <CondicionAlimenticia> condicionesAlimenticias = new HashSet<CondicionAlimenticia>
 	public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
 	
 	def double calcularIMC()
@@ -124,7 +124,7 @@ class UsuarioPorDefecto extends Usuario {
 	
 	override esSaludable(){
 		return (this.calcularIMC() >= 18.00 && this.calcularIMC() <=30.00 ) 
-					|| condicionAlimenticia.forall[esSaludable(this)]
+					|| condicionesAlimenticias.forall[esSaludable(this)]
 
 	}
 	
@@ -137,7 +137,7 @@ class UsuarioPorDefecto extends Usuario {
 	}
 	
 	override agregarCondicionAlimenticia(CondicionAlimenticia _condicion){
-		condicionAlimenticia.add(_condicion)
+		condicionesAlimenticias.add(_condicion)
 	}
 
 	override esValido(){
@@ -156,7 +156,7 @@ class UsuarioPorDefecto extends Usuario {
 	
 	override validacionHipertensoDiabetico(){
 
-		if(condicionAlimenticia.forall[condicion | condicion.validarAlimento]){
+		if(condicionesAlimenticias.forall[condicion | condicion.validarAlimento]){
 			!alimentosPreferidos.empty
 		}else {
 			true
@@ -174,7 +174,7 @@ class UsuarioPorDefecto extends Usuario {
 	}
 	
 	override sugerenciaIndividual( List <Receta> listaReceta){
-		return listaReceta.findFirst[ receta | receta.validaPara(alimentosDisgustados, condicionAlimenticia)]
+		return listaReceta.findFirst[ receta | receta.validaPara(alimentosDisgustados, condicionesAlimenticias)]
 	}
 	
 		

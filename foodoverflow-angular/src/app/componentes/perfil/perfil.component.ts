@@ -6,7 +6,7 @@ import { UsuarioService } from 'src/app/services/usuario.service'
 import { Alimento } from 'src/domain/alimento'
 import { CondicionAlimenticia, Diabetico } from 'src/domain/condicionAlimenticia'
 import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio'
-import { Receta } from 'src/domain/receta'
+import { Receta, RecetaBusquedaAutor } from 'src/domain/receta'
 import { Rutina } from 'src/domain/rutina'
 import { Usuario } from 'src/domain/usuario'
 import * as _ from "lodash"
@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit {
   usuarioPerfil: Usuario 
   alimentosPreferidos: Alimento[]
   alimentosDisgustados: Alimento[]
-  ultimasRecetas: Receta[]
+  recetasDeUsuario: Receta[]
   condiciones: CondicionAlimenticia[] = []
   preferido: number = 1
   disgustado: number = 0
@@ -41,35 +41,33 @@ export class PerfilComponent implements OnInit {
   async ngOnInit() { 
     try{
       await this.inicializacionDeUsuario()
-  } catch (error) {
+    } catch (error) {
       mostrarError(this, error)
-  }
+    }
   }
 
   async inicializacionDeUsuario(){
 
     await this.ruteoDeUsuario()
-    
-
+    console.log(this.usuarioPerfil.condicionesAlimenticias)
     this.condiciones = this.condicionesService.getCondiciones()
-
-    // this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(0)) 
-    // this.usuarioPerfil.agregarCondicion(this.condicionesService.getCondicion(1)) 
-    
     this.listaDeRutinas = Object.keys(this.rutinas)
+    await this.getRecetasDeUsuario()
   }
 
    async ruteoDeUsuario(){
     if(!this.usuarioService.enEdicion){
       await this.usuarioService.fetchUsuarioLogueado()
       this.usuarioPerfil = this.usuarioService.usuarioLogin
-    }else {
+    } else {
       this.usuarioPerfil = this.usuarioService.usuarioLogin
       this.usuarioService.enEdicion = false
-      
     }
 
-    }
+    this.usuarioPerfil.condicionesAlimenticias = []
+    this.condicionesService.crearCondicionesdeUsuario(this.usuarioService.usuarioLogin,this.usuarioPerfil)
+    console.log(this.usuarioPerfil)
+  }
 
 
   irAHome(){
@@ -77,17 +75,17 @@ export class PerfilComponent implements OnInit {
   }
 
   aceptar(){
-    this.usuarioService.modificarUsuario(this.usuarioService.usuarioLogin)
+    this.usuarioService.modificarUsuario(this.usuarioPerfil)
     this.irAHome()
   }
 
-  esSaludableTexto(){   //SE TIENE QUE ARREGLAR
+  esSaludableTexto(){   
     if (this.usuarioPerfil.esSaludable()) return "Estado Saludable"
     else return "Estado No Saludable"
   }
 
   eliminarReceta(receta: Receta) {
-    this.ultimasRecetas.splice(this.ultimasRecetas.indexOf(receta), 1)
+    this.recetasDeUsuario.splice(this.recetasDeUsuario.indexOf(receta), 1)
   }
 
   agregarCondicion(condicion: CondicionAlimenticia) {
@@ -101,5 +99,10 @@ export class PerfilComponent implements OnInit {
   tieneCondicion(condicion: CondicionAlimenticia): boolean {
      
     return this.usuarioPerfil.condicionesAlimenticias.map(condicion => condicion.nombre).includes(condicion.nombre)
+  }
+
+  async getRecetasDeUsuario(){
+    let busqueda = new RecetaBusquedaAutor("",this.usuarioPerfil.nombreYApellido)
+     this.recetasDeUsuario = await this.recetaService.busquedaRecetaDeUnAutor(busqueda)
   }
 }

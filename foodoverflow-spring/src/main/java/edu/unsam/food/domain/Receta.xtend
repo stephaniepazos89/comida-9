@@ -150,7 +150,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 		val HashSet<CondicionAlimenticia> condicionesGrupales = new HashSet<CondicionAlimenticia>
 		val HashSet<Alimento> alimentosGrupales = new HashSet<Alimento>
 		
-		condicionesGrupales.addAll(listaUsuario.map [ usuario | usuario.condicionAlimenticia ].flatten)
+		condicionesGrupales.addAll(listaUsuario.map [ usuario | usuario.condicionesAlimenticias ].flatten)
 		alimentosGrupales.addAll(listaUsuario.map [ usuario | usuario.alimentosDisgustados].flatten)		
 		
 		return validaPara(alimentosGrupales, condicionesGrupales)

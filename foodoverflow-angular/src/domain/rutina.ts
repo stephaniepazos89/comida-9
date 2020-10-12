@@ -1,6 +1,6 @@
 export enum Rutina {
 	NADA = "Nada",
-	LEVE = "Lleve",
+	LEVE = "Leve",
 	MEDIANO = "Mediano",
 	ACTIVO = "Activo",
 	INTENSIVO = "Intensivo"

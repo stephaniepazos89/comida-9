@@ -70,7 +70,7 @@ class UsuarioControllerTest {
 	def void testGetUsuarioLogueado() {
 		
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/perfil").content("2")
+			MockMvcRequestBuilders.post("/perfil").content("2")
 		).andReturn.response
 		
 		val usuario = responseEntity.contentAsString.fromJson(UsuarioPorDefecto)
@@ -84,7 +84,7 @@ class UsuarioControllerTest {
 	def void testGetIdUsuarioIncorrecto() {
 		
 		val responseEntity = mockMvc.perform(
-			MockMvcRequestBuilders.get("/perfil").content("10")
+			MockMvcRequestBuilders.post("/perfil").content("10")
 		).andReturn.response
 		
 		assertEquals(400, responseEntity.status)

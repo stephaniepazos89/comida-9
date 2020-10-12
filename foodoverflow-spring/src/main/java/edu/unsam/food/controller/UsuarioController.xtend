@@ -2,7 +2,6 @@ package edu.unsam.food.controller
 
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
 import edu.unsam.food.repos.RepoUsuario
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
