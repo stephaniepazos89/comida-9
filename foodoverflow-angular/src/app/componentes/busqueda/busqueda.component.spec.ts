@@ -42,23 +42,33 @@ describe('BusquedaComponent', () => {
       }
     })
     fixture = TestBed.createComponent(BusquedaComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    await fixture.whenStable()
+    fixture.detectChanges();
+    component = fixture.componentInstance;
   })
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Muestra inicialmente 4 recetas creadas en Stub', async () => {
+  it('El componente trae del Stub 4 recetas', async () => {
     expect(4).toBe(component.recetas.length)
   })
 
-  it('Busca tareas que contengan palabra Milanesa y encuentra dos', async () => {
+  it('Se generan 4 filas correspondiente a las recetas del Stub', async () => {
     const resultHtml = fixture.debugElement.nativeElement
-    component.recetaBuscada = "Milanesa"
     resultHtml.querySelector('[data-testid="buscador"]').click()
     fixture.detectChanges()
     expect(resultHtml.querySelectorAll('[data-testid="filarecetas"]').length).toBe(4)
+  })
+
+  it('2', async () => {
+    const resultHtml = fixture.debugElement.nativeElement
+    component.recetaBuscada= "Milanesa"
+    fixture.detectChanges()
+    resultHtml.querySelector('[data-testid="buscador"]').click()
+    fixture.detectChanges()
+    expect(resultHtml.querySelectorAll('[data-testid="filarecetas"]').length).toBe(2)
   })
 });

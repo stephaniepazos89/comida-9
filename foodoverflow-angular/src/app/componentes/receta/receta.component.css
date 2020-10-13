@@ -30,11 +30,13 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 .inputtitulo {
     margin: 0.5rem 0.5rem;
     font-size: 2rem;
+    width: 100%;
 }
 
 .bot-receta {

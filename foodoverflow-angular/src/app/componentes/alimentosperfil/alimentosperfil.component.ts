@@ -18,7 +18,7 @@ export class AlimentosperfilComponent implements OnInit {
   usuarioPerfil: Usuario
   alimentoRecibido: Alimento
 
-  constructor(private router: Router, public usuarioService: UsuarioService, private route: ActivatedRoute) {
+  constructor(public router: Router, public usuarioService: UsuarioService) {
 
   }
 

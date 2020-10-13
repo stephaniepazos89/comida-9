@@ -151,10 +151,21 @@ class RecetaControllerTest {
 		assertEquals("ID de URL distinto que ID de Body", responseEntityPut.contentAsString)
 	}
 	
-	@DisplayName("Se crea nueva receta")
+	@DisplayName("Se crea nueva receta pero el ID no es -1 por lo que arroja error 500")
+	@Test
+	def void testCrearRecetaDistintoID() {
+		val recetaBody = getReceta() 
+
+		val responseEntityPut = mockMvc.perform(
+			MockMvcRequestBuilders.put("/recetanueva").content(mapper.writeValueAsString(recetaBody))).andReturn.
+			response
+		assertEquals(500, responseEntityPut.status)
+	}
+
+		@DisplayName("Se crea nueva receta correctamente")
 	@Test
 	def void testCrearReceta() {
-		val recetaBody = getReceta() 
+		val recetaBody = getReceta()=>[ id = -1]
 
 		val responseEntityPut = mockMvc.perform(
 			MockMvcRequestBuilders.put("/recetanueva").content(mapper.writeValueAsString(recetaBody))).andReturn.
@@ -170,6 +181,8 @@ class RecetaControllerTest {
 		assertEquals(200, responseEntity.status)
 		assertEquals(repoRecetas.getById(1), null)
 	}
+	
+	
 	
 	def getReceta(){
 		new RecetaSimple => [

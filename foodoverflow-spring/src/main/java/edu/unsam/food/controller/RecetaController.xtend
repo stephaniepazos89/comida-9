@@ -87,7 +87,7 @@ def recetaByID(@PathVariable Integer id) {
 	def actualizar(@RequestBody String body, @PathVariable Integer id) {
 		try {
 			if (id === null || id === 0) {
-				return ResponseEntity.badRequest.body('''Debe ingresar el parámetro id''')
+				return ResponseEntity.badRequest.body("Debe ingresar el parámetro id")
 			}
 			val actualizada = mapper.readValue(body, Receta)
 
@@ -107,6 +107,9 @@ def recetaByID(@PathVariable Integer id) {
 	def crear(@RequestBody String body) {
 		try {
 			val receta = mapper.readValue(body, Receta)
+			if (receta.id != -1) {
+				return ResponseEntity.badRequest.body("La receta no es nueva")
+			}
 			RepoRecetas.instance.create(receta)
 			ResponseEntity.ok(receta)
 		} catch (BusinessException e) {
