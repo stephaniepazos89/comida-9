@@ -7,7 +7,6 @@ export interface IUsuarioService {
 
   getUsuario(IDusuario): Promise<Usuario>
   modificarUsuario(usuario: Usuario): Promise<void>
-  fetchUsuarioLogueado()
   getUsuarios()
 }
 
@@ -40,10 +39,6 @@ export class UsuarioService implements IUsuarioService{
     return usuarios.map((usuario) => Usuario.fromJson(usuario))
   }
 
-  async fetchUsuarioLogueado() {
-    this.usuarioLogin = await this.getUsuario(1)
-    console.log(this.usuarioLogin)
-  }
 
   async loguearUsuario(busqueda) {
     const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/login', JSON.stringify(busqueda)).toPromise()

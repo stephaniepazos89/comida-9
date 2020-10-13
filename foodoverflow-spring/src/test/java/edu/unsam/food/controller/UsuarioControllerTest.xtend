@@ -24,6 +24,8 @@ import edu.unsam.food.domain.GrupoAlimenticio
 import edu.unsam.food.domain.Diabetico
 import edu.unsam.food.domain.Celiaco
 import edu.unsam.food.domain.Mensaje
+import edu.unsam.food.domain.Usuario
+import org.junit.jupiter.api.AfterEach
 
 @AutoConfigureJsonTesters
 @ContextConfiguration(classes=UsuarioController)
@@ -41,7 +43,7 @@ class UsuarioControllerTest {
 	
 	@BeforeEach
 	def void init() {
-		//repoUsuario.lista.clear
+		repoUsuario.lista.clear
 		usuarioLogueado = new UsuarioPorDefecto(
 			"Pedro Alvarez", "peal14", 80, 1.80
 			) => [
@@ -63,6 +65,12 @@ class UsuarioControllerTest {
 		]
 	}
 	
+	@AfterEach
+	def void end(){
+		repoUsuario.lista.clear
+		repoUsuario.idRepo = 1
+	}
+	
 	
 	
 	@DisplayName("Se obtiene el usuario logueado")
@@ -73,7 +81,7 @@ class UsuarioControllerTest {
 			MockMvcRequestBuilders.post("/perfil").content("2")
 		).andReturn.response
 		
-		val usuario = responseEntity.contentAsString.fromJson(UsuarioPorDefecto)
+		val usuario = responseEntity.contentAsString.fromJson(Usuario)
 		
 		assertEquals(200, responseEntity.status)
 		assertEquals("Pedro Alvarez",usuario.nombreYApellido)
@@ -111,19 +119,14 @@ class UsuarioControllerTest {
 			]
 		
 		val responseEntityPut = mockMvc.perform(
-			MockMvcRequestBuilders.put("/perfil").content(mapper.writeValueAsString(usuarioBody))
-		).andReturn.response
+			MockMvcRequestBuilders.put("/perfil").content(mapper.writeValueAsString(usuarioBody))).andReturn.response
 		
 		val responseEntityGet = mockMvc.perform(
-			MockMvcRequestBuilders.get("/perfil").content("2")
-		).andReturn.response
+			MockMvcRequestBuilders.post("/perfil").content("2")).andReturn.response
 		
-		val usuarioActualizado = responseEntityGet.contentAsString.fromJson(UsuarioPorDefecto)
+		val usuarioActualizado = responseEntityGet.contentAsString.fromJson(Usuario)
 		
 		assertEquals(200, responseEntityPut.status)
-		
-		assertEquals(200, responseEntityGet.status)
-		
 		assertEquals(usuarioActualizado.nombreYApellido, usuarioBody.nombreYApellido)
 		
 	}

@@ -86,7 +86,7 @@ export class Hipertenso {
 
 export class Vegano {
 
-    nombre: string = 'Vegano'
+    public nombre: string = 'Vegano'
 
     static fromJson(condicionJSON): Vegano {
         return Object.assign(new Vegano(), condicionJSON)

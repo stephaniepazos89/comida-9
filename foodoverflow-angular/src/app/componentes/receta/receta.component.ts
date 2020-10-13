@@ -23,8 +23,6 @@ export class RecetaComponent implements OnInit {
   dificultades = Dificultad
   enumDificultades = []
   esNueva: boolean
-  enEdicion: boolean 
-  listadoInadecuados: String [] 
   errors = []
   errorMessage : string
   vistaEdicion = this.recetaService.vistaEdicion
@@ -33,11 +31,9 @@ export class RecetaComponent implements OnInit {
 
 
   async ngOnInit() {
-    
     try {
       await this.observableRouting()
       this.enumDificultades = Object.values(this.dificultades)
-      
     } catch (error) {
       mostrarError(this, error)
     }
@@ -46,13 +42,7 @@ export class RecetaComponent implements OnInit {
 
   async observableRouting(){
     const idReceta = this.route.snapshot.params['id']
-    
-      if (idReceta > 0){
-        await this.ruteoRecetaExistente(idReceta)
-      }else{
-        this.ruteoNuevaReceta()
-      }
-    
+    idReceta > 0? await this.ruteoRecetaExistente(idReceta): this.ruteoNuevaReceta()    
   }
 
   ruteoNuevaReceta(){
@@ -84,17 +74,11 @@ export class RecetaComponent implements OnInit {
   async aceptar(){
     try {
       if(this.receta.esValida()){
-        if(this.esNueva){
-          await this.aceptarNueva()
-        }else{
-          await this.aceptarModificacion()
-        }
-
+        this.esNueva? await this.aceptarNueva() : await this.aceptarModificacion()
         this.irAHome()
       }else{
         this.errorMessage = "Debe llenar al menos un paso, un ingrediente, y calorias entre 10 y 5000"
       }
-
     } catch (e) {
       this.errors.push(e.error)
     }

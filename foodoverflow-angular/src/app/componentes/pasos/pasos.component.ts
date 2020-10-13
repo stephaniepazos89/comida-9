@@ -38,7 +38,9 @@ export class PasosComponent implements OnInit {
   }
 
   agregarPaso(){
-    this.pasos.push(this.unPaso)
+    if(this.unPaso != ""){
+      this.pasos.push(this.unPaso)
+    }
     this.unPaso= ""
   }
   

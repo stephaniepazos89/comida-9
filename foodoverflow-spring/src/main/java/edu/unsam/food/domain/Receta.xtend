@@ -28,17 +28,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 	@JsonIgnore String pasoEliminado
 	Set<Ingrediente>listaDeIngredientes  = new HashSet<Ingrediente> 
 	String img = "guiso.jpg"
-
-	 @JsonProperty("inadecuadoPara")
-	def getInadecuados() {
-		val lista = new ArrayList
-		if (inadecuadaPara() === null) {
-			return lista
-		}
-	
-		inadecuadaPara().forEach(inadecuado | lista.add(inadecuado.nombre))
-		return lista
-	} 
 	
 	
 	def boolean caloriasAceptables(){

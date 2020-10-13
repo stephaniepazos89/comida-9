@@ -13,9 +13,10 @@
             </div>
             <div class="contenedor-botones">
                 <div class="botones-block">
-                    <button class="button" (click)="aceptar()">Aceptar</button>
+                    <button accesskey="enter" class="button" (click)="aceptar()">Aceptar</button>
                     <button class="button button2" (click)="cancelar()">Cancelar</button>
                 </div>
+                <div class="error" *ngIf="errorMessage"><i class="fa fa-times-circle"></i>{{ errorMessage }}</div>
             </div>
         </div>
     </div>

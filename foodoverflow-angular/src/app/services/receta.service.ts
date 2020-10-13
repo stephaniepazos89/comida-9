@@ -38,7 +38,7 @@ export class RecetaService implements InterfaceRecetaService{
     this.recetaEditada.nombreDelPlato=""
     this.recetaEditada.img ="pollo.jpg"
   }
-  
+
 
   usuarioLogueado(): Usuario{
    return this.usuarioService.usuarioLogin
@@ -56,10 +56,6 @@ export class RecetaService implements InterfaceRecetaService{
   async busquedaRecetaDeUnAutor(busqueda) {
     const recetas = await this.http.post<Receta[]>(REST_SERVER_URL + '/busquedausuariologin', JSON.stringify(busqueda)).toPromise()
     return recetas.map((receta) => Receta.fromJson(receta))
-  }
-
-  coincidencia(valor1: string, valor2: string) {
-    return valor1.toLowerCase().match(valor2.toLowerCase())
   }
 
   async agregarReceta(receta: Receta){

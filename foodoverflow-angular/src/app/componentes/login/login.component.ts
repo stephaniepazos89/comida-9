@@ -19,17 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     
   }
-  
-  login(){
-    this.usuarioService.fetchUsuarioLogueado()
-    this.router.navigate(['/busqueda'])
-  }
 
- /* async login(){
+  async login(){
     if(await this.usuarioService.loguearUsuario(new LoginUsuario(this.username, this.password))){
       this.router.navigate(['/busqueda'])
     }else{
       this.errorMessage = "Usuario o contraseña incorrecta"
     }
-  }*/
+  }
 }

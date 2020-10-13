@@ -27,7 +27,7 @@ export class CondicionService {
     return this.condicionesAlimenticias[posicion]
   }
 
-  crearCondicionesdeUsuario(usuarioJSON, usuarioLogueado){
+  public crearCondicionesdeUsuario(usuarioJSON, usuarioLogueado){
 
     let condicionesNueva: any[] = []
 
@@ -38,19 +38,4 @@ export class CondicionService {
       usuarioLogueado.condicionesAlimenticias = []
       usuarioLogueado.condicionesAlimenticias = condicionesNueva
   }
-
-  /*crearCondicionesdeReceta(JSON){
-
-    let condicionesNueva: any[] = []
-
-    JSON.inadecuadoPara.forEach(
-      condicion => condicionesNueva.push(this.condicionesAlimenticias
-      .find(condicionAlimenticia => condicionAlimenticia.nombre == condicion.nombre).crearCondicion())
-      )
-    return condicionesNueva
-  }*/
-
-  // async enviarCondicion(condicion: CondicionAlimenticia){
-  //   await this.http.put(REST_SERVER_URL + '/perfilcondicion', condicion.toJSON()).toPromise()
-  // }
 }

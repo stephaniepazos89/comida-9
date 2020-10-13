@@ -55,7 +55,7 @@ export class PerfilComponent implements OnInit {
 
    async ruteoDeUsuario(){
     if(!this.usuarioService.enEdicion){
-      await this.usuarioService.fetchUsuarioLogueado()
+      this.usuarioService.usuarioLogin
       this.usuarioPerfil = this.usuarioService.usuarioLogin
     } else {
       this.usuarioPerfil = this.usuarioService.usuarioLogin

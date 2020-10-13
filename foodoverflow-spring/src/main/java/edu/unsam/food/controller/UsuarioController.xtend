@@ -80,7 +80,7 @@ class UsuarioController {
 			if (this.cantidadDeUsuariosValida(usuarioActualizado.id)) {
 				return  ResponseEntity.badRequest.body('''Solicitud Incorrecta''')
 			} else {
-				RepoUsuario.instance.update(usuarioActualizado)
+				RepoUsuario.instance.updateUser(usuarioActualizado)
 				ResponseEntity.ok(usuarioActualizado)
 			}
 			

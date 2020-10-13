@@ -32,7 +32,7 @@ export class ColaboradorComponent implements OnInit {
     this.receta.listaDeColaboradores.forEach(colaboradorReceta => [
           index = this.colaboradores.findIndex(colaborador => colaborador.nombreYApellido == colaboradorReceta.nombreYApellido),
           this.colaboradores.splice(index, 1)
-          ])
+     ])
   }
 
   quitarAutorDeLista(){

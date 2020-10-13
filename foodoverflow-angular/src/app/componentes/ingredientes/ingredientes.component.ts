@@ -21,7 +21,7 @@ export class IngredientesComponent implements OnInit {
   alimentos: Alimento[]=[]
   receta: Receta = this.recetaService.recetaEditada
   cantidad: string
-
+  errorMessage: string
 
   constructor(public alimentoService: AlimentoService, public router: Router, public route: ActivatedRoute, private recetaService: RecetaService ) { }
 
@@ -34,10 +34,20 @@ export class IngredientesComponent implements OnInit {
   }
 
   aceptar(){
-    if(this.childAlimento.alimentoSeleccionado){
+    if(this.childAlimento.alimentoSeleccionado && this.cantidad != null && this.noEstaEnLista()){
     this.receta.agregarIngrediente(new Ingrediente(this.childAlimento.alimentoSeleccionado, this.cantidad))
-  }
     this.irAReceta()
+  } else{
+    this.errorMessage = "Debe seleccionar un alimento no repetido, e introducir cantidad"
+  }
+  }
+
+  noEstaEnLista(){
+   if( this.receta.listaDeIngredientes.findIndex(
+     ingrediente => this.childAlimento.alimentoSeleccionado.nombreDeAlimento == ingrediente.getNombre() ) == -1) {
+   return true
+  }else{
+     return false}
   }
   cancelar(){
     this.irAReceta()

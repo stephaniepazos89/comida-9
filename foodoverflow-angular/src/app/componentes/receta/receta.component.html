@@ -10,7 +10,7 @@
                     <h2 class="inputtitulo">{{receta.nombreDelPlato}}</h2>
                 </ng-template>
                 <p>por {{receta.autor.nombreYApellido}}</p>
-                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara">{{inadecuado}}  </span></p>
+                <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadaPara()">{{inadecuado.nombre}}  </span></p>
             </div>
         </div>
         <div class="bot-receta contenedor-blanco">
@@ -45,7 +45,7 @@
                     <div>
                         <table class="TablaIngredientes">
                             <tr data-testid="fila-ingredientes" *ngFor="let ingrediente of receta.listaDeIngredientes">
-                                <td>{{ingrediente.nombre}}</td>
+                                <td>{{ingrediente.getNombre()}}</td>
                                 <td class="Tabla_Valor">{{ingrediente.cantidad}}</td>
                                 <td *ngIf="vistaEdicion" class="Tabla_Cruz"><a><i (click)="eliminarIngrediente(ingrediente)" class="fa fa-times-circle"></i></a></td>
                             </tr>

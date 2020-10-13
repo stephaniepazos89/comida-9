@@ -46,8 +46,9 @@ export class Receta {
 
     public inadecuadaPara(): String[]{
         let listaCondicion = this.listaDeIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
-        let reduce = [].concat.apply([], listaCondicion)
-        return reduce   
+        let arrayReducido: [] = [].concat.apply([], listaCondicion)
+        const set = arrayReducido.reduce((acc, cur:CondicionAlimenticia) => acc.some(x=> (x.nombre === cur.nombre )) ? acc : acc.concat(cur), [])
+        return set
     }
 
     public esValida(){
