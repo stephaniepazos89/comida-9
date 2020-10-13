@@ -33,9 +33,10 @@ export class RecetaService implements InterfaceRecetaService{
     }
 
   crearRecetaVacia(){
-    const receta = new Receta(-1, this.usuarioLogueado())
+    const receta = new Receta(-10, this.usuarioLogueado())
     this.recetaEditada = receta
     this.recetaEditada.nombreDelPlato="Nueva Receta"
+    this.recetaEditada.img ="pollo.jpg"
   }
   
 

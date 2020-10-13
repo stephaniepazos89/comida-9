@@ -97,6 +97,7 @@
 
             </div>
             <div class="error" *ngIf="errorMessage"><i class="fa fa-times-circle"></i>{{ errorMessage }}</div>
+            <div class="error" *ngFor="let error of errors">{{error}}</div>
         </div>
 
 

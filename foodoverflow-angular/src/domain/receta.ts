@@ -8,14 +8,14 @@ export class Receta {
      public listaDeIngredientes: Ingrediente[] = []
      public listaDePasos: String[] = []
      public dificultad: Dificultad
-     public usuarioAutor?: String
 
     constructor(public id?: number, public autor?: Usuario, public nombreDelPlato?: string, public calorias? :number, public img?: string, public inadecuadoPara?:String[]){   }
 
     static fromJson(recetaJSON: Receta): Receta {
        const resultado: Receta = Object.assign(new Receta(), recetaJSON, { autor: Usuario.fromJson(recetaJSON.autor)
-       // listaDeIngredientes: recetaJSON.listaDeIngredientes.map(ingrediente => Ingrediente.fromJson(ingrediente))
+        ,listaDeIngredientes: recetaJSON.listaDeIngredientes.map(ingrediente => Ingrediente.fromJson(ingrediente))
     })  
+    
         return resultado
       
     }

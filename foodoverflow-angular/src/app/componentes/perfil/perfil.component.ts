@@ -33,8 +33,6 @@ export class PerfilComponent implements OnInit {
   rutinas = Rutina
   listaDeRutinas = []
 
-  
-
   constructor(public usuarioService: UsuarioService, public condicionesService: CondicionService, public recetaService: RecetaService, private router: Router ) {}
 
 

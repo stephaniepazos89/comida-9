@@ -9,7 +9,7 @@ export class Ingrediente {
 
     constructor(public alimento?: Alimento, public cantidad?: string ){}
 
-    nombre : string = this.alimento.nombreDeAlimento
+    getNombre = (): string => this.alimento.nombreDeAlimento
 
     inadecuadoPara = (): CondicionAlimenticia[] => this.alimento.inadecuadoPara
 

@@ -10,7 +10,6 @@ export class Usuario {
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
     public fechaDeNacimiento = new Date
-    //public type: String = "usuarioAutor"
 
     constructor(public id?: number, public nombreYApellido?: string, public peso?: number, public estatura?: number){}
 
@@ -49,7 +48,7 @@ export class Usuario {
     }
 
     static fromJson(usuarioJSON): Usuario {
-        return Object.assign(new Usuario(), usuarioJSON, {})
+        return Object.assign(new Usuario(), usuarioJSON)
     }
 
     toJSON(): Usuario {

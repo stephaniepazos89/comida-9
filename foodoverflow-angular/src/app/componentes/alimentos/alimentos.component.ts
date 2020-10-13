@@ -32,7 +32,6 @@ export class AlimentosComponent implements OnInit {
 
   aceptar(){
     
-    console.log(this.childAlimento.alimentoSeleccionado)
     if(this.usuarioService.tipoAlimento == 1){
       this.usuario.agregarAlimentoPreferido(this.childAlimento.alimentoSeleccionado)
        

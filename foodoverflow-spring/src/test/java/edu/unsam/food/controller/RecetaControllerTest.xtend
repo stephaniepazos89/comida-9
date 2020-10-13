@@ -142,13 +142,25 @@ class RecetaControllerTest {
 	@DisplayName("Se intenta actualizar receta pero no coincide ID de la url y el body y produce error 400")
 	@Test
 	def void testActualizaRecetaDistintosIds() {
-		val tareaBody = getReceta => [id = receta.id]
+		val recetaBody = getReceta => [id = receta.id]
 		
 		val responseEntityPut = mockMvc.perform(
-			MockMvcRequestBuilders.put("/receta/" + (receta.id + 100)).content(mapper.writeValueAsString(tareaBody))).
+			MockMvcRequestBuilders.put("/receta/" + (receta.id + 100)).content(mapper.writeValueAsString(recetaBody))).
 			andReturn.response
 		assertEquals(400, responseEntityPut.status)
 		assertEquals("ID de URL distinto que ID de Body", responseEntityPut.contentAsString)
+	}
+	
+	@DisplayName("Se crea nueva receta")
+	@Test
+	def void testCrearReceta() {
+		val recetaBody = getReceta() 
+
+		val responseEntityPut = mockMvc.perform(
+			MockMvcRequestBuilders.put("/recetanueva").content(mapper.writeValueAsString(recetaBody))).andReturn.
+			response
+		assertEquals(200, responseEntityPut.status)
+		assertEquals(repoRecetas.getById(4).nombreDelPlato, recetaBody.nombreDelPlato)
 	}
 	
 	@DisplayName("Se borra receta Milanesa con id 1")
@@ -156,7 +168,7 @@ class RecetaControllerTest {
 	def void testBorrarReceta() {
 		val responseEntity = mockMvc.perform(MockMvcRequestBuilders.delete("/receta/1")).andReturn.response
 		assertEquals(200, responseEntity.status)
-		assertEquals(repoRecetas.getById(2), null)
+		assertEquals(repoRecetas.getById(1), null)
 	}
 	
 	def getReceta(){

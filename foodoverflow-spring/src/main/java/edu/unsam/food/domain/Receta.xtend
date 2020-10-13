@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 	String nombreDelPlato
 	@JsonIgnore String ultimoNombre
-	UsuarioAutor autor
+	Usuario autor
 	List<Usuario> listaDeColaboradores = new ArrayList<Usuario>
 	List<String> listaDePasos = new ArrayList<String>
 	@JsonIgnore List<Accion> listaDeAcciones = new ArrayList<Accion>

@@ -39,6 +39,17 @@ export class CondicionService {
       usuarioLogueado.condicionesAlimenticias = condicionesNueva
   }
 
+  /*crearCondicionesdeReceta(JSON){
+
+    let condicionesNueva: any[] = []
+
+    JSON.inadecuadoPara.forEach(
+      condicion => condicionesNueva.push(this.condicionesAlimenticias
+      .find(condicionAlimenticia => condicionAlimenticia.nombre == condicion.nombre).crearCondicion())
+      )
+    return condicionesNueva
+  }*/
+
   // async enviarCondicion(condicion: CondicionAlimenticia){
   //   await this.http.put(REST_SERVER_URL + '/perfilcondicion', condicion.toJSON()).toPromise()
   // }

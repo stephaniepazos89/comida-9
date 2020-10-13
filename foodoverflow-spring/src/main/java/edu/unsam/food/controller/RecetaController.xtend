@@ -107,7 +107,6 @@ def recetaByID(@PathVariable Integer id) {
 	def crear(@RequestBody String body) {
 		try {
 			val receta = mapper.readValue(body, Receta)
-			receta.id = RepoRecetas.instance.idRepo
 			RepoRecetas.instance.create(receta)
 			ResponseEntity.ok(receta)
 		} catch (BusinessException e) {

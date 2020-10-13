@@ -59,12 +59,11 @@ export class RecetaComponent implements OnInit {
     if(!this.recetaService.enEdicion){
       this.recetaService.crearRecetaVacia()
       this.receta = this.recetaService.recetaEditada
-      this.esNueva = true
     }else{
       this.receta = this.recetaService.recetaEditada
       this.recetaService.enEdicion = false
-
     }
+    this.esNueva = true
   }
 
   async ruteoRecetaExistente(idReceta){
@@ -101,9 +100,7 @@ export class RecetaComponent implements OnInit {
     }
   }
 
-
   async aceptarNueva(){
-      this.receta.id = 0
       await this.recetaService.agregarReceta(this.receta)
   }
 
