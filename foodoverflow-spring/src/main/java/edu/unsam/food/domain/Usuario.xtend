@@ -35,7 +35,7 @@ abstract class Usuario extends Entidad{
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
 	public Set <CondicionAlimenticia> condicionesAlimenticias = new HashSet<CondicionAlimenticia>
-	public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
+	@JsonIgnore public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
 	
 	def boolean loginCorrecto(LoginUsuario busqueda)
 	

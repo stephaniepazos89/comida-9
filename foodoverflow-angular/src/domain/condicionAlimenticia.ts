@@ -5,7 +5,6 @@ import { GrupoAlimenticio } from './grupoAlimenticio'
 
 export interface CondicionAlimenticia {
 
-    "@type": string
     nombre: string
 
     esSaludable(usuario: Usuario): boolean
@@ -17,8 +16,7 @@ export interface CondicionAlimenticia {
 
 
 export class Diabetico {
-    
-    "@type": string = "diabetico"
+
     nombre: string = 'Diabetico'
 
     static fromJson(condicionJSON): Diabetico {
@@ -34,8 +32,8 @@ export class Diabetico {
 
     toJSON(): CondicionAlimenticia {
         return {
-            
-            ...this,
+            type: "diabetico",
+            ...this
 
         }
     }
@@ -43,7 +41,6 @@ export class Diabetico {
 
 export class Celiaco {
 
-    "@type":string = "celiaco"
     nombre: string = 'Celiaco'
 
     static fromJson(condicionJSON): Celiaco {
@@ -59,7 +56,7 @@ export class Celiaco {
 
     toJSON(): CondicionAlimenticia {
         return {
-            
+            type: "celiaco",
             ...this
         }
     }
@@ -67,7 +64,6 @@ export class Celiaco {
 
 export class Hipertenso {
 
-    "@type": string = "hipertenso"
     nombre: string = 'Hipertenso'
     
     static fromJson(condicionJSON): Hipertenso {
@@ -82,7 +78,7 @@ export class Hipertenso {
 
     toJSON(): CondicionAlimenticia {
         return {
-            
+            type: "hipertenso",
             ...this
         }
     }
@@ -90,7 +86,6 @@ export class Hipertenso {
 
 export class Vegano {
 
-    "@type": string = "vegano"
     nombre: string = 'Vegano'
 
     static fromJson(condicionJSON): Vegano {
@@ -107,7 +102,7 @@ export class Vegano {
 
     toJSON(): CondicionAlimenticia {
         return {
-            
+            type: "vegano",
             ...this
         }
     }
@@ -115,7 +110,6 @@ export class Vegano {
 
 export class Vegetariano {
 
-    "@type": string = "vegetariano"
     nombre: string = 'Vegetariano'
 
     static fromJson(condicionJSON): Vegetariano {
@@ -132,7 +126,7 @@ export class Vegetariano {
 
     toJSON(): CondicionAlimenticia {
         return {
-            
+            type: "vegetariano",
             ...this
         }
     }

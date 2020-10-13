@@ -64,8 +64,8 @@ export class PerfilComponent implements OnInit {
       this.usuarioService.enEdicion = false
     }
 
-    this.usuarioPerfil.condicionesAlimenticias = []
-    this.condicionesService.crearCondicionesdeUsuario(this.usuarioService.usuarioLogin,this.usuarioPerfil)
+    //this.usuarioPerfil.condicionesAlimenticias = []
+    this.condicionesService.crearCondicionesdeUsuario(this.usuarioService.usuarioLogin, this.usuarioPerfil)
     console.log(this.usuarioPerfil)
   }
 

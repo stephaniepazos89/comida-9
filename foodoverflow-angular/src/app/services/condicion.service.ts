@@ -29,11 +29,14 @@ export class CondicionService {
 
   crearCondicionesdeUsuario(usuarioJSON, usuarioLogueado){
 
+    let condicionesNueva: any[] = []
+
      usuarioJSON.condicionesAlimenticias.forEach(
-      condicion => usuarioLogueado.agregarCondicion(this.condicionesAlimenticias
+      condicion => condicionesNueva.push(this.condicionesAlimenticias
       .find(condicionAlimenticia => condicionAlimenticia.nombre == condicion.nombre).crearCondicion())
       )
-    
+      usuarioLogueado.condicionesAlimenticias = []
+      usuarioLogueado.condicionesAlimenticias = condicionesNueva
   }
 
   // async enviarCondicion(condicion: CondicionAlimenticia){

@@ -13,7 +13,6 @@ import edu.unsam.food.domain.Diabetico
 import edu.unsam.food.domain.Vegano
 import java.time.LocalDate
 import edu.unsam.food.domain.Celiaco
-import edu.unsam.food.domain.Mensaje
 import edu.unsam.food.domain.Ingrediente
 import edu.unsam.food.domain.Vegetariano
 
@@ -73,11 +72,6 @@ class Bootstrap {
 				fechaDeNacimiento = LocalDate.now()
 				agregarCondicionAlimenticia(new Diabetico())
 				agregarCondicionAlimenticia(new Celiaco())
-//				ingresarMensaje(new Mensaje => [
-//					cuerpoDeMensaje = "Hola como estas"
-//					emisor = "Pedro Alvarez"
-//					destinatario = RepoUsuario.instance.getById(1).nombreYApellido
-//					])
 				]
 			)
 			create(new UsuarioPorDefecto("Alberto Sabatini","albertito86", 73, 1.76))
