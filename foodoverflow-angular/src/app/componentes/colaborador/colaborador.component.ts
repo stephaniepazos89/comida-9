@@ -23,7 +23,25 @@ export class ColaboradorComponent implements OnInit {
 
   async ngOnInit() {
     this.colaboradores = await this.usuarioService.getUsuarios()
+    this.quitarAutorDeLista()
+    this.quitarColaboradorDeLista()
   }
+
+  quitarColaboradorDeLista(){
+    let index
+    this.receta.listaDeColaboradores.forEach(colaboradorReceta => [
+          index = this.colaboradores.findIndex(colaborador => colaborador.nombreYApellido == colaboradorReceta.nombreYApellido),
+          this.colaboradores.splice(index, 1)
+          ])
+  }
+
+  quitarAutorDeLista(){
+    let index = this.colaboradores.findIndex(colaborador => colaborador.nombreYApellido == this.receta.autor.nombreYApellido)
+    if (index!=-1){
+    this.colaboradores.splice(index, 1)
+    }
+  }
+
 
   seleccion(colaborador){
     this.seleccionado = colaborador

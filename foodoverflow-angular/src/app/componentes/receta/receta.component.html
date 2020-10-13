@@ -5,9 +5,9 @@
             <img src="assets/img/{{receta.img}}" class="imagenreceta" />
 
             <div class="perfil-receta">
-                <h2 *ngIf="vistaEdicion; else noEditTitulo"><input type="text" class="inputtitulo contenedor-colorsecundario" size="15" maxlength="20" [(ngModel)]="receta.nombreDelPlato"></h2>
+                <h2 *ngIf="vistaEdicion; else noEditTitulo"><input type="text" placeholder="Nombre de la receta" class="inputtitulo contenedor-colorsecundario" size="15" maxlength="20" [(ngModel)]="receta.nombreDelPlato"></h2>
                 <ng-template #noEditTitulo>
-                    <h2>{{receta.nombreDelPlato}}</h2>
+                    <h2 class="inputtitulo">{{receta.nombreDelPlato}}</h2>
                 </ng-template>
                 <p>por {{receta.autor.nombreYApellido}}</p>
                 <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara">{{inadecuado}}  </span></p>

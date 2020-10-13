@@ -24,10 +24,14 @@ class Bootstrap {
 	val usuario = new UsuarioAutor(new UsuarioPorDefecto("Eduardo Biloni", "edu", 60, 1.70) => [
 				agregarAlimentoPreferido(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO))
 				establecerFecha("2020-12-20")
+				password = "1234"
 				agregarCondicionAlimenticia(new Diabetico())
 				agregarCondicionAlimenticia(new Celiaco())
-				password = "1234"
 			])
+			
+	val usuario2 = new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "lucas", 80, 1.74)=>[
+														   	password = "1234"])
+	
 		def void run() {
 			crearAlimentos()
 			crearIngredientes()
@@ -39,22 +43,19 @@ class Bootstrap {
 	def void crearRecetas() {
 		
 		RepoRecetas.instance => [
-			create(new RecetaSimple("Milanesa", usuario)=>[calorias = 1002 
+			create(new RecetaSimple("Milanesa", usuario)=>[calorias = 1200 
 														   dificultad = Dificultad.Media
 														  listaDeIngredientes.add(peceto)
 														   listaDePasos.add("Cortar el pecetto fino")
 														   listaDePasos.add("Romper 2 huevos")
-														   listaDeColaboradores.add(new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "lucas", 80, 1.74)))
+														   listaDeColaboradores.add(usuario2)
 			])
-			create(new RecetaSimple("Guiso", new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "Gimi14", 80, 1.74))))
-			create(new RecetaSimple("Papas Fritas", usuario)=>[calorias = 1002 
-														   dificultad = Dificultad.Media
-														  listaDeIngredientes.add(peceto)
+			create(new RecetaSimple("Guiso de Lentejas", usuario2)=>[ calorias = 600 dificultad = Dificultad.Facil])
+			create(new RecetaSimple("Papas Fritas", usuario)=>[calorias = 800 
+														   dificultad = Dificultad.Dificil
+														   listaDeIngredientes.add(peceto)
 														   listaDePasos.add("Pelar la papa")
 														   listaDePasos.add("Cortar la papa")
-														   listaDeColaboradores.add(new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "lucas", 80, 1.74))=>[
-														   	password = "1234"
-														   ])
 			])
 		]
 		
@@ -63,20 +64,10 @@ class Bootstrap {
 	def void crearUsuarios() {
 		RepoUsuario.instance => [
 
-			
-			create(new UsuarioPorDefecto(
-			"Eduardo Biloni", "edu", 80, 1.80 
-			) => [
-				password = "1234"
-				agregarAlimentoPreferido(new Alimento("Peceto", GrupoAlimenticio.CARNES_PESCADO_HUEVO))
-				fechaDeNacimiento = LocalDate.now()
-				agregarCondicionAlimenticia(new Diabetico())
-				agregarCondicionAlimenticia(new Celiaco())
-				]
-			)
+			create(usuario)
 			create(new UsuarioPorDefecto("Alberto Sabatini","albertito86", 73, 1.76))
-			create(new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "lucas", 80, 1.74)=>[
-														   	password = "1234"]))
+			create(usuario2)
+			
 			
 	]
 	}

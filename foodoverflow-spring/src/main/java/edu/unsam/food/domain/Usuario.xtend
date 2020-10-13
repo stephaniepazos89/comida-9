@@ -289,6 +289,10 @@ class UsuarioColaborador extends UsuarioDecorator{
 		peso = _usuario.peso
 		estatura = _usuario.estatura
 		password = _usuario.password
+		alimentosPreferidos = _usuario.alimentosPreferidos
+		alimentosDisgustados = _usuario.alimentosDisgustados
+		condicionesAlimenticias = _usuario.condicionesAlimenticias
+		fechaDeNacimiento = _usuario.fechaDeNacimiento
 	}
 	
 	new(){}
@@ -331,6 +335,11 @@ class UsuarioAutor extends UsuarioDecorator{
 		peso = _usuario.peso
 		estatura = _usuario.estatura
 		password = _usuario.password
+		alimentosPreferidos = _usuario.alimentosPreferidos
+		alimentosDisgustados = _usuario.alimentosDisgustados
+		condicionesAlimenticias = _usuario.condicionesAlimenticias
+		fechaDeNacimiento = _usuario.fechaDeNacimiento
+		
 	}
 
 	new (){

@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 		if (inadecuadaPara() === null) {
 			return lista
 		}
-		
+	
 		inadecuadaPara().forEach(inadecuado | lista.add(inadecuado.nombre))
 		return lista
 	} 

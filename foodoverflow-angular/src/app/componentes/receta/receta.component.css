@@ -21,8 +21,8 @@
 
 .imagenreceta {
     display: flex;
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
     border-top-left-radius: 2rem;
 }
 
@@ -75,11 +75,11 @@
 }
 
 .ingrediente {
-    width: 35%;
+    width: 45%;
 }
 
 .pasos {
-    width: 55%;
+    width: 45%;
 }
 
 table {
