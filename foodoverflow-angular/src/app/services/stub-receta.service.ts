@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Receta } from 'src/domain/receta';
+import { Receta, RecetaBusquedaAutor } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 import { Ingrediente } from 'src/domain/ingrediente';
 import { Alimento } from 'src/domain/alimento';
 import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
 import { Vegano, Vegetariano } from 'src/domain/condicionAlimenticia';
 import { Dificultad } from 'src/domain/dificultad';
-import { UsuarioService } from './usuario.service';
+import { StubUsuarioService } from './stub-usuario.service';
 
 
 @Injectable({
@@ -18,14 +18,14 @@ export class StubRecetaService {
   public recetaEditada
   private recetas: Receta[]
   asignadorID: number = 0
-
-  constructor(private usuarioService:UsuarioService) { 
+  vistaEdicion: boolean = false
+  constructor(private usuarioService:StubUsuarioService) { 
     this.recetas = [
 
-      this.crearReceta(new Usuario (1,"German", 65, 1.85), "Milanesa de pollo"),
-      this.crearReceta(new Usuario(2,"German", 65, 1.85), "Guiso de lentejas"),
+      this.crearReceta(this.usuarioLogueado(), "Milanesa de pollo"),
+      this.crearReceta(this.usuarioLogueado(), "Guiso de lentejas"),
       this.crearReceta(new Usuario(3,"Tomas", 78, 1.62), "Tarta de espinaca"),
-      this.crearReceta(new Usuario(4,"Rodrigo", 100, 1.75), "Hamburguesa"),
+      this.crearReceta(new Usuario(4,"Rodrigo", 100, 1.75), "Milanesa de carne"),
     ]
   }
   
@@ -41,9 +41,8 @@ export class StubRecetaService {
     const receta = new Receta(this.asignadorID, autor, nombreDelPlato, 4000)
     this.asignadorID++
 
-    // PROVISORIO PARA PROBAR.
-    let papa: Alimento = new Alimento("Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS, [new Vegano()])
-    let carne: Alimento = new Alimento("Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO, [new Vegetariano()])
+    let papa: Alimento = new Alimento(1,"Papa", GrupoAlimenticio.HORTALIZAS_FRUTAS_SEMILLAS, [new Vegano()])
+    let carne: Alimento = new Alimento(2,"Carne", GrupoAlimenticio.CARNES_PESCADO_HUEVO, [new Vegetariano()])
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaDeColaboradores.push(new Usuario (4,"Jorgito", 180, 1.80))
     receta.listaDeIngredientes.push(new Ingrediente( carne, "500"))
@@ -70,16 +69,16 @@ export class StubRecetaService {
    return this.usuarioService.usuarioLogueado()
   }
 
-  busquedaCompleta(recetaBuscada): Receta[]{
-  return this.getRecetas().filter(receta => !recetaBuscada || this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombreYApellido, recetaBuscada) )
+  busquedaPorPalabra(recetaBuscada): Receta[]{
+  return this.getRecetas().filter(receta =>  this.coincidencia(receta.nombreDelPlato, recetaBuscada) || this.coincidencia(receta.autor.nombreYApellido, recetaBuscada) )
   }
 
   busquedaPorUsuario(usuarioBuscado): Receta[]{
     return  this.getRecetas().filter(receta => !usuarioBuscado || this.coincidencia(receta.autor.nombreYApellido, usuarioBuscado) )
    }
  
-  busquedaRecetaDeUnAutor(recetaBuscada, autor): Receta[]{
-    return  this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, recetaBuscada) && receta.autor.nombreYApellido == autor.nombre)
+  busquedaRecetaDeUnAutor(busqueda: RecetaBusquedaAutor): Receta[]{
+    return  this.getRecetas().filter(receta => this.coincidencia(receta.nombreDelPlato, busqueda.palabraBuscada) && receta.autor.nombreYApellido == busqueda.nombreAutor)
   }
 
   coincidencia(valor1: string, valor2: string) {

@@ -17,6 +17,7 @@ export interface InterfaceRecetaService {
 export class RecetaService implements InterfaceRecetaService{
   public enEdicion: boolean
   public recetaEditada
+  public vistaEdicion: boolean
 
   constructor(private usuarioService:UsuarioService, private http: HttpClient) { }
 

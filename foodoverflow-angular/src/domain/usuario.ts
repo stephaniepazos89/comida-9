@@ -1,7 +1,6 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { Alimento } from './alimento'
-import { parse } from 'url'
 
 
 export class Usuario {

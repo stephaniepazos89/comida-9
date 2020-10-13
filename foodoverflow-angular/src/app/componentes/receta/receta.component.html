@@ -5,7 +5,10 @@
             <img src="assets/img/{{receta.img}}" class="imagenreceta" />
 
             <div class="perfil-receta">
-                <h2><input type="text" class="inputtitulo contenedor-colorsecundario" size="15" maxlength="20" [(ngModel)]="receta.nombreDelPlato"></h2>
+                <h2 *ngIf="vistaEdicion; else noEditTitulo"><input type="text" class="inputtitulo contenedor-colorsecundario" size="15" maxlength="20" [(ngModel)]="receta.nombreDelPlato"></h2>
+                <ng-template #noEditTitulo>
+                    <h2>{{receta.nombreDelPlato}}</h2>
+                </ng-template>
                 <p>por {{receta.autor.nombreYApellido}}</p>
                 <p><span class="negrita occult">Inadecuado para </span><span *ngFor="let inadecuado of receta.inadecuadoPara">{{inadecuado}}  </span></p>
             </div>
@@ -15,13 +18,19 @@
             <form action="" class="inforeceta">
                 <div class="infoizquierda">
                     <label for="" class="negrita">Total de calorias</label>
-                    <input type="number" class="textbox" id="calorias" name="receta.calorias" [(ngModel)]="receta.calorias" />
+                    <input *ngIf="vistaEdicion; else noEditCalorias" type="number" class="textbox" id="calorias" name="receta.calorias" [(ngModel)]="receta.calorias" />
+                    <ng-template #noEditCalorias>
+                        <span>: {{receta.calorias}} </span>
+                    </ng-template>
                 </div>
                 <div class="infoderecha">
                     <label for="" class="negrita">Dificultad</label>
-                    <select class="form-control textbox border" name="receta.dificultad" [(ngModel)]="receta.dificultad">
+                    <select *ngIf="vistaEdicion; else noEditDificultad" class="form-control textbox border" name="receta.dificultad" [(ngModel)]="receta.dificultad">
                         <option *ngFor="let dificultad of enumDificultades" [value]="dificultad">{{dificultades[dificultad]}}</option>
                 </select>
+                    <ng-template #noEditDificultad>
+                        <span>: {{receta.dificultad}} </span>
+                    </ng-template>
                 </div>
             </form>
 
@@ -30,15 +39,15 @@
                 <div class="ingrediente">
                     <div class="titulo-bot">
                         <h3>Ingredientes</h3>
-                        <button (click)="agregarIngrediente()" class="button mobile">Agregar</button>
-                        <button (click)="agregarIngrediente()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                        <button *ngIf="vistaEdicion" (click)="agregarIngrediente()" class="button mobile">Agregar</button>
+                        <button *ngIf="vistaEdicion" (click)="agregarIngrediente()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div>
                         <table class="TablaIngredientes">
                             <tr data-testid="fila-ingredientes" *ngFor="let ingrediente of receta.listaDeIngredientes">
                                 <td>{{ingrediente.nombre}}</td>
                                 <td class="Tabla_Valor">{{ingrediente.cantidad}}</td>
-                                <td class="Tabla_Cruz"><a><i (click)="eliminarIngrediente(ingrediente)" class="fa fa-times-circle"></i></a></td>
+                                <td *ngIf="vistaEdicion" class="Tabla_Cruz"><a><i (click)="eliminarIngrediente(ingrediente)" class="fa fa-times-circle"></i></a></td>
                             </tr>
 
                         </table>
@@ -48,14 +57,14 @@
                 <div class="pasos">
                     <div class="titulo-bot">
                         <h3>Pasos</h3>
-                        <button (click)="agregarPaso()" class="button mobile">Agregar</button>
-                        <button (click)="agregarPaso()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                        <button *ngIf="vistaEdicion" (click)="agregarPaso()" class="button mobile">Agregar</button>
+                        <button *ngIf="vistaEdicion" (click)="agregarPaso()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
                     </div>
                     <div>
                         <table class="TablaIngredientes">
                             <tr data-testid="fila-pasos" *ngFor="let paso of receta.listaDePasos;let indice=index">
                                 <td>{{indice+1}}. {{paso}}</td>
-                                <td class="Tabla_Cruz"><a><i (click)="eliminarPaso(paso)" class="fa fa-times-circle"></i></a></td>
+                                <td *ngIf="vistaEdicion" class="Tabla_Cruz"><a><i (click)="eliminarPaso(paso)" class="fa fa-times-circle"></i></a></td>
                             </tr>
                         </table>
                     </div>
@@ -65,21 +74,25 @@
 
             <div class="colaboradores">
                 <h3>Colaboradores</h3>
-                <button (click)="agregarColaborador()" class="button mobile">Agregar</button>
-                <button (click)="agregarColaborador()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
+                <button *ngIf="vistaEdicion" (click)="agregarColaborador()" class="button mobile">Agregar</button>
+                <button *ngIf="vistaEdicion" (click)="agregarColaborador()" class="button buttonoccult"><i class="fa fa-plus-circle"></i></button>
             </div>
 
             <div class="contenedor-lista-colaboradores">
                 <div class="lista">
                     <div class="top-lista colaborador fondotitulo">Nombre</div>
-                    <button data-testid="fila-colaboradores" *ngFor="let colaborador of receta.listaDeColaboradores" class="colaborador selector"><p>{{colaborador.nombreYApellido}}</p><a (click)="eliminarColaborador(colaborador)"><i class="fa fa-times-circle"></i></a></button>
+                    <button data-testid="fila-colaboradores" *ngFor="let colaborador of receta.listaDeColaboradores" class="colaborador selector"><p>{{colaborador.nombreYApellido}}</p><a *ngIf="vistaEdicion" (click)="eliminarColaborador(colaborador)"><i class="fa fa-times-circle"></i></a></button>
                 </div>
 
 
                 <div class="botones">
-                    <button (click)="aceptar()" class="button">Aceptar</button>
-                    <button (click)="cancelar()" class="button button2">Cancelar</button>
+                    <button *ngIf="vistaEdicion; else noEditVolver" (click)="aceptar()" class="button">Aceptar</button>
+                    <button *ngIf="vistaEdicion" (click)="cancelar()" class="button button2">Cancelar</button>
+                    <ng-template #noEditVolver>
+                        <button (click)="cancelar()" class="button">Volver</button>
+                    </ng-template>
                 </div>
+
 
 
             </div>

@@ -6,7 +6,7 @@
         <h2>Búsqueda de Recetas</h2>
         <div class="busqueda-boton">
             <input type="search" id="busqueda-boton" name="recetaBuscada" [(ngModel)]="recetaBuscada" placeholder="Buscar..">
-            <button (click)="realizarBusqueda(recetaBuscada)" class="button">Buscar</button>
+            <button data-testid="buscador" (click)="realizarBusqueda()" class="button">Buscar</button>
         </div>
 
         <label class="busqueda-checkbox"> <input type="checkbox" name="isChecked" [(ngModel)]="isChecked" ng-checked="isChecked" id="busqueda-checkbox">Sólo mis recetas</label>

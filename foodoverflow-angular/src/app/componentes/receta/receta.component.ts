@@ -6,7 +6,6 @@ import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
 import { RoutingService } from 'src/app/services/routing.service';
-import { isFunction } from 'lodash';
 
 function mostrarError(component, error) {
   const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
@@ -28,6 +27,8 @@ export class RecetaComponent implements OnInit {
   listadoInadecuados: String [] 
   errors = []
   errorMessage : string
+  vistaEdicion = this.recetaService.vistaEdicion
+
   constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
 
 

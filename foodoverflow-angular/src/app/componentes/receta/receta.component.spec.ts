@@ -6,8 +6,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RecetaService } from 'src/app/services/receta.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { StubRecetaService } from 'src/app/services/stub-receta.service';
+import { StubUsuarioService } from 'src/app/services/stub-usuario.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { RecetaComponent } from './receta.component';
 
@@ -43,8 +43,8 @@ describe('RecetaComponent', () => {
               }
             }
           },
-          { provide: RecetaService, useClass: StubRecetaService }
-          //{ provide: UsuariosService, useClass: StubUsuariosService }
+          { provide: RecetaService, useClass: StubRecetaService },
+          { provide: UsuarioService, useClass: StubUsuarioService }
         ]
       }
     })

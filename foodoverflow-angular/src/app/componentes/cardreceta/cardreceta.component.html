@@ -1,4 +1,4 @@
-<div class="card-receta">
+<div (click)="verReceta()" class="card-receta">
     <img src="assets/img/{{receta.img}}" class="imagenreceta">
     <div class="receta-info">
         <h3>{{receta.nombreDelPlato}}</h3>
@@ -6,7 +6,7 @@
         <p>Dificultad: {{receta.dificultad}}</p>
     </div>
     <div *ngIf="receta.esEditablePor(usuarioLogueado)" class="receta-botones">
-        <a [routerLink]="['/receta', receta.id]"><i class="fa fa-edit"></i></a>
+        <a (click)="editarReceta()"><i class="fa fa-edit"></i></a>
         <a (click)="eliminar(receta)"><i class="fa fa-trash-o"></i></a>
     </div>
 </div>

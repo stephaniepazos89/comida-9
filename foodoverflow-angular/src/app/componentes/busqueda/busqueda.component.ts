@@ -34,12 +34,12 @@ export class BusquedaComponent implements OnInit {
     }
   }
 
-  async realizarBusqueda(recetaBuscada): Promise<void>{
+  async realizarBusqueda(): Promise<void>{
 
    if(!this.isChecked){
-    this.recetas =  await this.recetaService.busquedaPorPalabra(recetaBuscada)
+    this.recetas =  await this.recetaService.busquedaPorPalabra(this.recetaBuscada)
    }else {
-     let busqueda = new RecetaBusquedaAutor(recetaBuscada,this.usuarioLogueado().nombreYApellido)
+     let busqueda = new RecetaBusquedaAutor(this.recetaBuscada,this.usuarioLogueado().nombreYApellido)
      this.recetas = await this.recetaService.busquedaRecetaDeUnAutor(busqueda)
    }
    
@@ -50,6 +50,7 @@ export class BusquedaComponent implements OnInit {
    }
 
    nuevaReceta(){
+    this.recetaService.vistaEdicion = true
      this.recetaService.crearRecetaVacia()
      this.receta = this.recetaService.recetaEditada
      this.router.navigate(['/receta', this.receta.id]);

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from 'src/domain/Usuario';
+import { Usuario } from 'src/domain/usuario';
+import { Alimento } from 'src/domain/alimento';
+import { GrupoAlimenticio } from 'src/domain/grupoAlimenticio';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +18,10 @@ export class StubUsuarioService {
 
   constructor() { 
     this.usuarios = [
-      this.crearUsuario("Eduardo", 94, 1.60),
       this.crearUsuario("German", 65, 1.85),
-      this.crearUsuario("Tomas", 78, 1.62)
+      this.crearUsuario("Lucas", 70, 1.67)
   ]
+  this.usuarioLogin = this.usuarioLogueado()
 }
 
   crearUsuario(nombre:string, peso: number, estatura: number){
@@ -43,7 +46,9 @@ export class StubUsuarioService {
     this.usuarioLogin = this.getUsuario(1)
   }
 
-  loguearUsuario(busqueda){}
+  usuarioLogueado() : Usuario{
+    return this.usuarios[0]
+  }
 
   getUsuarioByID(id:number){
     return this.usuarios.find((receta) => {
