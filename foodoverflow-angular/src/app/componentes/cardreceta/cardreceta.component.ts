@@ -16,21 +16,19 @@ export class CardrecetaComponent implements OnInit {
   @Input() resultado: ResultadosComponent
   @Input() receta: Receta
   dificultades: Dificultad
-  usuarioLogueado : Usuario
+  usuarioLogin : Usuario
 
   constructor(public usuarioService: UsuarioService, public recetaService : RecetaService, private router: Router) { }
 
   ngOnInit(): void {
-    this.usuarioLogueado = this.usuarioService.usuarioLogin
+    this.usuarioLogin = this.usuarioService.usuarioLogin
   }
 
   verReceta(){
-    this.recetaService.vistaEdicion = false
     this.router.navigate(['/receta/', this.receta.id])
   }
   
   editarReceta(){
-    this.recetaService.vistaEdicion = true
     this.router.navigate(['/receta/', this.receta.id])
   }
 

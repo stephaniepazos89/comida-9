@@ -18,7 +18,7 @@ export class IngredientesComponent implements OnInit {
   @ViewChild(TablaAlimentosComponent) childAlimento;
 
   nombreTabla: String = 'Alimento'
-  alimentos: Alimento[]=[]
+  alimentos: Alimento[] = []
   receta: Receta = this.recetaService.recetaEditada
   cantidad: string
   errorMessage: string

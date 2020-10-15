@@ -5,7 +5,7 @@
         <p>Calorías: {{receta.calorias}}</p>
         <p>Dificultad: {{receta.dificultad}}</p>
     </div>
-    <div *ngIf="receta.esEditablePor(usuarioLogueado)" class="receta-botones">
+    <div *ngIf="receta.esEditablePor(usuarioLogin)" class="receta-botones">
         <a (click)="editarReceta()"><i class="fa fa-edit"></i></a>
         <a (click)="eliminar(receta)"><i class="fa fa-trash-o"></i></a>
     </div>

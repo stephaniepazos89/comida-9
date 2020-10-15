@@ -7,6 +7,7 @@ import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
 import { RoutingService } from 'src/app/services/routing.service';
 import { mostrarError } from 'src/domain/errorMessage'
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-receta',
@@ -19,11 +20,11 @@ export class RecetaComponent implements OnInit {
   dificultades = Dificultad
   enumDificultades = []
   esNueva: boolean
+  usuarioLogin = this.usuarioService.usuarioLogin
   errors = []
   errorMessage : string
-  vistaEdicion = this.recetaService.vistaEdicion
 
-  constructor(private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
+  constructor(private usuarioService: UsuarioService, private recetaService: RecetaService, private router: Router, private route: ActivatedRoute, private routingService: RoutingService) { }
 
 
   async ngOnInit() {
@@ -54,6 +55,7 @@ export class RecetaComponent implements OnInit {
   async ruteoRecetaExistente(idReceta){
     if(!this.recetaService.recetaEditada){
       this.receta = await this.recetaService.getRecetaByID(idReceta)
+      this.recetaService.recetaEditada = this.receta
     }else {
       this.receta = this.recetaService.recetaEditada
     }
@@ -61,6 +63,7 @@ export class RecetaComponent implements OnInit {
   }
 
   irAHome(){
+    this.recetaService.recetaEditada = null
     this.router.navigate([this.routingService.rutaAnteriorEstricta.value])
   }
 
@@ -90,17 +93,14 @@ export class RecetaComponent implements OnInit {
   }
 
   agregarIngrediente(){
-    this.recetaService.enEdicion = true
     this.router.navigate(['/ingrediente']);
   }
   
   agregarColaborador(){
-    this.recetaService.enEdicion = true
     this.router.navigate(['/colaborador'])
   }
 
   agregarPaso(){
-    this.recetaService.enEdicion = true
     this.router.navigate(['/pasos'])
   }
 

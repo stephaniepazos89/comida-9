@@ -15,13 +15,10 @@ export interface InterfaceRecetaService {
   providedIn: 'root'
 })
 export class RecetaService implements InterfaceRecetaService{
-  public enEdicion: boolean
   public recetaEditada
-  public vistaEdicion: boolean
 
   constructor(private usuarioService:UsuarioService, private http: HttpClient) { }
 
-  
   async getRecetas(){
     const recetas = await this.http.get<Receta[]>(REST_SERVER_URL + '/busqueda').toPromise()
     return recetas.map((receta) => Receta.fromJson(receta))
@@ -38,7 +35,6 @@ export class RecetaService implements InterfaceRecetaService{
     this.recetaEditada.nombreDelPlato=""
     this.recetaEditada.img ="pollo.jpg"
   }
-
 
   usuarioLogueado(): Usuario{
    return this.usuarioService.usuarioLogin

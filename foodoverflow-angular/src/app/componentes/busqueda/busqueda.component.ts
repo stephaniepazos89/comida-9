@@ -46,7 +46,6 @@ export class BusquedaComponent implements OnInit {
    }
 
    nuevaReceta(){
-    this.recetaService.vistaEdicion = true
      this.recetaService.crearRecetaVacia()
      this.receta = this.recetaService.recetaEditada
      this.router.navigate(['/receta', this.receta.id]);
