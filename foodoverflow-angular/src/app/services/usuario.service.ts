@@ -41,9 +41,7 @@ export class UsuarioService implements IUsuarioService{
 
   async loguearUsuario(busqueda) {
     const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/login', JSON.stringify(busqueda)).toPromise()
-     if(usuario !== null){
-      return this.usuarioLogin = Usuario.fromJson(usuario)
-     }
+      this.usuarioLogin = Usuario.fromJson(usuario)
   }
 
   agregarAlimentoALista(alimento: Alimento){

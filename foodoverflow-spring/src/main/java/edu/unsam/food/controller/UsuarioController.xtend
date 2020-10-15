@@ -50,8 +50,12 @@ class UsuarioController {
 		try {
 			val busqueda = mapper.readValue(body, LoginUsuario)
 			val encontrada = RepoUsuario.instance.loginUser(busqueda)				
+			if (encontrada === null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o contraseña invalido")
+		}
 			ResponseEntity.ok(encontrada)
-
+			
+			
 		} catch (Exception e) {
 			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
 		}

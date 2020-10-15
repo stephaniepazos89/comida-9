@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { mostrarError } from 'src/domain/errorMessage';
 import { LoginUsuario } from 'src/domain/usuario';
 
 @Component({
@@ -21,10 +22,16 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
-    if(Boolean(await this.usuarioService.loguearUsuario(new LoginUsuario(this.username, this.password)))){
+    try{
+      await this.usuarioService.loguearUsuario(new LoginUsuario(this.username, this.password))
       this.router.navigate(['/busqueda'])
-    }else{
+      
+    } catch(error){
       this.errorMessage = "Usuario o contraseña incorrecta"
     }
   }
 }
+
+
+
+ 
