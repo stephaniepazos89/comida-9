@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { UsuarioService } from 'src/app/services/usuario.service'
 import { Alimento } from 'src/domain/alimento'
-import { Usuario } from 'src/domain/usuario'
 
 @Component({
   selector: 'app-alimentosperfil',
@@ -13,17 +12,14 @@ export class AlimentosperfilComponent implements OnInit {
  
   @Input() titulo: string
   @Input() listaDeAlimentos: Alimento[]
-  @Input() usuario: Usuario
-  @Input() tipoAlimento: number
-  usuarioPerfil: Usuario
-  alimentoRecibido: Alimento
+  @Input() esListaDePreferidos: boolean
 
   constructor(public router: Router, public usuarioService: UsuarioService) {
 
   }
 
   ngOnInit() {
-    if(this.tipoAlimento == 1){
+    if(this.esListaDePreferidos){
       this.listaDeAlimentos = this.usuarioService.usuarioLogin.alimentosPreferidos
     }else{
       this.listaDeAlimentos = this.usuarioService.usuarioLogin.alimentosDisgustados
@@ -32,8 +28,7 @@ export class AlimentosperfilComponent implements OnInit {
   }
 
   goToAlimento(){
-    this.usuarioService.tipoAlimento = this.tipoAlimento
-    this.usuarioService.enEdicion = true
+    this.usuarioService.esListaDePreferidos = this.esListaDePreferidos
     this.router.navigate(['/alimento'])
   }
 

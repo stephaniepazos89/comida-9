@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
-    if(await this.usuarioService.loguearUsuario(new LoginUsuario(this.username, this.password))){
+    if(Boolean(await this.usuarioService.loguearUsuario(new LoginUsuario(this.username, this.password)))){
       this.router.navigate(['/busqueda'])
     }else{
       this.errorMessage = "Usuario o contraseña incorrecta"

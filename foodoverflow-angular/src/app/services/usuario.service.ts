@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from 'src/domain/usuario';
+import { Alimento } from 'src/domain/alimento';
 import { REST_SERVER_URL } from './configuracion'
 import { HttpClient } from '@angular/common/http';
 
@@ -14,19 +15,14 @@ export interface IUsuarioService {
   providedIn: 'root'
 })
 export class UsuarioService implements IUsuarioService{
-  public enEdicion: boolean
-  private usuarios: Usuario[]
   public usuarioLogin: Usuario
-  public usuarioCopia: Usuario
-
-  asignadorID: number = 0
-  tipoAlimento: number;
+  public esListaDePreferidos:boolean
 
   constructor(private http: HttpClient) {}
 
   async getUsuario(IDusuario) {
     const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/perfil', JSON.stringify(IDusuario)).toPromise()
-    return Usuario.fromJson(usuario)
+    return this.usuarioLogin = Usuario.fromJson(usuario)
   }
 
 
@@ -39,14 +35,23 @@ export class UsuarioService implements IUsuarioService{
     return usuarios.map((usuario) => Usuario.fromJson(usuario))
   }
 
+  async fetchUsuarioLogueado() {
+    this.usuarioLogin = await this.getUsuario(1)
+  }
 
   async loguearUsuario(busqueda) {
     const usuario = await this.http.post<Usuario>(REST_SERVER_URL + '/login', JSON.stringify(busqueda)).toPromise()
-    if(usuario !== null){
-      this.usuarioLogin = Usuario.fromJson(usuario)
-      return true
-    } else{
-      return false
+     if(usuario !== null){
+      return this.usuarioLogin = Usuario.fromJson(usuario)
+     }
+  }
+
+  agregarAlimentoALista(alimento: Alimento){
+    if(this.esListaDePreferidos){
+      this.usuarioLogin.agregarAlimentoPreferido(alimento)
+       
+    }else{
+      this.usuarioLogin.agregarAlimentoDisgustado(alimento) 
     }
   }
 }

@@ -1,6 +1,7 @@
 import { CondicionAlimenticia } from './condicionAlimenticia'
 import { Rutina } from './rutina'
 import { Alimento } from './alimento'
+import * as moment from 'moment'
 
 
 export class Usuario {
@@ -9,7 +10,7 @@ export class Usuario {
     public rutina: Rutina
     public alimentosPreferidos: Alimento[] = []
     public alimentosDisgustados: Alimento[] = []
-    public fechaDeNacimiento = new Date
+    public fechaDeNacimiento = new Date()
 
     constructor(public id?: number, public nombreYApellido?: string, public peso?: number, public estatura?: number){}
 
@@ -48,14 +49,20 @@ export class Usuario {
     }
 
     static fromJson(usuarioJSON): Usuario {
-        return Object.assign(new Usuario(), usuarioJSON)
+        return Object.assign(new Usuario(), usuarioJSON, {
+        })
     }
 
     toJSON(): Usuario {
         return {
-            
+            fechaDeNacimiento: moment("this.fechaDeNacimiento").format("dd-mm-yyyy"),
             ...this
         }
+    }
+
+    tieneCondicion(condicionRecibida: CondicionAlimenticia): boolean{ 
+
+        return this.condicionesAlimenticias.map(condicion => condicion.nombre).includes(condicionRecibida.nombre)
     }
 }
 

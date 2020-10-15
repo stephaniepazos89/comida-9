@@ -4,11 +4,7 @@ import { RecetaService } from 'src/app/services/receta.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Receta, RecetaBusquedaAutor } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
-
-function mostrarError(component, error) {
-  const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
-  component.errors.push(errorMessage)
-}
+import { mostrarError } from 'src/domain/errorMessage'
 
 @Component({
   selector: 'app-busqueda',

@@ -30,7 +30,7 @@
 
                     <div class="bot-datos-nacimiento datos-bloque">
                         <label class="bot-datos-nacimientotexto" for="nacimiento">Nacimiento</label>
-                        <input type="date" id="nacimiento" class="datos-input border-colorsecundario" name="nacimiento" [(ngModel)]="usuarioPerfil.fechaDeNacimiento">
+                        <input type="date" id="nacimiento" class="datos-input border-colorsecundario" name="date" [(ngModel)]="usuarioPerfil.fechaDeNacimiento" [value]= "usuarioPerfil.fechaDeNacimiento" placeholder="yyyy-MM-dd">
                     </div>
                     <div class="bot-datos-rutina datos-bloque">
                         <label class="bot-datos-rutinatexto" for="rutina">Rutina</label>
@@ -46,14 +46,14 @@
                 <div class="condiciones-tipos border-colorsecundario">
                     <div class="condiciones-tipos-bloque" *ngFor="let condicion of condiciones">
                         <label class="tipos-bloque" for={{condicion.nombre}}>
-                            <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}} [checked]=tieneCondicion(condicion) (change)="agregarCondicion(condicion)">{{condicion.nombre}}</label>
+                            <input type="checkbox" id={{condicion.nombre}} name={{condicion.nombre}} [checked]="tieneCondicion(condicion)" (change)="modificarCondicion(condicion)">{{condicion.nombre}}</label>
                     </div>
                 </div>
             </div>
 
             <div class="alimentos">
-                <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [tipoAlimento]='preferido'></app-alimentosperfil>
-                <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [tipoAlimento]='disgustado'></app-alimentosperfil>
+                <app-alimentosperfil [titulo]="'Alimentos Preferidos'" [esListaDePreferidos]='true'></app-alimentosperfil>
+                <app-alimentosperfil [titulo]="'Alimentos No Preferidos'" [esListaDePreferidos]='false'></app-alimentosperfil>
             </div>
 
             <div class="recetas">
@@ -67,7 +67,7 @@
             <div class="botonesbot">
                 <div class="botonesbot-bloque">
                     <div class="button" (click)=aceptar()>Aceptar</div>
-                    <div class="button button2" (click)=irAHome()>Cancelar</div>
+                    <div class="button button2" (click)=cancelar()>Cancelar</div>
                 </div>
             </div>
 

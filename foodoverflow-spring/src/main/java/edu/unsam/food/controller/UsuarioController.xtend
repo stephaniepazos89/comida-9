@@ -92,24 +92,6 @@ class UsuarioController {
 		}
 	}
 	
-	@PutMapping("/perfilcondicion")
-	def seRecibeCondicion(@RequestBody String condicion) {
-		try {
-			if (condicion === null) {
-				return ResponseEntity.badRequest.body('''No se recibe condicion''')
-			}
-			val condicionDeserializada = mapper.readValue(condicion, CondicionAlimenticia)
-			
-				RepoUsuario.instance.condicionRecibida = condicionDeserializada
-				ResponseEntity.ok(condicion)
-				
-			
-		} catch (BusinessException e) {
-			ResponseEntity.badRequest.body(e.message)
-		} catch (Exception e) {
-			ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message)
-		}
-	}
 	
 	static def mapper() {
 		new ObjectMapper => [

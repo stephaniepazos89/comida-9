@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.time.format.DateTimeFormatter
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonFormat
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes(
@@ -30,13 +31,14 @@ abstract class Usuario extends Entidad{
 	Rutina rutina
 	@JsonIgnore LocalDate fechaDeNacimiento
 	@JsonIgnore String password
-	static String DATE_PATTERN = "dd/MM/yyyy"
+	static String DATE_PATTERN = "yyyy-MM-dd"
 	
 	public Set<Alimento> alimentosPreferidos = new HashSet<Alimento>
 	public Set<Alimento> alimentosDisgustados = new HashSet<Alimento>
 	public Set <CondicionAlimenticia> condicionesAlimenticias = new HashSet<CondicionAlimenticia>
 	@JsonIgnore public List<Mensaje> bandejaDeEntrada = new ArrayList<Mensaje>
-	
+  
+  
 	def boolean loginCorrecto(LoginUsuario busqueda)
 	
 	def double calcularIMC()
@@ -84,15 +86,16 @@ abstract class Usuario extends Entidad{
 	def void sumarCopia(){ }
 	
 	@JsonProperty("fechaDeNacimiento")
-	def getFechaAsString() {
-		if(this.fechaDeNacimiento !== null)
-		formatter.format(this.fechaDeNacimiento)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	def getFechaDeNacimiento(){
+		return fechaDeNacimiento
 	}
-
+	
 	@JsonProperty("fechaDeNacimiento")
-	def asignarFecha(String fecha) {
-		if(this.fechaDeNacimiento !== null)
-		this.fechaDeNacimiento = LocalDate.parse(fecha, formatter)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	def setFechaDeNacimiento(String _fechaNueva){
+		
+		fechaDeNacimiento = LocalDate.parse(_fechaNueva, formatter)
 	}
 
 	def formatter() {
@@ -117,6 +120,7 @@ class UsuarioPorDefecto extends Usuario {
 	new (){
 		
 	}
+	
 	
 	override loginCorrecto(LoginUsuario busqueda){
 		return ((busqueda.username == username) && (busqueda.password == password))
@@ -297,6 +301,7 @@ class UsuarioColaborador extends UsuarioDecorator{
 	
 	new(){}
 	
+  	
 	override loginCorrecto(LoginUsuario busqueda){
 		return ((busqueda.username == username) && (busqueda.password == password))
 	}
@@ -346,6 +351,7 @@ class UsuarioAutor extends UsuarioDecorator{
 		
 	}
 	
+  	
 	override loginCorrecto(LoginUsuario busqueda){
 		return ((busqueda.username == username) && (busqueda.password == password))
 	}

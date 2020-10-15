@@ -14,7 +14,7 @@ export class Receta {
     static fromJson(recetaJSON: Receta): Receta {
        const resultado: Receta = Object.assign(new Receta(), recetaJSON, { autor: Usuario.fromJson(recetaJSON.autor)
         ,listaDeIngredientes: recetaJSON.listaDeIngredientes.map(ingrediente => Ingrediente.fromJson(ingrediente))
-    })  
+    })
     
         return resultado
       
@@ -46,9 +46,8 @@ export class Receta {
 
     public inadecuadaPara(): String[]{
         let listaCondicion = this.listaDeIngredientes.map(ingrediente => ingrediente.inadecuadoPara())
-        let arrayReducido: [] = [].concat.apply([], listaCondicion)
-        const set = arrayReducido.reduce((acc, cur:CondicionAlimenticia) => acc.some(x=> (x.nombre === cur.nombre )) ? acc : acc.concat(cur), [])
-        return set
+        let reduce = [].concat.apply([], listaCondicion)
+        return reduce   
     }
 
     public esValida(){

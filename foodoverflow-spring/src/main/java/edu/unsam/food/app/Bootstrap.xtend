@@ -27,6 +27,7 @@ class Bootstrap {
 				password = "1234"
 				agregarCondicionAlimenticia(new Diabetico())
 				agregarCondicionAlimenticia(new Celiaco())
+				fechaDeNacimiento = LocalDate.now()
 			])
 			
 	val usuario2 = new UsuarioAutor(new UsuarioPorDefecto("Lucas Gimenez", "lucas", 80, 1.74)=>[
@@ -39,7 +40,7 @@ class Bootstrap {
 			crearUsuarios()
 			
 	}
-
+ 
 	def void crearRecetas() {
 		
 		RepoRecetas.instance => [

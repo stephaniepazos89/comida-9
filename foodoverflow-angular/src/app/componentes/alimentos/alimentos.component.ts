@@ -12,7 +12,7 @@ import { TablaAlimentosComponent } from '../tabla-alimentos/tabla-alimentos.comp
   styleUrls: ['./alimentos.component.css']
 })
 export class AlimentosComponent implements OnInit {
-  usuario: Usuario 
+  
   nombreTabla: String = 'Alimento'
   alimentos: Alimento[] = []
 
@@ -22,7 +22,6 @@ export class AlimentosComponent implements OnInit {
 
   //recibo una promesa alimento por eso es asincronico
   async ngOnInit() {
-    this.usuario =  this.usuarioService.usuarioLogin
     this.alimentos = await this.alimentoService.getAlimentos()
   }
 
@@ -31,13 +30,8 @@ export class AlimentosComponent implements OnInit {
   }
 
   aceptar(){
-    
-    if(this.usuarioService.tipoAlimento == 1){
-      this.usuario.agregarAlimentoPreferido(this.childAlimento.alimentoSeleccionado)
-       
-    }else{
-      this.usuario.agregarAlimentoDisgustado(this.childAlimento.alimentoSeleccionado) 
-    }
+
+    this.usuarioService.agregarAlimentoALista(this.childAlimento.alimentoSeleccionado)
     this.irAHome()
     
   }

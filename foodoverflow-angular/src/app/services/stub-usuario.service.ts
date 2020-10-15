@@ -12,7 +12,6 @@ export class StubUsuarioService {
   public enEdicion: boolean
   private usuarios: Usuario[]
   public usuarioLogin: Usuario
-  public usuarioCopia: Usuario
 
   asignadorID: number = 0
 

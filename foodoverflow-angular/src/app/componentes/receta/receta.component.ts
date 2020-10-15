@@ -6,11 +6,7 @@ import { Receta } from 'src/domain/receta';
 import { Usuario } from 'src/domain/usuario';
 import { Dificultad } from 'src/domain/dificultad'
 import { RoutingService } from 'src/app/services/routing.service';
-
-function mostrarError(component, error) {
-  const errorMessage = (error.status === 0) ? 'Problemas de conexion con backend' : error.error
-  component.errors.push(errorMessage)
-}
+import { mostrarError } from 'src/domain/errorMessage'
 
 @Component({
   selector: 'app-receta',
