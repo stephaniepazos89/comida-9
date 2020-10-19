@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { mostrarError } from 'src/domain/errorMessage';
 import { LoginUsuario } from 'src/domain/usuario';
 
 @Component({

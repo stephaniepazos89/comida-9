@@ -95,6 +95,7 @@ abstract class Usuario extends Entidad{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	def setFechaDeNacimiento(String _fechaNueva){
 		
+		if(_fechaNueva != null)
 		fechaDeNacimiento = LocalDate.parse(_fechaNueva, formatter)
 	}
 

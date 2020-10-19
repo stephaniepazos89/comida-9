@@ -22,7 +22,10 @@ export class PerfilComponent implements OnInit {
   rutinas = Rutina
   listaDeRutinas = []
 
-  constructor(public usuarioService: UsuarioService, public condicionesService: CondicionService, public recetaService: RecetaService, private router: Router ) {}
+  constructor(public usuarioService: UsuarioService,
+     public condicionesService: CondicionService,
+      public recetaService: RecetaService,
+       private router: Router ) {}
 
 
   async ngOnInit() { 
@@ -45,7 +48,6 @@ export class PerfilComponent implements OnInit {
 
     this.usuarioPerfil = this.usuarioService.usuarioLogin
     this.condicionesService.crearCondicionesdeUsuario(this.usuarioService.usuarioLogin, this.usuarioPerfil)
-    console.log(this.usuarioPerfil)
   }
 
 

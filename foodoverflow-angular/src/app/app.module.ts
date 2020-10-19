@@ -49,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http'
   ],
   providers: [
     RoutingService
+    
   ],
   bootstrap: [AppComponent]
 })

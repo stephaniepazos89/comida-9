@@ -9,7 +9,7 @@ export class CondicionService {
 
   private condicionesAlimenticias: CondicionAlimenticia[] = []
 
-  constructor(private http: HttpClient) { 
+  constructor() { 
     this.condicionesAlimenticias = [
       new Diabetico(),
       new Celiaco(),
